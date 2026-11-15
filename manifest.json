@@ -1,0 +1,30 @@
+{
+  "manifest_version": 3,
+  "name": "Oh my Caton · 卡坦岛资源追踪",
+  "version": "0.1.0",
+  "description": "根据 Board Game Arena 卡坦岛可见日志追踪资源，支持未知手牌、手动校正和本地保存。",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://boardgamearena.com/*",
+        "https://*.boardgamearena.com/*"
+      ],
+      "js": [
+        "src/engine.js",
+        "src/parser.js",
+        "src/journal.js",
+        "src/panel.js",
+        "src/content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Oh my Caton"
+  }
+}
