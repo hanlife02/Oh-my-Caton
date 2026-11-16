@@ -1,0 +1,5782 @@
+{
+  "corrections": [],
+  "logs": {
+    "[1,\"Alice 是起始玩家\"]:1": {
+      "event": null,
+      "id": 2,
+      "key": "[1,\"Alice 是起始玩家\"]:1",
+      "move": 1,
+      "observedId": 2,
+      "observedPage": "page-4",
+      "position": 2,
+      "signature": "[1,\"Alice 是起始玩家\"]",
+      "source": "Alice 是起始玩家",
+      "stable": true,
+      "text": "Alice 是起始玩家"
+    },
+    "[1,\"已根据Alice的偏好选择颜色。改变我的偏好。\"]:1": {
+      "event": null,
+      "id": 1,
+      "key": "[1,\"已根据Alice的偏好选择颜色。改变我的偏好。\"]:1",
+      "move": 1,
+      "observedId": 1,
+      "observedPage": "page-4",
+      "position": 1,
+      "signature": "[1,\"已根据Alice的偏好选择颜色。改变我的偏好。\"]",
+      "source": "已根据Alice的偏好选择颜色。改变我的偏好。",
+      "stable": true,
+      "text": "已根据Alice的偏好选择颜色。改变我的偏好。"
+    },
+    "[10,\"Bob 获得 1 {lumber} 2 {wool}\"]:1": {
+      "event": {
+        "player": "Bob",
+        "resources": {
+          "lumber": 1,
+          "wool": 2
+        },
+        "type": "gain"
+      },
+      "id": 13,
+      "key": "[10,\"Bob 获得 1 {lumber} 2 {wool}\"]:1",
+      "move": 10,
+      "observedId": 13,
+      "observedPage": "page-4",
+      "position": 2,
+      "signature": "[10,\"Bob 获得 1 {lumber} 2 {wool}\"]",
+      "source": "Bob 获得 1 {lumber} 2 {wool}",
+      "stable": true,
+      "text": "Bob 获得 12"
+    },
+    "[10,\"Bob放置一个城市\"]:1": {
+      "event": null,
+      "id": 12,
+      "key": "[10,\"Bob放置一个城市\"]:1",
+      "move": 10,
+      "observedId": 12,
+      "observedPage": "page-4",
+      "position": 1,
+      "signature": "[10,\"Bob放置一个城市\"]",
+      "source": "Bob放置一个城市",
+      "stable": true,
+      "text": "Bob放置一个城市"
+    },
+    "[100,\"Bob 用资源进行交易: 2 {brick} → {grain}\"]:1": {
+      "event": {
+        "give": {
+          "brick": 2
+        },
+        "player": "Bob",
+        "receive": {
+          "grain": 1
+        },
+        "type": "bank"
+      },
+      "id": 225,
+      "key": "[100,\"Bob 用资源进行交易: 2 {brick} → {grain}\"]:1",
+      "move": 100,
+      "observedId": 91,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[100,\"Bob 用资源进行交易: 2 {brick} → {grain}\"]",
+      "source": "Bob 用资源进行交易: 2 {brick} → {grain}",
+      "stable": true,
+      "text": "Bob 用资源进行交易: 2 →"
+    },
+    "[101,\"Bob 为 {grain} 激活骑士\"]:1": {
+      "event": {
+        "player": "Bob",
+        "resources": {
+          "grain": 1
+        },
+        "type": "loss"
+      },
+      "id": 226,
+      "key": "[101,\"Bob 为 {grain} 激活骑士\"]:1",
+      "move": 101,
+      "observedId": 92,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[101,\"Bob 为 {grain} 激活骑士\"]",
+      "source": "Bob 为 {grain} 激活骑士",
+      "stable": true,
+      "text": "Bob 为激活骑士"
+    },
+    "[102,\"Bob 跳过\"]:1": {
+      "event": {
+        "player": "Bob",
+        "type": "turnEnd"
+      },
+      "id": 227,
+      "key": "[102,\"Bob 跳过\"]:1",
+      "move": 102,
+      "observedId": 93,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[102,\"Bob 跳过\"]",
+      "source": "Bob 跳过",
+      "stable": true,
+      "text": "Bob 跳过"
+    },
+    "[103,\"Bob 什么都没得到\"]:1": {
+      "event": null,
+      "id": 233,
+      "key": "[103,\"Bob 什么都没得到\"]:1",
+      "move": 103,
+      "observedId": 99,
+      "observedPage": "page-5",
+      "position": 6,
+      "signature": "[103,\"Bob 什么都没得到\"]",
+      "source": "Bob 什么都没得到",
+      "stable": true,
+      "text": "Bob 什么都没得到"
+    },
+    "[103,\"Alice 获得 {lumber} {grain} {paper}\"]:1": {
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "grain": 1,
+          "lumber": 1,
+          "paper": 1
+        },
+        "type": "gain"
+      },
+      "id": 232,
+      "key": "[103,\"Alice 获得 {lumber} {grain} {paper}\"]:1",
+      "move": 103,
+      "observedId": 98,
+      "observedPage": "page-5",
+      "position": 5,
+      "signature": "[103,\"Alice 获得 {lumber} {grain} {paper}\"]",
+      "source": "Alice 获得 {lumber} {grain} {paper}",
+      "stable": true,
+      "text": "Alice 获得"
+    },
+    "[103,\"Carol 获得 {lumber} {paper}\"]:1": {
+      "event": {
+        "player": "Carol",
+        "resources": {
+          "lumber": 1,
+          "paper": 1
+        },
+        "type": "gain"
+      },
+      "id": 231,
+      "key": "[103,\"Carol 获得 {lumber} {paper}\"]:1",
+      "move": 103,
+      "observedId": 97,
+      "observedPage": "page-5",
+      "position": 4,
+      "signature": "[103,\"Carol 获得 {lumber} {paper}\"]",
+      "source": "Carol 获得 {lumber} {paper}",
+      "stable": true,
+      "text": "Carol 获得"
+    },
+    "[103,\"Carol投掷骰子...\"]:1": {
+      "event": null,
+      "id": 228,
+      "key": "[103,\"Carol投掷骰子...\"]:1",
+      "move": 103,
+      "observedId": 94,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[103,\"Carol投掷骰子...\"]",
+      "source": "Carol投掷骰子...",
+      "stable": true,
+      "text": "Carol投掷骰子..."
+    },
+    "[103,\"Carol掷出\"]:1": {
+      "event": null,
+      "id": 229,
+      "key": "[103,\"Carol掷出\"]:1",
+      "move": 103,
+      "observedId": 95,
+      "observedPage": "page-5",
+      "position": 2,
+      "signature": "[103,\"Carol掷出\"]",
+      "source": "Carol掷出",
+      "stable": true,
+      "text": "Carol掷出"
+    },
+    "[103,\"野蛮人前进一步\"]:1": {
+      "event": null,
+      "id": 230,
+      "key": "[103,\"野蛮人前进一步\"]:1",
+      "move": 103,
+      "observedId": 96,
+      "observedPage": "page-5",
+      "position": 3,
+      "signature": "[103,\"野蛮人前进一步\"]",
+      "source": "野蛮人前进一步",
+      "stable": true,
+      "text": "野蛮人前进一步"
+    },
+    "[104,\"Carol build a Aqueduct and improves its science level to 3\"]:1": {
+      "event": {
+        "level": 3,
+        "player": "Carol",
+        "resource": "paper",
+        "type": "improvement"
+      },
+      "id": 234,
+      "key": "[104,\"Carol build a Aqueduct and improves its science level to 3\"]:1",
+      "move": 104,
+      "observedId": 100,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[104,\"Carol build a Aqueduct and improves its science level to 3\"]",
+      "source": "Carol build a Aqueduct and improves its science level to 3",
+      "stable": true,
+      "text": "Carol build a Aqueduct and improves its science level to 3"
+    },
+    "[105,\"Carol 跳过\"]:1": {
+      "event": {
+        "player": "Carol",
+        "type": "turnEnd"
+      },
+      "id": 235,
+      "key": "[105,\"Carol 跳过\"]:1",
+      "move": 105,
+      "observedId": 101,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[105,\"Carol 跳过\"]",
+      "source": "Carol 跳过",
+      "stable": true,
+      "text": "Carol 跳过"
+    },
+    "[106,\"Alice 打出了 炼金术士\"]:1": {
+      "event": null,
+      "id": 236,
+      "key": "[106,\"Alice 打出了 炼金术士\"]:1",
+      "move": 106,
+      "observedId": 102,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[106,\"Alice 打出了 炼金术士\"]",
+      "source": "Alice 打出了 炼金术士",
+      "stable": true,
+      "text": "Alice 打出了 炼金术士"
+    },
+    "[107,\"炼金术师: Alice 选择下一个骰子投掷\"]:1": {
+      "event": null,
+      "id": 237,
+      "key": "[107,\"炼金术师: Alice 选择下一个骰子投掷\"]:1",
+      "move": 107,
+      "observedId": 103,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[107,\"炼金术师: Alice 选择下一个骰子投掷\"]",
+      "source": "炼金术师: Alice 选择下一个骰子投掷",
+      "stable": true,
+      "text": "炼金术师: Alice 选择下一个骰子投掷"
+    },
+    "[108,\"Bob 什么都没得到\"]:1": {
+      "event": null,
+      "id": 244,
+      "key": "[108,\"Bob 什么都没得到\"]:1",
+      "move": 108,
+      "observedId": 110,
+      "observedPage": "page-5",
+      "position": 7,
+      "signature": "[108,\"Bob 什么都没得到\"]",
+      "source": "Bob 什么都没得到",
+      "stable": true,
+      "text": "Bob 什么都没得到"
+    },
+    "[108,\"Alice 从Science 牌盒中抽取一张发展卡\"]:1": {
+      "event": null,
+      "id": 240,
+      "key": "[108,\"Alice 从Science 牌盒中抽取一张发展卡\"]:1",
+      "move": 108,
+      "observedId": 107,
+      "observedPage": "page-5",
+      "position": 3,
+      "signature": "[108,\"Alice 从Science 牌盒中抽取一张发展卡\"]",
+      "source": "Alice 从Science 牌盒中抽取一张发展卡",
+      "stable": true,
+      "text": "Alice 从Science 牌盒中抽取一张发展卡"
+    },
+    "[108,\"Alice 获得 {lumber} {grain} {paper}\"]:1": {
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "grain": 1,
+          "lumber": 1,
+          "paper": 1
+        },
+        "type": "gain"
+      },
+      "id": 243,
+      "key": "[108,\"Alice 获得 {lumber} {grain} {paper}\"]:1",
+      "move": 108,
+      "observedId": 109,
+      "observedPage": "page-5",
+      "position": 6,
+      "signature": "[108,\"Alice 获得 {lumber} {grain} {paper}\"]",
+      "source": "Alice 获得 {lumber} {grain} {paper}",
+      "stable": true,
+      "text": "Alice 获得"
+    },
+    "[108,\"Alice使用炼金术士设置骰子：\"]:1": {
+      "event": null,
+      "id": 238,
+      "key": "[108,\"Alice使用炼金术士设置骰子：\"]:1",
+      "move": 108,
+      "observedId": 105,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[108,\"Alice使用炼金术士设置骰子：\"]",
+      "source": "Alice使用炼金术士设置骰子：",
+      "stable": true,
+      "text": "Alice使用炼金术士设置骰子："
+    },
+    "[108,\"Alice掷出\"]:1": {
+      "event": null,
+      "id": 239,
+      "key": "[108,\"Alice掷出\"]:1",
+      "move": 108,
+      "observedId": 106,
+      "observedPage": "page-5",
+      "position": 2,
+      "signature": "[108,\"Alice掷出\"]",
+      "source": "Alice掷出",
+      "stable": true,
+      "text": "Alice掷出"
+    },
+    "[108,\"Carol 从Science 牌盒中抽取一张发展卡\"]:1": {
+      "event": null,
+      "id": 242,
+      "key": "[108,\"Carol 从Science 牌盒中抽取一张发展卡\"]:1",
+      "move": 108,
+      "observedId": 108,
+      "observedPage": "page-5",
+      "position": 5,
+      "signature": "[108,\"Carol 从Science 牌盒中抽取一张发展卡\"]",
+      "source": "Carol 从Science 牌盒中抽取一张发展卡",
+      "stable": true,
+      "text": "Carol 从Science 牌盒中抽取一张发展卡"
+    },
+    "[108,\"Carol 获得 {lumber} {paper}\"]:1": {
+      "event": {
+        "player": "Carol",
+        "resources": {
+          "lumber": 1,
+          "paper": 1
+        },
+        "type": "gain"
+      },
+      "id": 245,
+      "key": "[108,\"Carol 获得 {lumber} {paper}\"]:1",
+      "move": 108,
+      "observedId": 111,
+      "observedPage": "page-5",
+      "position": 8,
+      "signature": "[108,\"Carol 获得 {lumber} {paper}\"]",
+      "source": "Carol 获得 {lumber} {paper}",
+      "stable": true,
+      "text": "Carol 获得"
+    },
+    "[108,\"你获得了 道路建设 卡片\"]:1": {
+      "event": null,
+      "id": 241,
+      "key": "[108,\"你获得了 道路建设 卡片\"]:1",
+      "move": 108,
+      "observedId": 241,
+      "observedPage": "page-4",
+      "position": 4,
+      "signature": "[108,\"你获得了 道路建设 卡片\"]",
+      "source": "你获得了 道路建设 卡片",
+      "stable": true,
+      "text": "你获得了 道路建设 卡片"
+    },
+    "[109,\"Alice 打出了 道路建设\"]:1": {
+      "event": null,
+      "id": 246,
+      "key": "[109,\"Alice 打出了 道路建设\"]:1",
+      "move": 109,
+      "observedId": 112,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[109,\"Alice 打出了 道路建设\"]",
+      "source": "Alice 打出了 道路建设",
+      "stable": true,
+      "text": "Alice 打出了 道路建设"
+    },
+    "[11,\"Bob 放置了一条路\"]:1": {
+      "event": {
+        "building": "road",
+        "free": true,
+        "player": "Bob",
+        "type": "build"
+      },
+      "id": 14,
+      "key": "[11,\"Bob 放置了一条路\"]:1",
+      "move": 11,
+      "observedId": 14,
+      "observedPage": "page-4",
+      "position": 1,
+      "signature": "[11,\"Bob 放置了一条路\"]",
+      "source": "Bob 放置了一条路",
+      "stable": true,
+      "text": "Bob 放置了一条路"
+    },
+    "[110,\"Alice 放置了一条路\"]:1": {
+      "event": {
+        "building": "road",
+        "free": true,
+        "player": "Alice",
+        "type": "build"
+      },
+      "id": 247,
+      "key": "[110,\"Alice 放置了一条路\"]:1",
+      "move": 110,
+      "observedId": 113,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[110,\"Alice 放置了一条路\"]",
+      "source": "Alice 放置了一条路",
+      "stable": true,
+      "text": "Alice 放置了一条路"
+    },
+    "[111,\"Alice 放置了一条路\"]:1": {
+      "event": {
+        "building": "road",
+        "free": true,
+        "player": "Alice",
+        "type": "build"
+      },
+      "id": 248,
+      "key": "[111,\"Alice 放置了一条路\"]:1",
+      "move": 111,
+      "observedId": 114,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[111,\"Alice 放置了一条路\"]",
+      "source": "Alice 放置了一条路",
+      "stable": true,
+      "text": "Alice 放置了一条路"
+    },
+    "[112,\"Alice 用资源进行交易: 4 {grain} → {wool}\"]:1": {
+      "event": {
+        "give": {
+          "grain": 4
+        },
+        "player": "Alice",
+        "receive": {
+          "wool": 1
+        },
+        "type": "bank"
+      },
+      "id": 249,
+      "key": "[112,\"Alice 用资源进行交易: 4 {grain} → {wool}\"]:1",
+      "move": 112,
+      "observedId": 115,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[112,\"Alice 用资源进行交易: 4 {grain} → {wool}\"]",
+      "source": "Alice 用资源进行交易: 4 {grain} → {wool}",
+      "stable": true,
+      "text": "Alice 用资源进行交易: 4 →"
+    },
+    "[113,\"Alice 跳过\"]:1": {
+      "event": {
+        "player": "Alice",
+        "type": "turnEnd"
+      },
+      "id": 250,
+      "key": "[113,\"Alice 跳过\"]:1",
+      "move": 113,
+      "observedId": 116,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[113,\"Alice 跳过\"]",
+      "source": "Alice 跳过",
+      "stable": true,
+      "text": "Alice 跳过"
+    },
+    "[114,\"Bob以1的力量防守卡坦\"]:1": {
+      "event": null,
+      "id": 232,
+      "key": "[114,\"Bob以1的力量防守卡坦\"]:1",
+      "move": 114,
+      "observedId": 121,
+      "observedPage": "page-5",
+      "position": 5,
+      "signature": "[114,\"Bob以1的力量防守卡坦\"]",
+      "source": "Bob以1的力量防守卡坦",
+      "stable": true,
+      "text": "Bob以1的力量防守卡坦"
+    },
+    "[114,\"Bob投掷骰子...\"]:1": {
+      "event": null,
+      "id": 228,
+      "key": "[114,\"Bob投掷骰子...\"]:1",
+      "move": 114,
+      "observedId": 117,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[114,\"Bob投掷骰子...\"]",
+      "source": "Bob投掷骰子...",
+      "stable": true,
+      "text": "Bob投掷骰子..."
+    },
+    "[114,\"Bob掷出\"]:1": {
+      "event": null,
+      "id": 229,
+      "key": "[114,\"Bob掷出\"]:1",
+      "move": 114,
+      "observedId": 118,
+      "observedPage": "page-5",
+      "position": 2,
+      "signature": "[114,\"Bob掷出\"]",
+      "source": "Bob掷出",
+      "stable": true,
+      "text": "Bob掷出"
+    },
+    "[114,\"Alice以1的力量防守卡坦\"]:1": {
+      "event": null,
+      "id": 234,
+      "key": "[114,\"Alice以1的力量防守卡坦\"]:1",
+      "move": 114,
+      "observedId": 123,
+      "observedPage": "page-5",
+      "position": 7,
+      "signature": "[114,\"Alice以1的力量防守卡坦\"]",
+      "source": "Alice以1的力量防守卡坦",
+      "stable": true,
+      "text": "Alice以1的力量防守卡坦"
+    },
+    "[114,\"Carol以1的力量防守卡坦\"]:1": {
+      "event": null,
+      "id": 233,
+      "key": "[114,\"Carol以1的力量防守卡坦\"]:1",
+      "move": 114,
+      "observedId": 122,
+      "observedPage": "page-5",
+      "position": 6,
+      "signature": "[114,\"Carol以1的力量防守卡坦\"]",
+      "source": "Carol以1的力量防守卡坦",
+      "stable": true,
+      "text": "Carol以1的力量防守卡坦"
+    },
+    "[114,\"野蛮人前进一步\"]:1": {
+      "event": null,
+      "id": 230,
+      "key": "[114,\"野蛮人前进一步\"]:1",
+      "move": 114,
+      "observedId": 119,
+      "observedPage": "page-5",
+      "position": 3,
+      "signature": "[114,\"野蛮人前进一步\"]",
+      "source": "野蛮人前进一步",
+      "stable": true,
+      "text": "野蛮人前进一步"
+    },
+    "[114,\"野蛮人进攻，但卡坦岛骑士以 3 的防御力抵抗 3\"]:1": {
+      "event": null,
+      "id": 231,
+      "key": "[114,\"野蛮人进攻，但卡坦岛骑士以 3 的防御力抵抗 3\"]:1",
+      "move": 114,
+      "observedId": 120,
+      "observedPage": "page-5",
+      "position": 4,
+      "signature": "[114,\"野蛮人进攻，但卡坦岛骑士以 3 的防御力抵抗 3\"]",
+      "source": "野蛮人进攻，但卡坦岛骑士以 3 的防御力抵抗 3",
+      "stable": true,
+      "text": "野蛮人进攻，但卡坦岛骑士以 3 的防御力抵抗 3"
+    },
+    "[114,\"野蛮人退回原点\"]:1": {
+      "event": null,
+      "id": 235,
+      "key": "[114,\"野蛮人退回原点\"]:1",
+      "move": 114,
+      "observedId": 124,
+      "observedPage": "page-5",
+      "position": 8,
+      "signature": "[114,\"野蛮人退回原点\"]",
+      "source": "野蛮人退回原点",
+      "stable": true,
+      "text": "野蛮人退回原点"
+    },
+    "[115,\"Bob 拿取一张science 发展卡\"]:1": {
+      "event": null,
+      "id": 236,
+      "key": "[115,\"Bob 拿取一张science 发展卡\"]:1",
+      "move": 115,
+      "observedId": 125,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[115,\"Bob 拿取一张science 发展卡\"]",
+      "source": "Bob 拿取一张science 发展卡",
+      "stable": true,
+      "text": "Bob 拿取一张science 发展卡"
+    },
+    "[116,\"Carol 拿取一张science 发展卡\"]:1": {
+      "event": null,
+      "id": 237,
+      "key": "[116,\"Carol 拿取一张science 发展卡\"]:1",
+      "move": 116,
+      "observedId": 126,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[116,\"Carol 拿取一张science 发展卡\"]",
+      "source": "Carol 拿取一张science 发展卡",
+      "stable": true,
+      "text": "Carol 拿取一张science 发展卡"
+    },
+    "[117,\"Knight is now inactive\"]:1": {
+      "event": null,
+      "id": 241,
+      "key": "[117,\"Knight is now inactive\"]:1",
+      "move": 117,
+      "observedId": 129,
+      "observedPage": "page-5",
+      "position": 3,
+      "signature": "[117,\"Knight is now inactive\"]",
+      "source": "Knight is now inactive",
+      "stable": true,
+      "text": "Knight is now inactive"
+    },
+    "[117,\"Knight is now inactive\"]:2": {
+      "event": null,
+      "id": 242,
+      "key": "[117,\"Knight is now inactive\"]:2",
+      "move": 117,
+      "observedId": 130,
+      "observedPage": "page-5",
+      "position": 4,
+      "signature": "[117,\"Knight is now inactive\"]",
+      "source": "Knight is now inactive",
+      "stable": true,
+      "text": "Knight is now inactive"
+    },
+    "[117,\"Knight is now inactive\"]:3": {
+      "event": null,
+      "id": 243,
+      "key": "[117,\"Knight is now inactive\"]:3",
+      "move": 117,
+      "observedId": 131,
+      "observedPage": "page-5",
+      "position": 5,
+      "signature": "[117,\"Knight is now inactive\"]",
+      "source": "Knight is now inactive",
+      "stable": true,
+      "text": "Knight is now inactive"
+    },
+    "[117,\"Alice 拿取一张trade 发展卡\"]:1": {
+      "event": null,
+      "id": 239,
+      "key": "[117,\"Alice 拿取一张trade 发展卡\"]:1",
+      "move": 117,
+      "observedId": 128,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[117,\"Alice 拿取一张trade 发展卡\"]",
+      "source": "Alice 拿取一张trade 发展卡",
+      "stable": true,
+      "text": "Alice 拿取一张trade 发展卡"
+    },
+    "[117,\"你获得了 资源垄断 卡片\"]:1": {
+      "event": null,
+      "id": 240,
+      "key": "[117,\"你获得了 资源垄断 卡片\"]:1",
+      "move": 117,
+      "observedId": 240,
+      "observedPage": "page-1",
+      "position": 2,
+      "signature": "[117,\"你获得了 资源垄断 卡片\"]",
+      "source": "你获得了 资源垄断 卡片",
+      "stable": true,
+      "text": "你获得了 资源垄断 卡片"
+    },
+    "[117,\"强盗袭击\"]:1": {
+      "event": null,
+      "id": 245,
+      "key": "[117,\"强盗袭击\"]:1",
+      "move": 117,
+      "observedId": 133,
+      "observedPage": "page-5",
+      "position": 7,
+      "signature": "[117,\"强盗袭击\"]",
+      "source": "强盗袭击",
+      "stable": true,
+      "text": "强盗袭击"
+    },
+    "[117,\"所有骑士陷入休眠\"]:1": {
+      "event": null,
+      "id": 244,
+      "key": "[117,\"所有骑士陷入休眠\"]:1",
+      "move": 117,
+      "observedId": 132,
+      "observedPage": "page-5",
+      "position": 6,
+      "signature": "[117,\"所有骑士陷入休眠\"]",
+      "source": "所有骑士陷入休眠",
+      "stable": true,
+      "text": "所有骑士陷入休眠"
+    },
+    "[118,\"Carol 弃置了 2 {lumber} 2 {ore}\"]:1": {
+      "event": {
+        "player": "Carol",
+        "resources": {
+          "lumber": 2,
+          "ore": 2
+        },
+        "type": "loss"
+      },
+      "id": 246,
+      "key": "[118,\"Carol 弃置了 2 {lumber} 2 {ore}\"]:1",
+      "move": 118,
+      "observedId": 134,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[118,\"Carol 弃置了 2 {lumber} 2 {ore}\"]",
+      "source": "Carol 弃置了 2 {lumber} 2 {ore}",
+      "stable": true,
+      "text": "Carol 弃置了 22"
+    },
+    "[119,\"Bob 移动 强盗\"]:1": {
+      "event": null,
+      "id": 247,
+      "key": "[119,\"Bob 移动 强盗\"]:1",
+      "move": 119,
+      "observedId": 135,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[119,\"Bob 移动 强盗\"]",
+      "source": "Bob 移动 强盗",
+      "stable": true,
+      "text": "Bob 移动 强盗"
+    },
+    "[12,\"Alice 获得 {lumber} {ore}\"]:1": {
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "lumber": 1,
+          "ore": 1
+        },
+        "type": "gain"
+      },
+      "id": 16,
+      "key": "[12,\"Alice 获得 {lumber} {ore}\"]:1",
+      "move": 12,
+      "observedId": 16,
+      "observedPage": "page-4",
+      "position": 2,
+      "signature": "[12,\"Alice 获得 {lumber} {ore}\"]",
+      "source": "Alice 获得 {lumber} {ore}",
+      "stable": true,
+      "text": "Alice 获得"
+    },
+    "[12,\"Alice放置一个城市\"]:1": {
+      "event": null,
+      "id": 15,
+      "key": "[12,\"Alice放置一个城市\"]:1",
+      "move": 12,
+      "observedId": 15,
+      "observedPage": "page-4",
+      "position": 1,
+      "signature": "[12,\"Alice放置一个城市\"]",
+      "source": "Alice放置一个城市",
+      "stable": true,
+      "text": "Alice放置一个城市"
+    },
+    "[120,\"Bob 从 Carol 处偷取资源\"]:1": {
+      "event": {
+        "player": "Bob",
+        "resources": {
+          "unknown": 1
+        },
+        "type": "steal",
+        "victim": "Carol"
+      },
+      "id": 248,
+      "key": "[120,\"Bob 从 Carol 处偷取资源\"]:1",
+      "move": 120,
+      "observedId": 136,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[120,\"Bob 从 Carol 处偷取资源\"]",
+      "source": "Bob 从 Carol 处偷取资源",
+      "stable": true,
+      "text": "Bob 从 Carol 处偷取资源"
+    },
+    "[121,\"Bob 打出了 工程师\"]:1": {
+      "event": null,
+      "id": 249,
+      "key": "[121,\"Bob 打出了 工程师\"]:1",
+      "move": 121,
+      "observedId": 137,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[121,\"Bob 打出了 工程师\"]",
+      "source": "Bob 打出了 工程师",
+      "stable": true,
+      "text": "Bob 打出了 工程师"
+    },
+    "[122,\"Bob 花费-建立一个城墙\"]:1": {
+      "event": {
+        "player": "Bob",
+        "resources": {},
+        "type": "loss"
+      },
+      "id": 250,
+      "key": "[122,\"Bob 花费-建立一个城墙\"]:1",
+      "move": 122,
+      "observedId": 138,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[122,\"Bob 花费-建立一个城墙\"]",
+      "source": "Bob 花费-建立一个城墙",
+      "stable": true,
+      "text": "Bob 花费-建立一个城墙"
+    },
+    "[123,\"Bob 跳过\"]:1": {
+      "event": {
+        "player": "Bob",
+        "type": "turnEnd"
+      },
+      "id": 251,
+      "key": "[123,\"Bob 跳过\"]:1",
+      "move": 123,
+      "observedId": 139,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[123,\"Bob 跳过\"]",
+      "source": "Bob 跳过",
+      "stable": true,
+      "text": "Bob 跳过"
+    },
+    "[124,\"Bob 什么都没得到\"]:1": {
+      "event": null,
+      "id": 260,
+      "key": "[124,\"Bob 什么都没得到\"]:1",
+      "move": 124,
+      "observedId": 148,
+      "observedPage": "page-5",
+      "position": 9,
+      "signature": "[124,\"Bob 什么都没得到\"]",
+      "source": "Bob 什么都没得到",
+      "stable": true,
+      "text": "Bob 什么都没得到"
+    },
+    "[124,\"Bob 从Science 牌盒中抽取一张发展卡\"]:1": {
+      "event": null,
+      "id": 257,
+      "key": "[124,\"Bob 从Science 牌盒中抽取一张发展卡\"]:1",
+      "move": 124,
+      "observedId": 145,
+      "observedPage": "page-5",
+      "position": 6,
+      "signature": "[124,\"Bob 从Science 牌盒中抽取一张发展卡\"]",
+      "source": "Bob 从Science 牌盒中抽取一张发展卡",
+      "stable": true,
+      "text": "Bob 从Science 牌盒中抽取一张发展卡"
+    },
+    "[124,\"Alice 从Science 牌盒中抽取一张发展卡\"]:1": {
+      "event": null,
+      "id": 255,
+      "key": "[124,\"Alice 从Science 牌盒中抽取一张发展卡\"]:1",
+      "move": 124,
+      "observedId": 144,
+      "observedPage": "page-5",
+      "position": 4,
+      "signature": "[124,\"Alice 从Science 牌盒中抽取一张发展卡\"]",
+      "source": "Alice 从Science 牌盒中抽取一张发展卡",
+      "stable": true,
+      "text": "Alice 从Science 牌盒中抽取一张发展卡"
+    },
+    "[124,\"Alice 获得 {grain}\"]:1": {
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "grain": 1
+        },
+        "type": "gain"
+      },
+      "id": 259,
+      "key": "[124,\"Alice 获得 {grain}\"]:1",
+      "move": 124,
+      "observedId": 147,
+      "observedPage": "page-5",
+      "position": 8,
+      "signature": "[124,\"Alice 获得 {grain}\"]",
+      "source": "Alice 获得 {grain}",
+      "stable": true,
+      "text": "Alice 获得"
+    },
+    "[124,\"Carol 什么都没得到\"]:1": {
+      "event": null,
+      "id": 258,
+      "key": "[124,\"Carol 什么都没得到\"]:1",
+      "move": 124,
+      "observedId": 146,
+      "observedPage": "page-5",
+      "position": 7,
+      "signature": "[124,\"Carol 什么都没得到\"]",
+      "source": "Carol 什么都没得到",
+      "stable": true,
+      "text": "Carol 什么都没得到"
+    },
+    "[124,\"Carol 从Science 牌盒中抽取一张发展卡\"]:1": {
+      "event": null,
+      "id": 254,
+      "key": "[124,\"Carol 从Science 牌盒中抽取一张发展卡\"]:1",
+      "move": 124,
+      "observedId": 143,
+      "observedPage": "page-5",
+      "position": 3,
+      "signature": "[124,\"Carol 从Science 牌盒中抽取一张发展卡\"]",
+      "source": "Carol 从Science 牌盒中抽取一张发展卡",
+      "stable": true,
+      "text": "Carol 从Science 牌盒中抽取一张发展卡"
+    },
+    "[124,\"Carol投掷骰子...\"]:1": {
+      "event": null,
+      "id": 252,
+      "key": "[124,\"Carol投掷骰子...\"]:1",
+      "move": 124,
+      "observedId": 141,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[124,\"Carol投掷骰子...\"]",
+      "source": "Carol投掷骰子...",
+      "stable": true,
+      "text": "Carol投掷骰子..."
+    },
+    "[124,\"Carol掷出\"]:1": {
+      "event": null,
+      "id": 253,
+      "key": "[124,\"Carol掷出\"]:1",
+      "move": 124,
+      "observedId": 142,
+      "observedPage": "page-5",
+      "position": 2,
+      "signature": "[124,\"Carol掷出\"]",
+      "source": "Carol掷出",
+      "stable": true,
+      "text": "Carol掷出"
+    },
+    "[124,\"Carol的引水渠被触发\"]:1": {
+      "event": null,
+      "id": 261,
+      "key": "[124,\"Carol的引水渠被触发\"]:1",
+      "move": 124,
+      "observedId": 149,
+      "observedPage": "page-5",
+      "position": 10,
+      "signature": "[124,\"Carol的引水渠被触发\"]",
+      "source": "Carol的引水渠被触发",
+      "stable": true,
+      "text": "Carol的引水渠被触发"
+    },
+    "[124,\"你获得了 炼金术士 卡片\"]:1": {
+      "event": null,
+      "id": 256,
+      "key": "[124,\"你获得了 炼金术士 卡片\"]:1",
+      "move": 124,
+      "observedId": 256,
+      "observedPage": "page-1",
+      "position": 5,
+      "signature": "[124,\"你获得了 炼金术士 卡片\"]",
+      "source": "你获得了 炼金术士 卡片",
+      "stable": true,
+      "text": "你获得了 炼金术士 卡片"
+    },
+    "[125,\"Carol从引水渠获得 {grain} 。\"]:1": {
+      "event": {
+        "player": "Carol",
+        "resources": {
+          "grain": 1
+        },
+        "type": "gain"
+      },
+      "id": 262,
+      "key": "[125,\"Carol从引水渠获得 {grain} 。\"]:1",
+      "move": 125,
+      "observedId": 150,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[125,\"Carol从引水渠获得 {grain} 。\"]",
+      "source": "Carol从引水渠获得 {grain} 。",
+      "stable": true,
+      "text": "Carol从引水渠获得 。"
+    },
+    "[126,\"Carol 打出了 发明家\"]:1": {
+      "event": null,
+      "id": 263,
+      "key": "[126,\"Carol 打出了 发明家\"]:1",
+      "move": 126,
+      "observedId": 151,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[126,\"Carol 打出了 发明家\"]",
+      "source": "Carol 打出了 发明家",
+      "stable": true,
+      "text": "Carol 打出了 发明家"
+    },
+    "[128,\"Carol 交换了两个资源\"]:1": {
+      "event": null,
+      "id": 264,
+      "key": "[128,\"Carol 交换了两个资源\"]:1",
+      "move": 128,
+      "observedId": 152,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[128,\"Carol 交换了两个资源\"]",
+      "source": "Carol 交换了两个资源",
+      "stable": true,
+      "text": "Carol 交换了两个资源"
+    },
+    "[129,\"Carol 为 {grain} 激活骑士\"]:1": {
+      "event": {
+        "player": "Carol",
+        "resources": {
+          "grain": 1
+        },
+        "type": "loss"
+      },
+      "id": 265,
+      "key": "[129,\"Carol 为 {grain} 激活骑士\"]:1",
+      "move": 129,
+      "observedId": 153,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[129,\"Carol 为 {grain} 激活骑士\"]",
+      "source": "Carol 为 {grain} 激活骑士",
+      "stable": true,
+      "text": "Carol 为激活骑士"
+    },
+    "[13,\"Alice 放置了一条路\"]:1": {
+      "event": {
+        "building": "road",
+        "free": true,
+        "player": "Alice",
+        "type": "build"
+      },
+      "id": 17,
+      "key": "[13,\"Alice 放置了一条路\"]:1",
+      "move": 13,
+      "observedId": 17,
+      "observedPage": "page-4",
+      "position": 1,
+      "signature": "[13,\"Alice 放置了一条路\"]",
+      "source": "Alice 放置了一条路",
+      "stable": true,
+      "text": "Alice 放置了一条路"
+    },
+    "[130,\"Carol 打出了 道路建设\"]:1": {
+      "event": null,
+      "id": 266,
+      "key": "[130,\"Carol 打出了 道路建设\"]:1",
+      "move": 130,
+      "observedId": 154,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[130,\"Carol 打出了 道路建设\"]",
+      "source": "Carol 打出了 道路建设",
+      "stable": true,
+      "text": "Carol 打出了 道路建设"
+    },
+    "[131,\"Carol 放置了一条路\"]:1": {
+      "event": {
+        "building": "road",
+        "free": true,
+        "player": "Carol",
+        "type": "build"
+      },
+      "id": 267,
+      "key": "[131,\"Carol 放置了一条路\"]:1",
+      "move": 131,
+      "observedId": 155,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[131,\"Carol 放置了一条路\"]",
+      "source": "Carol 放置了一条路",
+      "stable": true,
+      "text": "Carol 放置了一条路"
+    },
+    "[132,\"Carol 放置了一条路\"]:1": {
+      "event": {
+        "building": "road",
+        "free": true,
+        "player": "Carol",
+        "type": "build"
+      },
+      "id": 268,
+      "key": "[132,\"Carol 放置了一条路\"]:1",
+      "move": 132,
+      "observedId": 156,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[132,\"Carol 放置了一条路\"]",
+      "source": "Carol 放置了一条路",
+      "stable": true,
+      "text": "Carol 放置了一条路"
+    },
+    "[133,\"Carol 跳过\"]:1": {
+      "event": {
+        "player": "Carol",
+        "type": "turnEnd"
+      },
+      "id": 269,
+      "key": "[133,\"Carol 跳过\"]:1",
+      "move": 133,
+      "observedId": 157,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[133,\"Carol 跳过\"]",
+      "source": "Carol 跳过",
+      "stable": true,
+      "text": "Carol 跳过"
+    },
+    "[134,\"Alice 打出了 炼金术士\"]:1": {
+      "event": null,
+      "id": 270,
+      "key": "[134,\"Alice 打出了 炼金术士\"]:1",
+      "move": 134,
+      "observedId": 158,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[134,\"Alice 打出了 炼金术士\"]",
+      "source": "Alice 打出了 炼金术士",
+      "stable": true,
+      "text": "Alice 打出了 炼金术士"
+    },
+    "[135,\"炼金术师: Alice 选择下一个骰子投掷\"]:1": {
+      "event": null,
+      "id": 271,
+      "key": "[135,\"炼金术师: Alice 选择下一个骰子投掷\"]:1",
+      "move": 135,
+      "observedId": 159,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[135,\"炼金术师: Alice 选择下一个骰子投掷\"]",
+      "source": "炼金术师: Alice 选择下一个骰子投掷",
+      "stable": true,
+      "text": "炼金术师: Alice 选择下一个骰子投掷"
+    },
+    "[136,\"Bob 什么都没得到\"]:1": {
+      "event": null,
+      "id": 275,
+      "key": "[136,\"Bob 什么都没得到\"]:1",
+      "move": 136,
+      "observedId": 163,
+      "observedPage": "page-5",
+      "position": 4,
+      "signature": "[136,\"Bob 什么都没得到\"]",
+      "source": "Bob 什么都没得到",
+      "stable": true,
+      "text": "Bob 什么都没得到"
+    },
+    "[136,\"Alice 获得 {grain}\"]:1": {
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "grain": 1
+        },
+        "type": "gain"
+      },
+      "id": 274,
+      "key": "[136,\"Alice 获得 {grain}\"]:1",
+      "move": 136,
+      "observedId": 162,
+      "observedPage": "page-5",
+      "position": 3,
+      "signature": "[136,\"Alice 获得 {grain}\"]",
+      "source": "Alice 获得 {grain}",
+      "stable": true,
+      "text": "Alice 获得"
+    },
+    "[136,\"Alice使用炼金术士设置骰子：\"]:1": {
+      "event": null,
+      "id": 272,
+      "key": "[136,\"Alice使用炼金术士设置骰子：\"]:1",
+      "move": 136,
+      "observedId": 160,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[136,\"Alice使用炼金术士设置骰子：\"]",
+      "source": "Alice使用炼金术士设置骰子：",
+      "stable": true,
+      "text": "Alice使用炼金术士设置骰子："
+    },
+    "[136,\"Alice掷出\"]:1": {
+      "event": null,
+      "id": 273,
+      "key": "[136,\"Alice掷出\"]:1",
+      "move": 136,
+      "observedId": 161,
+      "observedPage": "page-5",
+      "position": 2,
+      "signature": "[136,\"Alice掷出\"]",
+      "source": "Alice掷出",
+      "stable": true,
+      "text": "Alice掷出"
+    },
+    "[136,\"Carol 什么都没得到\"]:1": {
+      "event": null,
+      "id": 276,
+      "key": "[136,\"Carol 什么都没得到\"]:1",
+      "move": 136,
+      "observedId": 164,
+      "observedPage": "page-5",
+      "position": 5,
+      "signature": "[136,\"Carol 什么都没得到\"]",
+      "source": "Carol 什么都没得到",
+      "stable": true,
+      "text": "Carol 什么都没得到"
+    },
+    "[136,\"Carol的引水渠被触发\"]:1": {
+      "event": null,
+      "id": 277,
+      "key": "[136,\"Carol的引水渠被触发\"]:1",
+      "move": 136,
+      "observedId": 165,
+      "observedPage": "page-5",
+      "position": 6,
+      "signature": "[136,\"Carol的引水渠被触发\"]",
+      "source": "Carol的引水渠被触发",
+      "stable": true,
+      "text": "Carol的引水渠被触发"
+    },
+    "[137,\"Carol从引水渠获得 {grain} 。\"]:1": {
+      "event": {
+        "player": "Carol",
+        "resources": {
+          "grain": 1
+        },
+        "type": "gain"
+      },
+      "id": 278,
+      "key": "[137,\"Carol从引水渠获得 {grain} 。\"]:1",
+      "move": 137,
+      "observedId": 166,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[137,\"Carol从引水渠获得 {grain} 。\"]",
+      "source": "Carol从引水渠获得 {grain} 。",
+      "stable": true,
+      "text": "Carol从引水渠获得 。"
+    },
+    "[138,\"Alice 打出了 资源垄断\"]:1": {
+      "event": null,
+      "id": 279,
+      "key": "[138,\"Alice 打出了 资源垄断\"]:1",
+      "move": 138,
+      "observedId": 167,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[138,\"Alice 打出了 资源垄断\"]",
+      "source": "Alice 打出了 资源垄断",
+      "stable": true,
+      "text": "Alice 打出了 资源垄断"
+    },
+    "[139,\"你获得 {ore}\"]:1": {
+      "event": null,
+      "id": 282,
+      "key": "[139,\"你获得 {ore}\"]:1",
+      "move": 139,
+      "observedId": 282,
+      "observedPage": "page-1",
+      "position": 3,
+      "signature": "[139,\"你获得 {ore}\"]",
+      "source": "你获得 {ore}",
+      "stable": true,
+      "text": "你获得"
+    },
+    "[139,\"你获得2 {ore}\"]:1": {
+      "event": null,
+      "id": 280,
+      "key": "[139,\"你获得2 {ore}\"]:1",
+      "move": 139,
+      "observedId": 280,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[139,\"你获得2 {ore}\"]",
+      "source": "你获得2 {ore}",
+      "stable": true,
+      "text": "你获得2"
+    },
+    "[139,\"资源垄断: Alice 从 Bob 那里偷取资源\"]:1": {
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "ore": 2
+        },
+        "revealed": true,
+        "type": "steal",
+        "victim": "Bob"
+      },
+      "id": 281,
+      "key": "[139,\"资源垄断: Alice 从 Bob 那里偷取资源\"]:1",
+      "move": 139,
+      "observedId": 170,
+      "observedPage": "page-5",
+      "position": 2,
+      "signature": "[139,\"资源垄断: Alice 从 Bob 那里偷取资源\"]",
+      "source": "资源垄断: Alice 从 Bob 那里偷取资源",
+      "stable": true,
+      "text": "资源垄断: Alice 从 Bob 那里偷取资源"
+    },
+    "[139,\"资源垄断: Alice 从 Carol 那里偷取资源\"]:1": {
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "ore": 1
+        },
+        "revealed": true,
+        "type": "steal",
+        "victim": "Carol"
+      },
+      "id": 283,
+      "key": "[139,\"资源垄断: Alice 从 Carol 那里偷取资源\"]:1",
+      "move": 139,
+      "observedId": 171,
+      "observedPage": "page-5",
+      "position": 4,
+      "signature": "[139,\"资源垄断: Alice 从 Carol 那里偷取资源\"]",
+      "source": "资源垄断: Alice 从 Carol 那里偷取资源",
+      "stable": true,
+      "text": "资源垄断: Alice 从 Carol 那里偷取资源"
+    },
+    "[14,\"Bob 什么都没得到\"]:1": {
+      "event": null,
+      "id": 21,
+      "key": "[14,\"Bob 什么都没得到\"]:1",
+      "move": 14,
+      "observedId": 21,
+      "observedPage": "page-4",
+      "position": 4,
+      "signature": "[14,\"Bob 什么都没得到\"]",
+      "source": "Bob 什么都没得到",
+      "stable": true,
+      "text": "Bob 什么都没得到"
+    },
+    "[14,\"Alice 获得 {lumber} {grain} {paper}\"]:1": {
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "grain": 1,
+          "lumber": 1,
+          "paper": 1
+        },
+        "type": "gain"
+      },
+      "id": 20,
+      "key": "[14,\"Alice 获得 {lumber} {grain} {paper}\"]:1",
+      "move": 14,
+      "observedId": 20,
+      "observedPage": "page-4",
+      "position": 3,
+      "signature": "[14,\"Alice 获得 {lumber} {grain} {paper}\"]",
+      "source": "Alice 获得 {lumber} {grain} {paper}",
+      "stable": true,
+      "text": "Alice 获得"
+    },
+    "[14,\"Alice投掷骰子...\"]:1": {
+      "event": null,
+      "id": 18,
+      "key": "[14,\"Alice投掷骰子...\"]:1",
+      "move": 14,
+      "observedId": 18,
+      "observedPage": "page-4",
+      "position": 1,
+      "signature": "[14,\"Alice投掷骰子...\"]",
+      "source": "Alice投掷骰子...",
+      "stable": true,
+      "text": "Alice投掷骰子..."
+    },
+    "[14,\"Alice掷出\"]:1": {
+      "event": null,
+      "id": 19,
+      "key": "[14,\"Alice掷出\"]:1",
+      "move": 14,
+      "observedId": 19,
+      "observedPage": "page-4",
+      "position": 2,
+      "signature": "[14,\"Alice掷出\"]",
+      "source": "Alice掷出",
+      "stable": true,
+      "text": "Alice掷出"
+    },
+    "[14,\"Carol 获得 {lumber} {paper}\"]:1": {
+      "event": {
+        "player": "Carol",
+        "resources": {
+          "lumber": 1,
+          "paper": 1
+        },
+        "type": "gain"
+      },
+      "id": 22,
+      "key": "[14,\"Carol 获得 {lumber} {paper}\"]:1",
+      "move": 14,
+      "observedId": 22,
+      "observedPage": "page-4",
+      "position": 5,
+      "signature": "[14,\"Carol 获得 {lumber} {paper}\"]",
+      "source": "Carol 获得 {lumber} {paper}",
+      "stable": true,
+      "text": "Carol 获得"
+    },
+    "[140,\"Alice 用 2 {grain} 3 {ore} 将乡镇升级为城市\"]:1": {
+      "event": {
+        "building": "city",
+        "free": false,
+        "player": "Alice",
+        "resources": {
+          "grain": 2,
+          "ore": 3
+        },
+        "type": "build"
+      },
+      "id": 284,
+      "key": "[140,\"Alice 用 2 {grain} 3 {ore} 将乡镇升级为城市\"]:1",
+      "move": 140,
+      "observedId": 172,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[140,\"Alice 用 2 {grain} 3 {ore} 将乡镇升级为城市\"]",
+      "source": "Alice 用 2 {grain} 3 {ore} 将乡镇升级为城市",
+      "stable": true,
+      "text": "Alice 用 23 将乡镇升级为城市"
+    },
+    "[141,\"Alice 用资源进行交易: 2 {lumber} → {grain}\"]:1": {
+      "event": {
+        "give": {
+          "lumber": 2
+        },
+        "player": "Alice",
+        "receive": {
+          "grain": 1
+        },
+        "type": "bank"
+      },
+      "id": 285,
+      "key": "[141,\"Alice 用资源进行交易: 2 {lumber} → {grain}\"]:1",
+      "move": 141,
+      "observedId": 173,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[141,\"Alice 用资源进行交易: 2 {lumber} → {grain}\"]",
+      "source": "Alice 用资源进行交易: 2 {lumber} → {grain}",
+      "stable": true,
+      "text": "Alice 用资源进行交易: 2 →"
+    },
+    "[142,\"Alice 为 {grain} 激活骑士\"]:1": {
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "grain": 1
+        },
+        "type": "loss"
+      },
+      "id": 286,
+      "key": "[142,\"Alice 为 {grain} 激活骑士\"]:1",
+      "move": 142,
+      "observedId": 174,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[142,\"Alice 为 {grain} 激活骑士\"]",
+      "source": "Alice 为 {grain} 激活骑士",
+      "stable": true,
+      "text": "Alice 为激活骑士"
+    },
+    "[143,\"Alice 花费 {wool} {ore} 升级一个骑士\"]:1": {
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "ore": 1,
+          "wool": 1
+        },
+        "type": "loss"
+      },
+      "id": 287,
+      "key": "[143,\"Alice 花费 {wool} {ore} 升级一个骑士\"]:1",
+      "move": 143,
+      "observedId": 175,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[143,\"Alice 花费 {wool} {ore} 升级一个骑士\"]",
+      "source": "Alice 花费 {wool} {ore} 升级一个骑士",
+      "stable": true,
+      "text": "Alice 花费升级一个骑士"
+    },
+    "[144,\"Alice 跳过\"]:1": {
+      "event": {
+        "player": "Alice",
+        "type": "turnEnd"
+      },
+      "id": 288,
+      "key": "[144,\"Alice 跳过\"]:1",
+      "move": 144,
+      "observedId": 176,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[144,\"Alice 跳过\"]",
+      "source": "Alice 跳过",
+      "stable": true,
+      "text": "Alice 跳过"
+    },
+    "[145,\"Bob 获得 {wool} {ore} {cloth}\"]:1": {
+      "event": {
+        "player": "Bob",
+        "resources": {
+          "cloth": 1,
+          "ore": 1,
+          "wool": 1
+        },
+        "type": "gain"
+      },
+      "id": 292,
+      "key": "[145,\"Bob 获得 {wool} {ore} {cloth}\"]:1",
+      "move": 145,
+      "observedId": 180,
+      "observedPage": "page-5",
+      "position": 4,
+      "signature": "[145,\"Bob 获得 {wool} {ore} {cloth}\"]",
+      "source": "Bob 获得 {wool} {ore} {cloth}",
+      "stable": true,
+      "text": "Bob 获得"
+    },
+    "[145,\"Bob投掷骰子...\"]:1": {
+      "event": null,
+      "id": 289,
+      "key": "[145,\"Bob投掷骰子...\"]:1",
+      "move": 145,
+      "observedId": 177,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[145,\"Bob投掷骰子...\"]",
+      "source": "Bob投掷骰子...",
+      "stable": true,
+      "text": "Bob投掷骰子..."
+    },
+    "[145,\"Bob掷出\"]:1": {
+      "event": null,
+      "id": 290,
+      "key": "[145,\"Bob掷出\"]:1",
+      "move": 145,
+      "observedId": 178,
+      "observedPage": "page-5",
+      "position": 2,
+      "signature": "[145,\"Bob掷出\"]",
+      "source": "Bob掷出",
+      "stable": true,
+      "text": "Bob掷出"
+    },
+    "[145,\"Alice 什么都没得到\"]:1": {
+      "event": null,
+      "id": 294,
+      "key": "[145,\"Alice 什么都没得到\"]:1",
+      "move": 145,
+      "observedId": 182,
+      "observedPage": "page-5",
+      "position": 6,
+      "signature": "[145,\"Alice 什么都没得到\"]",
+      "source": "Alice 什么都没得到",
+      "stable": true,
+      "text": "Alice 什么都没得到"
+    },
+    "[145,\"Alice的引水渠被触发\"]:1": {
+      "event": null,
+      "id": 295,
+      "key": "[145,\"Alice的引水渠被触发\"]:1",
+      "move": 145,
+      "observedId": 183,
+      "observedPage": "page-5",
+      "position": 7,
+      "signature": "[145,\"Alice的引水渠被触发\"]",
+      "source": "Alice的引水渠被触发",
+      "stable": true,
+      "text": "Alice的引水渠被触发"
+    },
+    "[145,\"Carol 什么都没得到\"]:1": {
+      "event": null,
+      "id": 293,
+      "key": "[145,\"Carol 什么都没得到\"]:1",
+      "move": 145,
+      "observedId": 181,
+      "observedPage": "page-5",
+      "position": 5,
+      "signature": "[145,\"Carol 什么都没得到\"]",
+      "source": "Carol 什么都没得到",
+      "stable": true,
+      "text": "Carol 什么都没得到"
+    },
+    "[145,\"Carol的引水渠被触发\"]:1": {
+      "event": null,
+      "id": 296,
+      "key": "[145,\"Carol的引水渠被触发\"]:1",
+      "move": 145,
+      "observedId": 184,
+      "observedPage": "page-5",
+      "position": 8,
+      "signature": "[145,\"Carol的引水渠被触发\"]",
+      "source": "Carol的引水渠被触发",
+      "stable": true,
+      "text": "Carol的引水渠被触发"
+    },
+    "[145,\"野蛮人前进一步\"]:1": {
+      "event": null,
+      "id": 291,
+      "key": "[145,\"野蛮人前进一步\"]:1",
+      "move": 145,
+      "observedId": 179,
+      "observedPage": "page-5",
+      "position": 3,
+      "signature": "[145,\"野蛮人前进一步\"]",
+      "source": "野蛮人前进一步",
+      "stable": true,
+      "text": "野蛮人前进一步"
+    },
+    "[146,\"Carol从引水渠获得 {ore} 。\"]:1": {
+      "event": {
+        "player": "Carol",
+        "resources": {
+          "ore": 1
+        },
+        "type": "gain"
+      },
+      "id": 297,
+      "key": "[146,\"Carol从引水渠获得 {ore} 。\"]:1",
+      "move": 146,
+      "observedId": 185,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[146,\"Carol从引水渠获得 {ore} 。\"]",
+      "source": "Carol从引水渠获得 {ore} 。",
+      "stable": true,
+      "text": "Carol从引水渠获得 。"
+    },
+    "[147,\"Alice从引水渠获得 {lumber} 。\"]:1": {
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "lumber": 1
+        },
+        "type": "gain"
+      },
+      "id": 298,
+      "key": "[147,\"Alice从引水渠获得 {lumber} 。\"]:1",
+      "move": 147,
+      "observedId": 186,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[147,\"Alice从引水渠获得 {lumber} 。\"]",
+      "source": "Alice从引水渠获得 {lumber} 。",
+      "stable": true,
+      "text": "Alice从引水渠获得 。"
+    },
+    "[148,\"Bob build a Trading House and improves its trade level to 2\"]:1": {
+      "event": {
+        "level": 2,
+        "player": "Bob",
+        "resource": "cloth",
+        "type": "improvement"
+      },
+      "id": 299,
+      "key": "[148,\"Bob build a Trading House and improves its trade level to 2\"]:1",
+      "move": 148,
+      "observedId": 187,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[148,\"Bob build a Trading House and improves its trade level to 2\"]",
+      "source": "Bob build a Trading House and improves its trade level to 2",
+      "stable": true,
+      "text": "Bob build a Trading House and improves its trade level to 2"
+    },
+    "[149,\"Bob 跳过\"]:1": {
+      "event": {
+        "player": "Bob",
+        "type": "turnEnd"
+      },
+      "id": 300,
+      "key": "[149,\"Bob 跳过\"]:1",
+      "move": 149,
+      "observedId": 188,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[149,\"Bob 跳过\"]",
+      "source": "Bob 跳过",
+      "stable": true,
+      "text": "Bob 跳过"
+    },
+    "[15,\"Alice 回滚操作\"]:1": {
+      "event": {
+        "affected": [
+          "Alice",
+          "Bob",
+          "Carol"
+        ],
+        "message": "发生回滚，请校正受影响玩家的手牌。",
+        "player": "Alice",
+        "type": "unresolved"
+      },
+      "id": 23,
+      "key": "[15,\"Alice 回滚操作\"]:1",
+      "move": 15,
+      "observedId": 1,
+      "observedPage": "page-1",
+      "position": 1,
+      "rollbackResolved": true,
+      "signature": "[15,\"Alice 回滚操作\"]",
+      "source": "Alice 回滚操作",
+      "stable": true,
+      "text": "Alice 回滚操作"
+    },
+    "[15,\"Alice取消了他的行动\"]:1": {
+      "event": {
+        "affected": [
+          "Alice",
+          "Bob",
+          "Carol"
+        ],
+        "message": "发生回滚，请校正受影响玩家的手牌。",
+        "player": "Alice",
+        "type": "unresolved"
+      },
+      "id": 24,
+      "key": "[15,\"Alice取消了他的行动\"]:1",
+      "move": 15,
+      "observedId": 2,
+      "observedPage": "page-1",
+      "position": 2,
+      "rollbackResolved": true,
+      "signature": "[15,\"Alice取消了他的行动\"]",
+      "source": "Alice取消了他的行动",
+      "stable": true,
+      "text": "Alice取消了他的行动"
+    },
+    "[150,\"Carol投掷骰子...\"]:1": {
+      "event": null,
+      "id": 301,
+      "key": "[150,\"Carol投掷骰子...\"]:1",
+      "move": 150,
+      "observedId": 189,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[150,\"Carol投掷骰子...\"]",
+      "source": "Carol投掷骰子...",
+      "stable": true,
+      "text": "Carol投掷骰子..."
+    },
+    "[150,\"Carol掷出\"]:1": {
+      "event": null,
+      "id": 302,
+      "key": "[150,\"Carol掷出\"]:1",
+      "move": 150,
+      "observedId": 190,
+      "observedPage": "page-5",
+      "position": 2,
+      "signature": "[150,\"Carol掷出\"]",
+      "source": "Carol掷出",
+      "stable": true,
+      "text": "Carol掷出"
+    },
+    "[150,\"强盗袭击\"]:1": {
+      "event": null,
+      "id": 304,
+      "key": "[150,\"强盗袭击\"]:1",
+      "move": 150,
+      "observedId": 192,
+      "observedPage": "page-5",
+      "position": 4,
+      "signature": "[150,\"强盗袭击\"]",
+      "source": "强盗袭击",
+      "stable": true,
+      "text": "强盗袭击"
+    },
+    "[150,\"野蛮人前进一步\"]:1": {
+      "event": null,
+      "id": 303,
+      "key": "[150,\"野蛮人前进一步\"]:1",
+      "move": 150,
+      "observedId": 191,
+      "observedPage": "page-5",
+      "position": 3,
+      "signature": "[150,\"野蛮人前进一步\"]",
+      "source": "野蛮人前进一步",
+      "stable": true,
+      "text": "野蛮人前进一步"
+    },
+    "[151,\"Carol 从 Alice 处偷取资源\"]:1": {
+      "event": {
+        "player": "Carol",
+        "resources": {
+          "brick": 1
+        },
+        "revealed": true,
+        "type": "steal",
+        "victim": "Alice"
+      },
+      "id": 306,
+      "key": "[151,\"Carol 从 Alice 处偷取资源\"]:1",
+      "move": 151,
+      "observedId": 195,
+      "observedPage": "page-5",
+      "position": 2,
+      "signature": "[151,\"Carol 从 Alice 处偷取资源\"]",
+      "source": "Carol 从 Alice 处偷取资源",
+      "stable": true,
+      "text": "Carol 从 Alice 处偷取资源"
+    },
+    "[151,\"Carol 移动 强盗\"]:1": {
+      "event": null,
+      "id": 305,
+      "key": "[151,\"Carol 移动 强盗\"]:1",
+      "move": 151,
+      "observedId": 194,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[151,\"Carol 移动 强盗\"]",
+      "source": "Carol 移动 强盗",
+      "stable": true,
+      "text": "Carol 移动 强盗"
+    },
+    "[151,\"你失去 {brick}\"]:1": {
+      "event": null,
+      "id": 307,
+      "key": "[151,\"你失去 {brick}\"]:1",
+      "move": 151,
+      "observedId": 307,
+      "observedPage": "page-1",
+      "position": 3,
+      "resolvedBy": 306,
+      "signature": "[151,\"你失去 {brick}\"]",
+      "source": "你失去 {brick}",
+      "stable": true,
+      "text": "你失去"
+    },
+    "[152,\"Carol 跳过\"]:1": {
+      "event": {
+        "player": "Carol",
+        "type": "turnEnd"
+      },
+      "id": 308,
+      "key": "[152,\"Carol 跳过\"]:1",
+      "move": 152,
+      "observedId": 196,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[152,\"Carol 跳过\"]",
+      "source": "Carol 跳过",
+      "stable": true,
+      "text": "Carol 跳过"
+    },
+    "[153,\"Bob 什么都没得到\"]:1": {
+      "event": null,
+      "id": 313,
+      "key": "[153,\"Bob 什么都没得到\"]:1",
+      "move": 153,
+      "observedId": 201,
+      "observedPage": "page-5",
+      "position": 5,
+      "signature": "[153,\"Bob 什么都没得到\"]",
+      "source": "Bob 什么都没得到",
+      "stable": true,
+      "text": "Bob 什么都没得到"
+    },
+    "[153,\"Alice 获得 {ore} {coin}\"]:1": {
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "coin": 1,
+          "ore": 1
+        },
+        "type": "gain"
+      },
+      "id": 312,
+      "key": "[153,\"Alice 获得 {ore} {coin}\"]:1",
+      "move": 153,
+      "observedId": 200,
+      "observedPage": "page-5",
+      "position": 4,
+      "signature": "[153,\"Alice 获得 {ore} {coin}\"]",
+      "source": "Alice 获得 {ore} {coin}",
+      "stable": true,
+      "text": "Alice 获得"
+    },
+    "[153,\"Alice投掷骰子...\"]:1": {
+      "event": null,
+      "id": 309,
+      "key": "[153,\"Alice投掷骰子...\"]:1",
+      "move": 153,
+      "observedId": 197,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[153,\"Alice投掷骰子...\"]",
+      "source": "Alice投掷骰子...",
+      "stable": true,
+      "text": "Alice投掷骰子..."
+    },
+    "[153,\"Alice掷出\"]:1": {
+      "event": null,
+      "id": 310,
+      "key": "[153,\"Alice掷出\"]:1",
+      "move": 153,
+      "observedId": 198,
+      "observedPage": "page-5",
+      "position": 2,
+      "signature": "[153,\"Alice掷出\"]",
+      "source": "Alice掷出",
+      "stable": true,
+      "text": "Alice掷出"
+    },
+    "[153,\"Carol 什么都没得到\"]:1": {
+      "event": null,
+      "id": 314,
+      "key": "[153,\"Carol 什么都没得到\"]:1",
+      "move": 153,
+      "observedId": 202,
+      "observedPage": "page-5",
+      "position": 6,
+      "signature": "[153,\"Carol 什么都没得到\"]",
+      "source": "Carol 什么都没得到",
+      "stable": true,
+      "text": "Carol 什么都没得到"
+    },
+    "[153,\"Carol的引水渠被触发\"]:1": {
+      "event": null,
+      "id": 315,
+      "key": "[153,\"Carol的引水渠被触发\"]:1",
+      "move": 153,
+      "observedId": 203,
+      "observedPage": "page-5",
+      "position": 7,
+      "signature": "[153,\"Carol的引水渠被触发\"]",
+      "source": "Carol的引水渠被触发",
+      "stable": true,
+      "text": "Carol的引水渠被触发"
+    },
+    "[153,\"野蛮人前进一步\"]:1": {
+      "event": null,
+      "id": 311,
+      "key": "[153,\"野蛮人前进一步\"]:1",
+      "move": 153,
+      "observedId": 199,
+      "observedPage": "page-5",
+      "position": 3,
+      "signature": "[153,\"野蛮人前进一步\"]",
+      "source": "野蛮人前进一步",
+      "stable": true,
+      "text": "野蛮人前进一步"
+    },
+    "[154,\"Carol从引水渠获得 {ore} 。\"]:1": {
+      "event": {
+        "player": "Carol",
+        "resources": {
+          "ore": 1
+        },
+        "type": "gain"
+      },
+      "id": 316,
+      "key": "[154,\"Carol从引水渠获得 {ore} 。\"]:1",
+      "move": 154,
+      "observedId": 204,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[154,\"Carol从引水渠获得 {ore} 。\"]",
+      "source": "Carol从引水渠获得 {ore} 。",
+      "stable": true,
+      "text": "Carol从引水渠获得 。"
+    },
+    "[155,\"Alice 跳过\"]:1": {
+      "event": {
+        "player": "Alice",
+        "type": "turnEnd"
+      },
+      "id": 317,
+      "key": "[155,\"Alice 跳过\"]:1",
+      "move": 155,
+      "observedId": 205,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[155,\"Alice 跳过\"]",
+      "source": "Alice 跳过",
+      "stable": true,
+      "text": "Alice 跳过"
+    },
+    "[156,\"Bob 什么都没得到\"]:1": {
+      "event": null,
+      "id": 321,
+      "key": "[156,\"Bob 什么都没得到\"]:1",
+      "move": 156,
+      "observedId": 209,
+      "observedPage": "page-5",
+      "position": 4,
+      "signature": "[156,\"Bob 什么都没得到\"]",
+      "source": "Bob 什么都没得到",
+      "stable": true,
+      "text": "Bob 什么都没得到"
+    },
+    "[156,\"Bob投掷骰子...\"]:1": {
+      "event": null,
+      "id": 318,
+      "key": "[156,\"Bob投掷骰子...\"]:1",
+      "move": 156,
+      "observedId": 206,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[156,\"Bob投掷骰子...\"]",
+      "source": "Bob投掷骰子...",
+      "stable": true,
+      "text": "Bob投掷骰子..."
+    },
+    "[156,\"Bob掷出\"]:1": {
+      "event": null,
+      "id": 319,
+      "key": "[156,\"Bob掷出\"]:1",
+      "move": 156,
+      "observedId": 207,
+      "observedPage": "page-5",
+      "position": 2,
+      "signature": "[156,\"Bob掷出\"]",
+      "source": "Bob掷出",
+      "stable": true,
+      "text": "Bob掷出"
+    },
+    "[156,\"Alice 什么都没得到\"]:1": {
+      "event": null,
+      "id": 323,
+      "key": "[156,\"Alice 什么都没得到\"]:1",
+      "move": 156,
+      "observedId": 211,
+      "observedPage": "page-5",
+      "position": 6,
+      "signature": "[156,\"Alice 什么都没得到\"]",
+      "source": "Alice 什么都没得到",
+      "stable": true,
+      "text": "Alice 什么都没得到"
+    },
+    "[156,\"Alice的引水渠被触发\"]:1": {
+      "event": null,
+      "id": 324,
+      "key": "[156,\"Alice的引水渠被触发\"]:1",
+      "move": 156,
+      "observedId": 212,
+      "observedPage": "page-5",
+      "position": 7,
+      "signature": "[156,\"Alice的引水渠被触发\"]",
+      "source": "Alice的引水渠被触发",
+      "stable": true,
+      "text": "Alice的引水渠被触发"
+    },
+    "[156,\"Carol 获得 1 {wool} 2 {grain}\"]:1": {
+      "event": {
+        "player": "Carol",
+        "resources": {
+          "grain": 2,
+          "wool": 1
+        },
+        "type": "gain"
+      },
+      "id": 322,
+      "key": "[156,\"Carol 获得 1 {wool} 2 {grain}\"]:1",
+      "move": 156,
+      "observedId": 210,
+      "observedPage": "page-5",
+      "position": 5,
+      "signature": "[156,\"Carol 获得 1 {wool} 2 {grain}\"]",
+      "source": "Carol 获得 1 {wool} 2 {grain}",
+      "stable": true,
+      "text": "Carol 获得 12"
+    },
+    "[156,\"野蛮人前进一步\"]:1": {
+      "event": null,
+      "id": 320,
+      "key": "[156,\"野蛮人前进一步\"]:1",
+      "move": 156,
+      "observedId": 208,
+      "observedPage": "page-5",
+      "position": 3,
+      "signature": "[156,\"野蛮人前进一步\"]",
+      "source": "野蛮人前进一步",
+      "stable": true,
+      "text": "野蛮人前进一步"
+    },
+    "[157,\"Alice从引水渠获得 {lumber} 。\"]:1": {
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "lumber": 1
+        },
+        "type": "gain"
+      },
+      "id": 325,
+      "key": "[157,\"Alice从引水渠获得 {lumber} 。\"]:1",
+      "move": 157,
+      "observedId": 213,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[157,\"Alice从引水渠获得 {lumber} 。\"]",
+      "source": "Alice从引水渠获得 {lumber} 。",
+      "stable": true,
+      "text": "Alice从引水渠获得 。"
+    },
+    "[158,\"Bob 跳过\"]:1": {
+      "event": {
+        "player": "Bob",
+        "type": "turnEnd"
+      },
+      "id": 326,
+      "key": "[158,\"Bob 跳过\"]:1",
+      "move": 158,
+      "observedId": 214,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[158,\"Bob 跳过\"]",
+      "source": "Bob 跳过",
+      "stable": true,
+      "text": "Bob 跳过"
+    },
+    "[159,\"Bob 获得 {brick} {wool} {cloth}\"]:1": {
+      "event": {
+        "player": "Bob",
+        "resources": {
+          "brick": 1,
+          "cloth": 1,
+          "wool": 1
+        },
+        "type": "gain"
+      },
+      "id": 331,
+      "key": "[159,\"Bob 获得 {brick} {wool} {cloth}\"]:1",
+      "move": 159,
+      "observedId": 219,
+      "observedPage": "page-5",
+      "position": 5,
+      "signature": "[159,\"Bob 获得 {brick} {wool} {cloth}\"]",
+      "source": "Bob 获得 {brick} {wool} {cloth}",
+      "stable": true,
+      "text": "Bob 获得"
+    },
+    "[159,\"Alice 什么都没得到\"]:1": {
+      "event": null,
+      "id": 330,
+      "key": "[159,\"Alice 什么都没得到\"]:1",
+      "move": 159,
+      "observedId": 218,
+      "observedPage": "page-5",
+      "position": 4,
+      "signature": "[159,\"Alice 什么都没得到\"]",
+      "source": "Alice 什么都没得到",
+      "stable": true,
+      "text": "Alice 什么都没得到"
+    },
+    "[159,\"Alice的引水渠被触发\"]:1": {
+      "event": null,
+      "id": 332,
+      "key": "[159,\"Alice的引水渠被触发\"]:1",
+      "move": 159,
+      "observedId": 220,
+      "observedPage": "page-5",
+      "position": 6,
+      "signature": "[159,\"Alice的引水渠被触发\"]",
+      "source": "Alice的引水渠被触发",
+      "stable": true,
+      "text": "Alice的引水渠被触发"
+    },
+    "[159,\"Carol 什么都没得到\"]:1": {
+      "event": null,
+      "id": 329,
+      "key": "[159,\"Carol 什么都没得到\"]:1",
+      "move": 159,
+      "observedId": 217,
+      "observedPage": "page-5",
+      "position": 3,
+      "signature": "[159,\"Carol 什么都没得到\"]",
+      "source": "Carol 什么都没得到",
+      "stable": true,
+      "text": "Carol 什么都没得到"
+    },
+    "[159,\"Carol投掷骰子...\"]:1": {
+      "event": null,
+      "id": 327,
+      "key": "[159,\"Carol投掷骰子...\"]:1",
+      "move": 159,
+      "observedId": 215,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[159,\"Carol投掷骰子...\"]",
+      "source": "Carol投掷骰子...",
+      "stable": true,
+      "text": "Carol投掷骰子..."
+    },
+    "[159,\"Carol掷出\"]:1": {
+      "event": null,
+      "id": 328,
+      "key": "[159,\"Carol掷出\"]:1",
+      "move": 159,
+      "observedId": 216,
+      "observedPage": "page-5",
+      "position": 2,
+      "signature": "[159,\"Carol掷出\"]",
+      "source": "Carol掷出",
+      "stable": true,
+      "text": "Carol掷出"
+    },
+    "[159,\"Carol的引水渠被触发\"]:1": {
+      "event": null,
+      "id": 333,
+      "key": "[159,\"Carol的引水渠被触发\"]:1",
+      "move": 159,
+      "observedId": 221,
+      "observedPage": "page-5",
+      "position": 7,
+      "signature": "[159,\"Carol的引水渠被触发\"]",
+      "source": "Carol的引水渠被触发",
+      "stable": true,
+      "text": "Carol的引水渠被触发"
+    },
+    "[16,\"Alice build a Abbey and improves its science level to 1\"]:1": {
+      "event": {
+        "level": 1,
+        "player": "Alice",
+        "resource": "paper",
+        "type": "improvement"
+      },
+      "id": 25,
+      "key": "[16,\"Alice build a Abbey and improves its science level to 1\"]:1",
+      "move": 16,
+      "observedId": 3,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[16,\"Alice build a Abbey and improves its science level to 1\"]",
+      "source": "Alice build a Abbey and improves its science level to 1",
+      "stable": true,
+      "text": "Alice build a Abbey and improves its science level to 1"
+    },
+    "[160,\"Alice从引水渠获得 {wool} 。\"]:1": {
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "wool": 1
+        },
+        "type": "gain"
+      },
+      "id": 334,
+      "key": "[160,\"Alice从引水渠获得 {wool} 。\"]:1",
+      "move": 160,
+      "observedId": 222,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[160,\"Alice从引水渠获得 {wool} 。\"]",
+      "source": "Alice从引水渠获得 {wool} 。",
+      "stable": true,
+      "text": "Alice从引水渠获得 。"
+    },
+    "[161,\"Carol从引水渠获得 {grain} 。\"]:1": {
+      "event": {
+        "player": "Carol",
+        "resources": {
+          "grain": 1
+        },
+        "type": "gain"
+      },
+      "id": 335,
+      "key": "[161,\"Carol从引水渠获得 {grain} 。\"]:1",
+      "move": 161,
+      "observedId": 223,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[161,\"Carol从引水渠获得 {grain} 。\"]",
+      "source": "Carol从引水渠获得 {grain} 。",
+      "stable": true,
+      "text": "Carol从引水渠获得 。"
+    },
+    "[162,\"Carol 回滚操作\"]:1": {
+      "event": {
+        "affected": [
+          "Alice",
+          "Bob",
+          "Carol"
+        ],
+        "message": "发生回滚，请校正受影响玩家的手牌。",
+        "player": "Carol",
+        "type": "unresolved"
+      },
+      "id": 341,
+      "key": "[162,\"Carol 回滚操作\"]:1",
+      "move": 162,
+      "observedId": 224,
+      "observedPage": "page-5",
+      "position": 2,
+      "rollbackResolved": true,
+      "signature": "[162,\"Carol 回滚操作\"]",
+      "source": "Carol 回滚操作",
+      "stable": true,
+      "text": "Carol 回滚操作"
+    },
+    "[162,\"Carol 打出了 药物\"]:1": {
+      "event": null,
+      "id": 336,
+      "key": "[162,\"Carol 打出了 药物\"]:1",
+      "move": 162,
+      "observedId": 336,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[162,\"Carol 打出了 药物\"]",
+      "source": "Carol 打出了 药物",
+      "stable": true,
+      "text": "Carol 打出了 药物"
+    },
+    "[162,\"Carol取消了他的行动\"]:1": {
+      "event": {
+        "affected": [
+          "Alice",
+          "Bob",
+          "Carol"
+        ],
+        "message": "发生回滚，请校正受影响玩家的手牌。",
+        "player": "Carol",
+        "type": "unresolved"
+      },
+      "id": 342,
+      "key": "[162,\"Carol取消了他的行动\"]:1",
+      "move": 162,
+      "observedId": 225,
+      "observedPage": "page-5",
+      "position": 3,
+      "rollbackResolved": true,
+      "signature": "[162,\"Carol取消了他的行动\"]",
+      "source": "Carol取消了他的行动",
+      "stable": true,
+      "text": "Carol取消了他的行动"
+    },
+    "[163,\"Carol 打出了 药物\"]:1": {
+      "event": null,
+      "id": 343,
+      "key": "[163,\"Carol 打出了 药物\"]:1",
+      "move": 163,
+      "observedId": 226,
+      "observedPage": "page-5",
+      "position": 2,
+      "signature": "[163,\"Carol 打出了 药物\"]",
+      "source": "Carol 打出了 药物",
+      "stable": true,
+      "text": "Carol 打出了 药物"
+    },
+    "[163,\"Carol 用 1 {grain} 2 {ore} 将乡镇升级为城市\"]:1": {
+      "event": {
+        "building": "city",
+        "free": false,
+        "player": "Carol",
+        "resources": {
+          "grain": 1,
+          "ore": 2
+        },
+        "type": "build"
+      },
+      "id": 337,
+      "key": "[163,\"Carol 用 1 {grain} 2 {ore} 将乡镇升级为城市\"]:1",
+      "move": 163,
+      "observedId": 337,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[163,\"Carol 用 1 {grain} 2 {ore} 将乡镇升级为城市\"]",
+      "source": "Carol 用 1 {grain} 2 {ore} 将乡镇升级为城市",
+      "stable": true,
+      "text": "Carol 用 12 将乡镇升级为城市"
+    },
+    "[164,\"Carol 打出了 锻冶匠\"]:1": {
+      "event": null,
+      "id": 338,
+      "key": "[164,\"Carol 打出了 锻冶匠\"]:1",
+      "move": 164,
+      "observedId": 338,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[164,\"Carol 打出了 锻冶匠\"]",
+      "source": "Carol 打出了 锻冶匠",
+      "stable": true,
+      "text": "Carol 打出了 锻冶匠"
+    },
+    "[164,\"Carol 用 1 {grain} 2 {ore} 将乡镇升级为城市\"]:1": {
+      "event": {
+        "building": "city",
+        "free": false,
+        "player": "Carol",
+        "resources": {
+          "grain": 1,
+          "ore": 2
+        },
+        "type": "build"
+      },
+      "id": 344,
+      "key": "[164,\"Carol 用 1 {grain} 2 {ore} 将乡镇升级为城市\"]:1",
+      "move": 164,
+      "observedId": 227,
+      "observedPage": "page-5",
+      "position": 2,
+      "signature": "[164,\"Carol 用 1 {grain} 2 {ore} 将乡镇升级为城市\"]",
+      "source": "Carol 用 1 {grain} 2 {ore} 将乡镇升级为城市",
+      "stable": true,
+      "text": "Carol 用 12 将乡镇升级为城市"
+    },
+    "[165,\"Carol 使用 {lumber} {brick} {wool} {grain} 造了一个村庄\"]:1": {
+      "event": {
+        "building": "settlement",
+        "free": false,
+        "player": "Carol",
+        "resources": {
+          "brick": 1,
+          "grain": 1,
+          "lumber": 1,
+          "wool": 1
+        },
+        "type": "build"
+      },
+      "id": 345,
+      "key": "[165,\"Carol 使用 {lumber} {brick} {wool} {grain} 造了一个村庄\"]:1",
+      "move": 165,
+      "observedId": 228,
+      "observedPage": "page-5",
+      "position": 3,
+      "signature": "[165,\"Carol 使用 {lumber} {brick} {wool} {grain} 造了一个村庄\"]",
+      "source": "Carol 使用 {lumber} {brick} {wool} {grain} 造了一个村庄",
+      "stable": true,
+      "text": "Carol 使用 造了一个村庄"
+    },
+    "[165,\"Carol 花费-升级一个骑士\"]:1": {
+      "event": {
+        "player": "Carol",
+        "resources": {},
+        "type": "loss"
+      },
+      "id": 339,
+      "key": "[165,\"Carol 花费-升级一个骑士\"]:1",
+      "move": 165,
+      "observedId": 339,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[165,\"Carol 花费-升级一个骑士\"]",
+      "source": "Carol 花费-升级一个骑士",
+      "stable": true,
+      "text": "Carol 花费-升级一个骑士"
+    },
+    "[165,\"Carol无法提升其他骑士\"]:1": {
+      "event": null,
+      "id": 340,
+      "key": "[165,\"Carol无法提升其他骑士\"]:1",
+      "move": 165,
+      "observedId": 340,
+      "observedPage": "page-1",
+      "position": 2,
+      "signature": "[165,\"Carol无法提升其他骑士\"]",
+      "source": "Carol无法提升其他骑士",
+      "stable": true,
+      "text": "Carol无法提升其他骑士"
+    },
+    "[166,\"Carol 打出了 锻冶匠\"]:1": {
+      "event": null,
+      "id": 346,
+      "key": "[166,\"Carol 打出了 锻冶匠\"]:1",
+      "move": 166,
+      "observedId": 229,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[166,\"Carol 打出了 锻冶匠\"]",
+      "source": "Carol 打出了 锻冶匠",
+      "stable": true,
+      "text": "Carol 打出了 锻冶匠"
+    },
+    "[167,\"Carol 花费-升级一个骑士\"]:1": {
+      "event": {
+        "player": "Carol",
+        "resources": {},
+        "type": "loss"
+      },
+      "id": 347,
+      "key": "[167,\"Carol 花费-升级一个骑士\"]:1",
+      "move": 167,
+      "observedId": 230,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[167,\"Carol 花费-升级一个骑士\"]",
+      "source": "Carol 花费-升级一个骑士",
+      "stable": true,
+      "text": "Carol 花费-升级一个骑士"
+    },
+    "[167,\"Carol无法提升其他骑士\"]:1": {
+      "event": null,
+      "id": 348,
+      "key": "[167,\"Carol无法提升其他骑士\"]:1",
+      "move": 167,
+      "observedId": 231,
+      "observedPage": "page-5",
+      "position": 2,
+      "signature": "[167,\"Carol无法提升其他骑士\"]",
+      "source": "Carol无法提升其他骑士",
+      "stable": true,
+      "text": "Carol无法提升其他骑士"
+    },
+    "[168,\"Carol 用资源进行交易: 2 {grain} → {cloth}\"]:1": {
+      "event": {
+        "give": {
+          "grain": 2
+        },
+        "player": "Carol",
+        "receive": {
+          "cloth": 1
+        },
+        "type": "bank"
+      },
+      "id": 232,
+      "key": "[168,\"Carol 用资源进行交易: 2 {grain} → {cloth}\"]:1",
+      "move": 168,
+      "observedId": 232,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[168,\"Carol 用资源进行交易: 2 {grain} → {cloth}\"]",
+      "source": "Carol 用资源进行交易: 2 {grain} → {cloth}",
+      "stable": true,
+      "text": "Carol 用资源进行交易: 2 →"
+    },
+    "[169,\"Carol build a Market and improves its trade level to 1\"]:1": {
+      "event": {
+        "level": 1,
+        "player": "Carol",
+        "resource": "cloth",
+        "type": "improvement"
+      },
+      "id": 234,
+      "key": "[169,\"Carol build a Market and improves its trade level to 1\"]:1",
+      "move": 169,
+      "observedId": 234,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[169,\"Carol build a Market and improves its trade level to 1\"]",
+      "source": "Carol build a Market and improves its trade level to 1",
+      "stable": true,
+      "text": "Carol build a Market and improves its trade level to 1"
+    },
+    "[17,\"Alice 用资源进行交易: 2 {lumber} → {wool}\"]:1": {
+      "event": {
+        "give": {
+          "lumber": 2
+        },
+        "player": "Alice",
+        "receive": {
+          "wool": 1
+        },
+        "type": "bank"
+      },
+      "id": 26,
+      "key": "[17,\"Alice 用资源进行交易: 2 {lumber} → {wool}\"]:1",
+      "move": 17,
+      "observedId": 4,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[17,\"Alice 用资源进行交易: 2 {lumber} → {wool}\"]",
+      "source": "Alice 用资源进行交易: 2 {lumber} → {wool}",
+      "stable": true,
+      "text": "Alice 用资源进行交易: 2 →"
+    },
+    "[170,\"Carol 跳过\"]:1": {
+      "event": {
+        "player": "Carol",
+        "type": "turnEnd"
+      },
+      "id": 235,
+      "key": "[170,\"Carol 跳过\"]:1",
+      "move": 170,
+      "observedId": 235,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[170,\"Carol 跳过\"]",
+      "source": "Carol 跳过",
+      "stable": true,
+      "text": "Carol 跳过"
+    },
+    "[171,\"Alice投掷骰子...\"]:1": {
+      "event": null,
+      "id": 236,
+      "key": "[171,\"Alice投掷骰子...\"]:1",
+      "move": 171,
+      "observedId": 236,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[171,\"Alice投掷骰子...\"]",
+      "source": "Alice投掷骰子...",
+      "stable": true,
+      "text": "Alice投掷骰子..."
+    },
+    "[18,\"Alice 花费 {wool} {ore} 雇佣一个骑士\"]:1": {
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "ore": 1,
+          "wool": 1
+        },
+        "type": "loss"
+      },
+      "id": 27,
+      "key": "[18,\"Alice 花费 {wool} {ore} 雇佣一个骑士\"]:1",
+      "move": 18,
+      "observedId": 5,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[18,\"Alice 花费 {wool} {ore} 雇佣一个骑士\"]",
+      "source": "Alice 花费 {wool} {ore} 雇佣一个骑士",
+      "stable": true,
+      "text": "Alice 花费雇佣一个骑士"
+    },
+    "[19,\"Alice 为 {grain} 激活骑士\"]:1": {
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "grain": 1
+        },
+        "type": "loss"
+      },
+      "id": 28,
+      "key": "[19,\"Alice 为 {grain} 激活骑士\"]:1",
+      "move": 19,
+      "observedId": 6,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[19,\"Alice 为 {grain} 激活骑士\"]",
+      "source": "Alice 为 {grain} 激活骑士",
+      "stable": true,
+      "text": "Alice 为激活骑士"
+    },
+    "[2,\"Alice 放置了一个村庄\"]:1": {
+      "event": {
+        "building": "settlement",
+        "free": true,
+        "player": "Alice",
+        "type": "build"
+      },
+      "id": 3,
+      "key": "[2,\"Alice 放置了一个村庄\"]:1",
+      "move": 2,
+      "observedId": 3,
+      "observedPage": "page-4",
+      "position": 1,
+      "signature": "[2,\"Alice 放置了一个村庄\"]",
+      "source": "Alice 放置了一个村庄",
+      "stable": true,
+      "text": "Alice 放置了一个村庄"
+    },
+    "[20,\"Alice 跳过\"]:1": {
+      "event": {
+        "player": "Alice",
+        "type": "turnEnd"
+      },
+      "id": 29,
+      "key": "[20,\"Alice 跳过\"]:1",
+      "move": 20,
+      "observedId": 7,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[20,\"Alice 跳过\"]",
+      "source": "Alice 跳过",
+      "stable": true,
+      "text": "Alice 跳过"
+    },
+    "[21,\"Bob 什么都没得到\"]:1": {
+      "event": null,
+      "id": 32,
+      "key": "[21,\"Bob 什么都没得到\"]:1",
+      "move": 21,
+      "observedId": 10,
+      "observedPage": "page-1",
+      "position": 3,
+      "signature": "[21,\"Bob 什么都没得到\"]",
+      "source": "Bob 什么都没得到",
+      "stable": true,
+      "text": "Bob 什么都没得到"
+    },
+    "[21,\"Bob投掷骰子...\"]:1": {
+      "event": null,
+      "id": 30,
+      "key": "[21,\"Bob投掷骰子...\"]:1",
+      "move": 21,
+      "observedId": 8,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[21,\"Bob投掷骰子...\"]",
+      "source": "Bob投掷骰子...",
+      "stable": true,
+      "text": "Bob投掷骰子..."
+    },
+    "[21,\"Bob掷出\"]:1": {
+      "event": null,
+      "id": 31,
+      "key": "[21,\"Bob掷出\"]:1",
+      "move": 21,
+      "observedId": 9,
+      "observedPage": "page-1",
+      "position": 2,
+      "signature": "[21,\"Bob掷出\"]",
+      "source": "Bob掷出",
+      "stable": true,
+      "text": "Bob掷出"
+    },
+    "[21,\"Alice 什么都没得到\"]:1": {
+      "event": null,
+      "id": 34,
+      "key": "[21,\"Alice 什么都没得到\"]:1",
+      "move": 21,
+      "observedId": 12,
+      "observedPage": "page-1",
+      "position": 5,
+      "signature": "[21,\"Alice 什么都没得到\"]",
+      "source": "Alice 什么都没得到",
+      "stable": true,
+      "text": "Alice 什么都没得到"
+    },
+    "[21,\"Carol 什么都没得到\"]:1": {
+      "event": null,
+      "id": 33,
+      "key": "[21,\"Carol 什么都没得到\"]:1",
+      "move": 21,
+      "observedId": 11,
+      "observedPage": "page-1",
+      "position": 4,
+      "signature": "[21,\"Carol 什么都没得到\"]",
+      "source": "Carol 什么都没得到",
+      "stable": true,
+      "text": "Carol 什么都没得到"
+    },
+    "[22,\"Bob 跳过\"]:1": {
+      "event": {
+        "player": "Bob",
+        "type": "turnEnd"
+      },
+      "id": 36,
+      "key": "[22,\"Bob 跳过\"]:1",
+      "move": 22,
+      "observedId": 13,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[22,\"Bob 跳过\"]",
+      "source": "Bob 跳过",
+      "stable": true,
+      "text": "Bob 跳过"
+    },
+    "[23,\"Bob 什么都没得到\"]:1": {
+      "event": null,
+      "id": 41,
+      "key": "[23,\"Bob 什么都没得到\"]:1",
+      "move": 23,
+      "observedId": 18,
+      "observedPage": "page-1",
+      "position": 5,
+      "signature": "[23,\"Bob 什么都没得到\"]",
+      "source": "Bob 什么都没得到",
+      "stable": true,
+      "text": "Bob 什么都没得到"
+    },
+    "[23,\"Alice 获得 {lumber} {grain} {paper}\"]:1": {
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "grain": 1,
+          "lumber": 1,
+          "paper": 1
+        },
+        "type": "gain"
+      },
+      "id": 40,
+      "key": "[23,\"Alice 获得 {lumber} {grain} {paper}\"]:1",
+      "move": 23,
+      "observedId": 17,
+      "observedPage": "page-1",
+      "position": 4,
+      "signature": "[23,\"Alice 获得 {lumber} {grain} {paper}\"]",
+      "source": "Alice 获得 {lumber} {grain} {paper}",
+      "stable": true,
+      "text": "Alice 获得"
+    },
+    "[23,\"Carol 获得 {lumber} {paper}\"]:1": {
+      "event": {
+        "player": "Carol",
+        "resources": {
+          "lumber": 1,
+          "paper": 1
+        },
+        "type": "gain"
+      },
+      "id": 39,
+      "key": "[23,\"Carol 获得 {lumber} {paper}\"]:1",
+      "move": 23,
+      "observedId": 16,
+      "observedPage": "page-1",
+      "position": 3,
+      "signature": "[23,\"Carol 获得 {lumber} {paper}\"]",
+      "source": "Carol 获得 {lumber} {paper}",
+      "stable": true,
+      "text": "Carol 获得"
+    },
+    "[23,\"Carol投掷骰子...\"]:1": {
+      "event": null,
+      "id": 37,
+      "key": "[23,\"Carol投掷骰子...\"]:1",
+      "move": 23,
+      "observedId": 14,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[23,\"Carol投掷骰子...\"]",
+      "source": "Carol投掷骰子...",
+      "stable": true,
+      "text": "Carol投掷骰子..."
+    },
+    "[23,\"Carol掷出\"]:1": {
+      "event": null,
+      "id": 38,
+      "key": "[23,\"Carol掷出\"]:1",
+      "move": 23,
+      "observedId": 15,
+      "observedPage": "page-1",
+      "position": 2,
+      "signature": "[23,\"Carol掷出\"]",
+      "source": "Carol掷出",
+      "stable": true,
+      "text": "Carol掷出"
+    },
+    "[24,\"Carol build a Abbey and improves its science level to 1\"]:1": {
+      "event": {
+        "level": 1,
+        "player": "Carol",
+        "resource": "paper",
+        "type": "improvement"
+      },
+      "id": 42,
+      "key": "[24,\"Carol build a Abbey and improves its science level to 1\"]:1",
+      "move": 24,
+      "observedId": 19,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[24,\"Carol build a Abbey and improves its science level to 1\"]",
+      "source": "Carol build a Abbey and improves its science level to 1",
+      "stable": true,
+      "text": "Carol build a Abbey and improves its science level to 1"
+    },
+    "[25,\"Carol 跳过\"]:1": {
+      "event": {
+        "player": "Carol",
+        "type": "turnEnd"
+      },
+      "id": 43,
+      "key": "[25,\"Carol 跳过\"]:1",
+      "move": 25,
+      "observedId": 20,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[25,\"Carol 跳过\"]",
+      "source": "Carol 跳过",
+      "stable": true,
+      "text": "Carol 跳过"
+    },
+    "[26,\"Bob 什么都没得到\"]:1": {
+      "event": null,
+      "id": 47,
+      "key": "[26,\"Bob 什么都没得到\"]:1",
+      "move": 26,
+      "observedId": 24,
+      "observedPage": "page-1",
+      "position": 4,
+      "signature": "[26,\"Bob 什么都没得到\"]",
+      "source": "Bob 什么都没得到",
+      "stable": true,
+      "text": "Bob 什么都没得到"
+    },
+    "[26,\"Alice 获得 {ore} {coin}\"]:1": {
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "coin": 1,
+          "ore": 1
+        },
+        "type": "gain"
+      },
+      "id": 46,
+      "key": "[26,\"Alice 获得 {ore} {coin}\"]:1",
+      "move": 26,
+      "observedId": 23,
+      "observedPage": "page-1",
+      "position": 3,
+      "signature": "[26,\"Alice 获得 {ore} {coin}\"]",
+      "source": "Alice 获得 {ore} {coin}",
+      "stable": true,
+      "text": "Alice 获得"
+    },
+    "[26,\"Alice投掷骰子...\"]:1": {
+      "event": null,
+      "id": 44,
+      "key": "[26,\"Alice投掷骰子...\"]:1",
+      "move": 26,
+      "observedId": 21,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[26,\"Alice投掷骰子...\"]",
+      "source": "Alice投掷骰子...",
+      "stable": true,
+      "text": "Alice投掷骰子..."
+    },
+    "[26,\"Alice掷出\"]:1": {
+      "event": null,
+      "id": 45,
+      "key": "[26,\"Alice掷出\"]:1",
+      "move": 26,
+      "observedId": 22,
+      "observedPage": "page-1",
+      "position": 2,
+      "signature": "[26,\"Alice掷出\"]",
+      "source": "Alice掷出",
+      "stable": true,
+      "text": "Alice掷出"
+    },
+    "[26,\"Carol 什么都没得到\"]:1": {
+      "event": null,
+      "id": 48,
+      "key": "[26,\"Carol 什么都没得到\"]:1",
+      "move": 26,
+      "observedId": 25,
+      "observedPage": "page-1",
+      "position": 5,
+      "signature": "[26,\"Carol 什么都没得到\"]",
+      "source": "Carol 什么都没得到",
+      "stable": true,
+      "text": "Carol 什么都没得到"
+    },
+    "[27,\"Alice build a Town Hall and improves its politics level to 1\"]:1": {
+      "event": {
+        "level": 1,
+        "player": "Alice",
+        "resource": "coin",
+        "type": "improvement"
+      },
+      "id": 49,
+      "key": "[27,\"Alice build a Town Hall and improves its politics level to 1\"]:1",
+      "move": 27,
+      "observedId": 26,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[27,\"Alice build a Town Hall and improves its politics level to 1\"]",
+      "source": "Alice build a Town Hall and improves its politics level to 1",
+      "stable": true,
+      "text": "Alice build a Town Hall and improves its politics level to 1"
+    },
+    "[28,\"Alice 跳过\"]:1": {
+      "event": {
+        "player": "Alice",
+        "type": "turnEnd"
+      },
+      "id": 50,
+      "key": "[28,\"Alice 跳过\"]:1",
+      "move": 28,
+      "observedId": 27,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[28,\"Alice 跳过\"]",
+      "source": "Alice 跳过",
+      "stable": true,
+      "text": "Alice 跳过"
+    },
+    "[29,\"Bob投掷骰子...\"]:1": {
+      "event": null,
+      "id": 51,
+      "key": "[29,\"Bob投掷骰子...\"]:1",
+      "move": 29,
+      "observedId": 28,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[29,\"Bob投掷骰子...\"]",
+      "source": "Bob投掷骰子...",
+      "stable": true,
+      "text": "Bob投掷骰子..."
+    },
+    "[29,\"Bob掷出\"]:1": {
+      "event": null,
+      "id": 52,
+      "key": "[29,\"Bob掷出\"]:1",
+      "move": 29,
+      "observedId": 29,
+      "observedPage": "page-1",
+      "position": 2,
+      "signature": "[29,\"Bob掷出\"]",
+      "source": "Bob掷出",
+      "stable": true,
+      "text": "Bob掷出"
+    },
+    "[29,\"强盗不会移动，因为野蛮人还没有到达卡坦岛\"]:1": {
+      "event": null,
+      "id": 55,
+      "key": "[29,\"强盗不会移动，因为野蛮人还没有到达卡坦岛\"]:1",
+      "move": 29,
+      "observedId": 32,
+      "observedPage": "page-1",
+      "position": 5,
+      "signature": "[29,\"强盗不会移动，因为野蛮人还没有到达卡坦岛\"]",
+      "source": "强盗不会移动，因为野蛮人还没有到达卡坦岛",
+      "stable": true,
+      "text": "强盗不会移动，因为野蛮人还没有到达卡坦岛"
+    },
+    "[29,\"强盗袭击\"]:1": {
+      "event": null,
+      "id": 54,
+      "key": "[29,\"强盗袭击\"]:1",
+      "move": 29,
+      "observedId": 31,
+      "observedPage": "page-1",
+      "position": 4,
+      "signature": "[29,\"强盗袭击\"]",
+      "source": "强盗袭击",
+      "stable": true,
+      "text": "强盗袭击"
+    },
+    "[29,\"野蛮人前进一步\"]:1": {
+      "event": null,
+      "id": 53,
+      "key": "[29,\"野蛮人前进一步\"]:1",
+      "move": 29,
+      "observedId": 30,
+      "observedPage": "page-1",
+      "position": 3,
+      "signature": "[29,\"野蛮人前进一步\"]",
+      "source": "野蛮人前进一步",
+      "stable": true,
+      "text": "野蛮人前进一步"
+    },
+    "[3,\"Alice 放置了一条路\"]:1": {
+      "event": {
+        "building": "road",
+        "free": true,
+        "player": "Alice",
+        "type": "build"
+      },
+      "id": 4,
+      "key": "[3,\"Alice 放置了一条路\"]:1",
+      "move": 3,
+      "observedId": 4,
+      "observedPage": "page-4",
+      "position": 1,
+      "signature": "[3,\"Alice 放置了一条路\"]",
+      "source": "Alice 放置了一条路",
+      "stable": true,
+      "text": "Alice 放置了一条路"
+    },
+    "[30,\"Bob 跳过\"]:1": {
+      "event": {
+        "player": "Bob",
+        "type": "turnEnd"
+      },
+      "id": 56,
+      "key": "[30,\"Bob 跳过\"]:1",
+      "move": 30,
+      "observedId": 33,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[30,\"Bob 跳过\"]",
+      "source": "Bob 跳过",
+      "stable": true,
+      "text": "Bob 跳过"
+    },
+    "[31,\"Bob 获得 {brick}\"]:1": {
+      "event": {
+        "player": "Bob",
+        "resources": {
+          "brick": 1
+        },
+        "type": "gain"
+      },
+      "id": 62,
+      "key": "[31,\"Bob 获得 {brick}\"]:1",
+      "move": 31,
+      "observedId": 39,
+      "observedPage": "page-1",
+      "position": 6,
+      "signature": "[31,\"Bob 获得 {brick}\"]",
+      "source": "Bob 获得 {brick}",
+      "stable": true,
+      "text": "Bob 获得"
+    },
+    "[31,\"Alice 获得 {ore}\"]:1": {
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "ore": 1
+        },
+        "type": "gain"
+      },
+      "id": 61,
+      "key": "[31,\"Alice 获得 {ore}\"]:1",
+      "move": 31,
+      "observedId": 38,
+      "observedPage": "page-1",
+      "position": 5,
+      "signature": "[31,\"Alice 获得 {ore}\"]",
+      "source": "Alice 获得 {ore}",
+      "stable": true,
+      "text": "Alice 获得"
+    },
+    "[31,\"Carol 获得 {ore}\"]:1": {
+      "event": {
+        "player": "Carol",
+        "resources": {
+          "ore": 1
+        },
+        "type": "gain"
+      },
+      "id": 60,
+      "key": "[31,\"Carol 获得 {ore}\"]:1",
+      "move": 31,
+      "observedId": 37,
+      "observedPage": "page-1",
+      "position": 4,
+      "signature": "[31,\"Carol 获得 {ore}\"]",
+      "source": "Carol 获得 {ore}",
+      "stable": true,
+      "text": "Carol 获得"
+    },
+    "[31,\"Carol投掷骰子...\"]:1": {
+      "event": null,
+      "id": 57,
+      "key": "[31,\"Carol投掷骰子...\"]:1",
+      "move": 31,
+      "observedId": 34,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[31,\"Carol投掷骰子...\"]",
+      "source": "Carol投掷骰子...",
+      "stable": true,
+      "text": "Carol投掷骰子..."
+    },
+    "[31,\"Carol掷出\"]:1": {
+      "event": null,
+      "id": 58,
+      "key": "[31,\"Carol掷出\"]:1",
+      "move": 31,
+      "observedId": 35,
+      "observedPage": "page-1",
+      "position": 2,
+      "signature": "[31,\"Carol掷出\"]",
+      "source": "Carol掷出",
+      "stable": true,
+      "text": "Carol掷出"
+    },
+    "[31,\"野蛮人前进一步\"]:1": {
+      "event": null,
+      "id": 59,
+      "key": "[31,\"野蛮人前进一步\"]:1",
+      "move": 31,
+      "observedId": 36,
+      "observedPage": "page-1",
+      "position": 3,
+      "signature": "[31,\"野蛮人前进一步\"]",
+      "source": "野蛮人前进一步",
+      "stable": true,
+      "text": "野蛮人前进一步"
+    },
+    "[32,\"Carol 跳过\"]:1": {
+      "event": {
+        "player": "Carol",
+        "type": "turnEnd"
+      },
+      "id": 63,
+      "key": "[32,\"Carol 跳过\"]:1",
+      "move": 32,
+      "observedId": 40,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[32,\"Carol 跳过\"]",
+      "source": "Carol 跳过",
+      "stable": true,
+      "text": "Carol 跳过"
+    },
+    "[33,\"Bob 获得 {wool} {ore} {cloth}\"]:1": {
+      "event": {
+        "player": "Bob",
+        "resources": {
+          "cloth": 1,
+          "ore": 1,
+          "wool": 1
+        },
+        "type": "gain"
+      },
+      "id": 68,
+      "key": "[33,\"Bob 获得 {wool} {ore} {cloth}\"]:1",
+      "move": 33,
+      "observedId": 45,
+      "observedPage": "page-1",
+      "position": 5,
+      "signature": "[33,\"Bob 获得 {wool} {ore} {cloth}\"]",
+      "source": "Bob 获得 {wool} {ore} {cloth}",
+      "stable": true,
+      "text": "Bob 获得"
+    },
+    "[33,\"Alice 什么都没得到\"]:1": {
+      "event": null,
+      "id": 67,
+      "key": "[33,\"Alice 什么都没得到\"]:1",
+      "move": 33,
+      "observedId": 44,
+      "observedPage": "page-1",
+      "position": 4,
+      "signature": "[33,\"Alice 什么都没得到\"]",
+      "source": "Alice 什么都没得到",
+      "stable": true,
+      "text": "Alice 什么都没得到"
+    },
+    "[33,\"Alice投掷骰子...\"]:1": {
+      "event": null,
+      "id": 64,
+      "key": "[33,\"Alice投掷骰子...\"]:1",
+      "move": 33,
+      "observedId": 41,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[33,\"Alice投掷骰子...\"]",
+      "source": "Alice投掷骰子...",
+      "stable": true,
+      "text": "Alice投掷骰子..."
+    },
+    "[33,\"Alice掷出\"]:1": {
+      "event": null,
+      "id": 65,
+      "key": "[33,\"Alice掷出\"]:1",
+      "move": 33,
+      "observedId": 42,
+      "observedPage": "page-1",
+      "position": 2,
+      "signature": "[33,\"Alice掷出\"]",
+      "source": "Alice掷出",
+      "stable": true,
+      "text": "Alice掷出"
+    },
+    "[33,\"Carol 什么都没得到\"]:1": {
+      "event": null,
+      "id": 69,
+      "key": "[33,\"Carol 什么都没得到\"]:1",
+      "move": 33,
+      "observedId": 46,
+      "observedPage": "page-1",
+      "position": 6,
+      "signature": "[33,\"Carol 什么都没得到\"]",
+      "source": "Carol 什么都没得到",
+      "stable": true,
+      "text": "Carol 什么都没得到"
+    },
+    "[33,\"野蛮人前进一步\"]:1": {
+      "event": null,
+      "id": 66,
+      "key": "[33,\"野蛮人前进一步\"]:1",
+      "move": 33,
+      "observedId": 43,
+      "observedPage": "page-1",
+      "position": 3,
+      "signature": "[33,\"野蛮人前进一步\"]",
+      "source": "野蛮人前进一步",
+      "stable": true,
+      "text": "野蛮人前进一步"
+    },
+    "[34,\"Alice 跳过\"]:1": {
+      "event": {
+        "player": "Alice",
+        "type": "turnEnd"
+      },
+      "id": 70,
+      "key": "[34,\"Alice 跳过\"]:1",
+      "move": 34,
+      "observedId": 47,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[34,\"Alice 跳过\"]",
+      "source": "Alice 跳过",
+      "stable": true,
+      "text": "Alice 跳过"
+    },
+    "[35,\"Bob投掷骰子...\"]:1": {
+      "event": null,
+      "id": 71,
+      "key": "[35,\"Bob投掷骰子...\"]:1",
+      "move": 35,
+      "observedId": 48,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[35,\"Bob投掷骰子...\"]",
+      "source": "Bob投掷骰子...",
+      "stable": true,
+      "text": "Bob投掷骰子..."
+    },
+    "[35,\"Bob掷出\"]:1": {
+      "event": null,
+      "id": 72,
+      "key": "[35,\"Bob掷出\"]:1",
+      "move": 35,
+      "observedId": 49,
+      "observedPage": "page-1",
+      "position": 2,
+      "signature": "[35,\"Bob掷出\"]",
+      "source": "Bob掷出",
+      "stable": true,
+      "text": "Bob掷出"
+    },
+    "[35,\"强盗不会移动，因为野蛮人还没有到达卡坦岛\"]:1": {
+      "event": null,
+      "id": 75,
+      "key": "[35,\"强盗不会移动，因为野蛮人还没有到达卡坦岛\"]:1",
+      "move": 35,
+      "observedId": 52,
+      "observedPage": "page-1",
+      "position": 5,
+      "signature": "[35,\"强盗不会移动，因为野蛮人还没有到达卡坦岛\"]",
+      "source": "强盗不会移动，因为野蛮人还没有到达卡坦岛",
+      "stable": true,
+      "text": "强盗不会移动，因为野蛮人还没有到达卡坦岛"
+    },
+    "[35,\"强盗袭击\"]:1": {
+      "event": null,
+      "id": 74,
+      "key": "[35,\"强盗袭击\"]:1",
+      "move": 35,
+      "observedId": 51,
+      "observedPage": "page-1",
+      "position": 4,
+      "signature": "[35,\"强盗袭击\"]",
+      "source": "强盗袭击",
+      "stable": true,
+      "text": "强盗袭击"
+    },
+    "[35,\"野蛮人前进一步\"]:1": {
+      "event": null,
+      "id": 73,
+      "key": "[35,\"野蛮人前进一步\"]:1",
+      "move": 35,
+      "observedId": 50,
+      "observedPage": "page-1",
+      "position": 3,
+      "signature": "[35,\"野蛮人前进一步\"]",
+      "source": "野蛮人前进一步",
+      "stable": true,
+      "text": "野蛮人前进一步"
+    },
+    "[36,\"Bob build a Market and improves its trade level to 1\"]:1": {
+      "event": {
+        "level": 1,
+        "player": "Bob",
+        "resource": "cloth",
+        "type": "improvement"
+      },
+      "id": 76,
+      "key": "[36,\"Bob build a Market and improves its trade level to 1\"]:1",
+      "move": 36,
+      "observedId": 53,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[36,\"Bob build a Market and improves its trade level to 1\"]",
+      "source": "Bob build a Market and improves its trade level to 1",
+      "stable": true,
+      "text": "Bob build a Market and improves its trade level to 1"
+    },
+    "[37,\"Bob 花费 {wool} {ore} 雇佣一个骑士\"]:1": {
+      "event": {
+        "player": "Bob",
+        "resources": {
+          "ore": 1,
+          "wool": 1
+        },
+        "type": "loss"
+      },
+      "id": 77,
+      "key": "[37,\"Bob 花费 {wool} {ore} 雇佣一个骑士\"]:1",
+      "move": 37,
+      "observedId": 54,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[37,\"Bob 花费 {wool} {ore} 雇佣一个骑士\"]",
+      "source": "Bob 花费 {wool} {ore} 雇佣一个骑士",
+      "stable": true,
+      "text": "Bob 花费雇佣一个骑士"
+    },
+    "[38,\"Bob 使用 {lumber} {brick} 造了一条路\"]:1": {
+      "event": {
+        "building": "road",
+        "free": false,
+        "player": "Bob",
+        "resources": {
+          "brick": 1,
+          "lumber": 1
+        },
+        "type": "build"
+      },
+      "id": 78,
+      "key": "[38,\"Bob 使用 {lumber} {brick} 造了一条路\"]:1",
+      "move": 38,
+      "observedId": 55,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[38,\"Bob 使用 {lumber} {brick} 造了一条路\"]",
+      "source": "Bob 使用 {lumber} {brick} 造了一条路",
+      "stable": true,
+      "text": "Bob 使用 造了一条路"
+    },
+    "[39,\"Bob 跳过\"]:1": {
+      "event": {
+        "player": "Bob",
+        "type": "turnEnd"
+      },
+      "id": 79,
+      "key": "[39,\"Bob 跳过\"]:1",
+      "move": 39,
+      "observedId": 56,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[39,\"Bob 跳过\"]",
+      "source": "Bob 跳过",
+      "stable": true,
+      "text": "Bob 跳过"
+    },
+    "[4,\"Bob 放置了一个村庄\"]:1": {
+      "event": {
+        "building": "settlement",
+        "free": true,
+        "player": "Bob",
+        "type": "build"
+      },
+      "id": 5,
+      "key": "[4,\"Bob 放置了一个村庄\"]:1",
+      "move": 4,
+      "observedId": 5,
+      "observedPage": "page-4",
+      "position": 1,
+      "signature": "[4,\"Bob 放置了一个村庄\"]",
+      "source": "Bob 放置了一个村庄",
+      "stable": true,
+      "text": "Bob 放置了一个村庄"
+    },
+    "[40,\"Carol投掷骰子...\"]:1": {
+      "event": null,
+      "id": 80,
+      "key": "[40,\"Carol投掷骰子...\"]:1",
+      "move": 40,
+      "observedId": 57,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[40,\"Carol投掷骰子...\"]",
+      "source": "Carol投掷骰子...",
+      "stable": true,
+      "text": "Carol投掷骰子..."
+    },
+    "[40,\"Carol掷出\"]:1": {
+      "event": null,
+      "id": 81,
+      "key": "[40,\"Carol掷出\"]:1",
+      "move": 40,
+      "observedId": 58,
+      "observedPage": "page-1",
+      "position": 2,
+      "signature": "[40,\"Carol掷出\"]",
+      "source": "Carol掷出",
+      "stable": true,
+      "text": "Carol掷出"
+    },
+    "[40,\"强盗不会移动，因为野蛮人还没有到达卡坦岛\"]:1": {
+      "event": null,
+      "id": 83,
+      "key": "[40,\"强盗不会移动，因为野蛮人还没有到达卡坦岛\"]:1",
+      "move": 40,
+      "observedId": 60,
+      "observedPage": "page-1",
+      "position": 4,
+      "signature": "[40,\"强盗不会移动，因为野蛮人还没有到达卡坦岛\"]",
+      "source": "强盗不会移动，因为野蛮人还没有到达卡坦岛",
+      "stable": true,
+      "text": "强盗不会移动，因为野蛮人还没有到达卡坦岛"
+    },
+    "[40,\"强盗袭击\"]:1": {
+      "event": null,
+      "id": 82,
+      "key": "[40,\"强盗袭击\"]:1",
+      "move": 40,
+      "observedId": 59,
+      "observedPage": "page-1",
+      "position": 3,
+      "signature": "[40,\"强盗袭击\"]",
+      "source": "强盗袭击",
+      "stable": true,
+      "text": "强盗袭击"
+    },
+    "[41,\"Carol 用资源进行交易: 4 {lumber} → {wool}\"]:1": {
+      "event": {
+        "give": {
+          "lumber": 4
+        },
+        "player": "Carol",
+        "receive": {
+          "wool": 1
+        },
+        "type": "bank"
+      },
+      "id": 84,
+      "key": "[41,\"Carol 用资源进行交易: 4 {lumber} → {wool}\"]:1",
+      "move": 41,
+      "observedId": 61,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[41,\"Carol 用资源进行交易: 4 {lumber} → {wool}\"]",
+      "source": "Carol 用资源进行交易: 4 {lumber} → {wool}",
+      "stable": true,
+      "text": "Carol 用资源进行交易: 4 →"
+    },
+    "[42,\"Carol 花费 {wool} {ore} 雇佣一个骑士\"]:1": {
+      "event": {
+        "player": "Carol",
+        "resources": {
+          "ore": 1,
+          "wool": 1
+        },
+        "type": "loss"
+      },
+      "id": 85,
+      "key": "[42,\"Carol 花费 {wool} {ore} 雇佣一个骑士\"]:1",
+      "move": 42,
+      "observedId": 62,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[42,\"Carol 花费 {wool} {ore} 雇佣一个骑士\"]",
+      "source": "Carol 花费 {wool} {ore} 雇佣一个骑士",
+      "stable": true,
+      "text": "Carol 花费雇佣一个骑士"
+    },
+    "[43,\"Carol 为 {grain} 激活骑士\"]:1": {
+      "event": {
+        "player": "Carol",
+        "resources": {
+          "grain": 1
+        },
+        "type": "loss"
+      },
+      "id": 86,
+      "key": "[43,\"Carol 为 {grain} 激活骑士\"]:1",
+      "move": 43,
+      "observedId": 63,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[43,\"Carol 为 {grain} 激活骑士\"]",
+      "source": "Carol 为 {grain} 激活骑士",
+      "stable": true,
+      "text": "Carol 为激活骑士"
+    },
+    "[44,\"Carol 跳过\"]:1": {
+      "event": {
+        "player": "Carol",
+        "type": "turnEnd"
+      },
+      "id": 87,
+      "key": "[44,\"Carol 跳过\"]:1",
+      "move": 44,
+      "observedId": 64,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[44,\"Carol 跳过\"]",
+      "source": "Carol 跳过",
+      "stable": true,
+      "text": "Carol 跳过"
+    },
+    "[45,\"Alice投掷骰子...\"]:1": {
+      "event": null,
+      "id": 88,
+      "key": "[45,\"Alice投掷骰子...\"]:1",
+      "move": 45,
+      "observedId": 65,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[45,\"Alice投掷骰子...\"]",
+      "source": "Alice投掷骰子...",
+      "stable": true,
+      "text": "Alice投掷骰子..."
+    },
+    "[45,\"Alice掷出\"]:1": {
+      "event": null,
+      "id": 89,
+      "key": "[45,\"Alice掷出\"]:1",
+      "move": 45,
+      "observedId": 66,
+      "observedPage": "page-1",
+      "position": 2,
+      "signature": "[45,\"Alice掷出\"]",
+      "source": "Alice掷出",
+      "stable": true,
+      "text": "Alice掷出"
+    },
+    "[45,\"强盗不会移动，因为野蛮人还没有到达卡坦岛\"]:1": {
+      "event": null,
+      "id": 92,
+      "key": "[45,\"强盗不会移动，因为野蛮人还没有到达卡坦岛\"]:1",
+      "move": 45,
+      "observedId": 69,
+      "observedPage": "page-1",
+      "position": 5,
+      "signature": "[45,\"强盗不会移动，因为野蛮人还没有到达卡坦岛\"]",
+      "source": "强盗不会移动，因为野蛮人还没有到达卡坦岛",
+      "stable": true,
+      "text": "强盗不会移动，因为野蛮人还没有到达卡坦岛"
+    },
+    "[45,\"强盗袭击\"]:1": {
+      "event": null,
+      "id": 91,
+      "key": "[45,\"强盗袭击\"]:1",
+      "move": 45,
+      "observedId": 68,
+      "observedPage": "page-1",
+      "position": 4,
+      "signature": "[45,\"强盗袭击\"]",
+      "source": "强盗袭击",
+      "stable": true,
+      "text": "强盗袭击"
+    },
+    "[45,\"野蛮人前进一步\"]:1": {
+      "event": null,
+      "id": 90,
+      "key": "[45,\"野蛮人前进一步\"]:1",
+      "move": 45,
+      "observedId": 67,
+      "observedPage": "page-1",
+      "position": 3,
+      "signature": "[45,\"野蛮人前进一步\"]",
+      "source": "野蛮人前进一步",
+      "stable": true,
+      "text": "野蛮人前进一步"
+    },
+    "[46,\"Alice 跳过\"]:1": {
+      "event": {
+        "player": "Alice",
+        "type": "turnEnd"
+      },
+      "id": 93,
+      "key": "[46,\"Alice 跳过\"]:1",
+      "move": 46,
+      "observedId": 70,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[46,\"Alice 跳过\"]",
+      "source": "Alice 跳过",
+      "stable": true,
+      "text": "Alice 跳过"
+    },
+    "[47,\"Bob 什么都没得到\"]:1": {
+      "event": null,
+      "id": 97,
+      "key": "[47,\"Bob 什么都没得到\"]:1",
+      "move": 47,
+      "observedId": 74,
+      "observedPage": "page-1",
+      "position": 4,
+      "signature": "[47,\"Bob 什么都没得到\"]",
+      "source": "Bob 什么都没得到",
+      "stable": true,
+      "text": "Bob 什么都没得到"
+    },
+    "[47,\"Bob 从Trade 牌盒中抽取一张发展卡\"]:1": {
+      "event": null,
+      "id": 96,
+      "key": "[47,\"Bob 从Trade 牌盒中抽取一张发展卡\"]:1",
+      "move": 47,
+      "observedId": 73,
+      "observedPage": "page-1",
+      "position": 3,
+      "signature": "[47,\"Bob 从Trade 牌盒中抽取一张发展卡\"]",
+      "source": "Bob 从Trade 牌盒中抽取一张发展卡",
+      "stable": true,
+      "text": "Bob 从Trade 牌盒中抽取一张发展卡"
+    },
+    "[47,\"Bob投掷骰子...\"]:1": {
+      "event": null,
+      "id": 94,
+      "key": "[47,\"Bob投掷骰子...\"]:1",
+      "move": 47,
+      "observedId": 71,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[47,\"Bob投掷骰子...\"]",
+      "source": "Bob投掷骰子...",
+      "stable": true,
+      "text": "Bob投掷骰子..."
+    },
+    "[47,\"Bob掷出\"]:1": {
+      "event": null,
+      "id": 95,
+      "key": "[47,\"Bob掷出\"]:1",
+      "move": 47,
+      "observedId": 72,
+      "observedPage": "page-1",
+      "position": 2,
+      "signature": "[47,\"Bob掷出\"]",
+      "source": "Bob掷出",
+      "stable": true,
+      "text": "Bob掷出"
+    },
+    "[47,\"Alice 什么都没得到\"]:1": {
+      "event": null,
+      "id": 99,
+      "key": "[47,\"Alice 什么都没得到\"]:1",
+      "move": 47,
+      "observedId": 76,
+      "observedPage": "page-1",
+      "position": 6,
+      "signature": "[47,\"Alice 什么都没得到\"]",
+      "source": "Alice 什么都没得到",
+      "stable": true,
+      "text": "Alice 什么都没得到"
+    },
+    "[47,\"Carol 获得 {grain}\"]:1": {
+      "event": {
+        "player": "Carol",
+        "resources": {
+          "grain": 1
+        },
+        "type": "gain"
+      },
+      "id": 98,
+      "key": "[47,\"Carol 获得 {grain}\"]:1",
+      "move": 47,
+      "observedId": 75,
+      "observedPage": "page-1",
+      "position": 5,
+      "signature": "[47,\"Carol 获得 {grain}\"]",
+      "source": "Carol 获得 {grain}",
+      "stable": true,
+      "text": "Carol 获得"
+    },
+    "[48,\"Bob 跳过\"]:1": {
+      "event": {
+        "player": "Bob",
+        "type": "turnEnd"
+      },
+      "id": 100,
+      "key": "[48,\"Bob 跳过\"]:1",
+      "move": 48,
+      "observedId": 77,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[48,\"Bob 跳过\"]",
+      "source": "Bob 跳过",
+      "stable": true,
+      "text": "Bob 跳过"
+    },
+    "[49,\"Bob 获得 {wool} {ore} {cloth}\"]:1": {
+      "event": {
+        "player": "Bob",
+        "resources": {
+          "cloth": 1,
+          "ore": 1,
+          "wool": 1
+        },
+        "type": "gain"
+      },
+      "id": 106,
+      "key": "[49,\"Bob 获得 {wool} {ore} {cloth}\"]:1",
+      "move": 49,
+      "observedId": 83,
+      "observedPage": "page-1",
+      "position": 6,
+      "signature": "[49,\"Bob 获得 {wool} {ore} {cloth}\"]",
+      "source": "Bob 获得 {wool} {ore} {cloth}",
+      "stable": true,
+      "text": "Bob 获得"
+    },
+    "[49,\"Alice 什么都没得到\"]:1": {
+      "event": null,
+      "id": 105,
+      "key": "[49,\"Alice 什么都没得到\"]:1",
+      "move": 49,
+      "observedId": 82,
+      "observedPage": "page-1",
+      "position": 5,
+      "signature": "[49,\"Alice 什么都没得到\"]",
+      "source": "Alice 什么都没得到",
+      "stable": true,
+      "text": "Alice 什么都没得到"
+    },
+    "[49,\"Carol 什么都没得到\"]:1": {
+      "event": null,
+      "id": 104,
+      "key": "[49,\"Carol 什么都没得到\"]:1",
+      "move": 49,
+      "observedId": 81,
+      "observedPage": "page-1",
+      "position": 4,
+      "signature": "[49,\"Carol 什么都没得到\"]",
+      "source": "Carol 什么都没得到",
+      "stable": true,
+      "text": "Carol 什么都没得到"
+    },
+    "[49,\"Carol投掷骰子...\"]:1": {
+      "event": null,
+      "id": 101,
+      "key": "[49,\"Carol投掷骰子...\"]:1",
+      "move": 49,
+      "observedId": 78,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[49,\"Carol投掷骰子...\"]",
+      "source": "Carol投掷骰子...",
+      "stable": true,
+      "text": "Carol投掷骰子..."
+    },
+    "[49,\"Carol掷出\"]:1": {
+      "event": null,
+      "id": 102,
+      "key": "[49,\"Carol掷出\"]:1",
+      "move": 49,
+      "observedId": 79,
+      "observedPage": "page-1",
+      "position": 2,
+      "signature": "[49,\"Carol掷出\"]",
+      "source": "Carol掷出",
+      "stable": true,
+      "text": "Carol掷出"
+    },
+    "[49,\"野蛮人前进一步\"]:1": {
+      "event": null,
+      "id": 103,
+      "key": "[49,\"野蛮人前进一步\"]:1",
+      "move": 49,
+      "observedId": 80,
+      "observedPage": "page-1",
+      "position": 3,
+      "signature": "[49,\"野蛮人前进一步\"]",
+      "source": "野蛮人前进一步",
+      "stable": true,
+      "text": "野蛮人前进一步"
+    },
+    "[5,\"Bob 放置了一条路\"]:1": {
+      "event": {
+        "building": "road",
+        "free": true,
+        "player": "Bob",
+        "type": "build"
+      },
+      "id": 6,
+      "key": "[5,\"Bob 放置了一条路\"]:1",
+      "move": 5,
+      "observedId": 6,
+      "observedPage": "page-4",
+      "position": 1,
+      "signature": "[5,\"Bob 放置了一条路\"]",
+      "source": "Bob 放置了一条路",
+      "stable": true,
+      "text": "Bob 放置了一条路"
+    },
+    "[50,\"Carol 跳过\"]:1": {
+      "event": {
+        "player": "Carol",
+        "type": "turnEnd"
+      },
+      "id": 107,
+      "key": "[50,\"Carol 跳过\"]:1",
+      "move": 50,
+      "observedId": 84,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[50,\"Carol 跳过\"]",
+      "source": "Carol 跳过",
+      "stable": true,
+      "text": "Carol 跳过"
+    },
+    "[51,\"Knight is now inactive\"]:1": {
+      "event": null,
+      "id": 117,
+      "key": "[51,\"Knight is now inactive\"]:1",
+      "move": 51,
+      "observedId": 94,
+      "observedPage": "page-1",
+      "position": 10,
+      "signature": "[51,\"Knight is now inactive\"]",
+      "source": "Knight is now inactive",
+      "stable": true,
+      "text": "Knight is now inactive"
+    },
+    "[51,\"Knight is now inactive\"]:2": {
+      "event": null,
+      "id": 118,
+      "key": "[51,\"Knight is now inactive\"]:2",
+      "move": 51,
+      "observedId": 95,
+      "observedPage": "page-1",
+      "position": 11,
+      "signature": "[51,\"Knight is now inactive\"]",
+      "source": "Knight is now inactive",
+      "stable": true,
+      "text": "Knight is now inactive"
+    },
+    "[51,\"Bob 获得 {wool} {ore}\"]:1": {
+      "event": {
+        "player": "Bob",
+        "resources": {
+          "ore": 1,
+          "wool": 1
+        },
+        "type": "gain"
+      },
+      "id": 121,
+      "key": "[51,\"Bob 获得 {wool} {ore}\"]:1",
+      "move": 51,
+      "observedId": 98,
+      "observedPage": "page-1",
+      "position": 14,
+      "signature": "[51,\"Bob 获得 {wool} {ore}\"]",
+      "source": "Bob 获得 {wool} {ore}",
+      "stable": true,
+      "text": "Bob 获得"
+    },
+    "[51,\"Bob's only city has been pillaged\"]:1": {
+      "event": null,
+      "id": 116,
+      "key": "[51,\"Bob's only city has been pillaged\"]:1",
+      "move": 51,
+      "observedId": 93,
+      "observedPage": "page-1",
+      "position": 9,
+      "signature": "[51,\"Bob's only city has been pillaged\"]",
+      "source": "Bob's only city has been pillaged",
+      "stable": true,
+      "text": "Bob's only city has been pillaged"
+    },
+    "[51,\"Bob以0的力量防守卡坦\"]:1": {
+      "event": null,
+      "id": 113,
+      "key": "[51,\"Bob以0的力量防守卡坦\"]:1",
+      "move": 51,
+      "observedId": 90,
+      "observedPage": "page-1",
+      "position": 6,
+      "signature": "[51,\"Bob以0的力量防守卡坦\"]",
+      "source": "Bob以0的力量防守卡坦",
+      "stable": true,
+      "text": "Bob以0的力量防守卡坦"
+    },
+    "[51,\"Alice 什么都没得到\"]:1": {
+      "event": null,
+      "id": 120,
+      "key": "[51,\"Alice 什么都没得到\"]:1",
+      "move": 51,
+      "observedId": 97,
+      "observedPage": "page-1",
+      "position": 13,
+      "signature": "[51,\"Alice 什么都没得到\"]",
+      "source": "Alice 什么都没得到",
+      "stable": true,
+      "text": "Alice 什么都没得到"
+    },
+    "[51,\"Alice以1的力量防守卡坦\"]:1": {
+      "event": null,
+      "id": 112,
+      "key": "[51,\"Alice以1的力量防守卡坦\"]:1",
+      "move": 51,
+      "observedId": 89,
+      "observedPage": "page-1",
+      "position": 5,
+      "signature": "[51,\"Alice以1的力量防守卡坦\"]",
+      "source": "Alice以1的力量防守卡坦",
+      "stable": true,
+      "text": "Alice以1的力量防守卡坦"
+    },
+    "[51,\"Alice投掷骰子...\"]:1": {
+      "event": null,
+      "id": 108,
+      "key": "[51,\"Alice投掷骰子...\"]:1",
+      "move": 51,
+      "observedId": 85,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[51,\"Alice投掷骰子...\"]",
+      "source": "Alice投掷骰子...",
+      "stable": true,
+      "text": "Alice投掷骰子..."
+    },
+    "[51,\"Alice掷出\"]:1": {
+      "event": null,
+      "id": 109,
+      "key": "[51,\"Alice掷出\"]:1",
+      "move": 51,
+      "observedId": 86,
+      "observedPage": "page-1",
+      "position": 2,
+      "signature": "[51,\"Alice掷出\"]",
+      "source": "Alice掷出",
+      "stable": true,
+      "text": "Alice掷出"
+    },
+    "[51,\"Carol 什么都没得到\"]:1": {
+      "event": null,
+      "id": 122,
+      "key": "[51,\"Carol 什么都没得到\"]:1",
+      "move": 51,
+      "observedId": 99,
+      "observedPage": "page-1",
+      "position": 15,
+      "signature": "[51,\"Carol 什么都没得到\"]",
+      "source": "Carol 什么都没得到",
+      "stable": true,
+      "text": "Carol 什么都没得到"
+    },
+    "[51,\"Carol以1的力量防守卡坦\"]:1": {
+      "event": null,
+      "id": 114,
+      "key": "[51,\"Carol以1的力量防守卡坦\"]:1",
+      "move": 51,
+      "observedId": 91,
+      "observedPage": "page-1",
+      "position": 7,
+      "signature": "[51,\"Carol以1的力量防守卡坦\"]",
+      "source": "Carol以1的力量防守卡坦",
+      "stable": true,
+      "text": "Carol以1的力量防守卡坦"
+    },
+    "[51,\"所有骑士陷入休眠\"]:1": {
+      "event": null,
+      "id": 119,
+      "key": "[51,\"所有骑士陷入休眠\"]:1",
+      "move": 51,
+      "observedId": 96,
+      "observedPage": "page-1",
+      "position": 12,
+      "signature": "[51,\"所有骑士陷入休眠\"]",
+      "source": "所有骑士陷入休眠",
+      "stable": true,
+      "text": "所有骑士陷入休眠"
+    },
+    "[51,\"野蛮人前进一步\"]:1": {
+      "event": null,
+      "id": 110,
+      "key": "[51,\"野蛮人前进一步\"]:1",
+      "move": 51,
+      "observedId": 87,
+      "observedPage": "page-1",
+      "position": 3,
+      "signature": "[51,\"野蛮人前进一步\"]",
+      "source": "野蛮人前进一步",
+      "stable": true,
+      "text": "野蛮人前进一步"
+    },
+    "[51,\"野蛮人获胜，并以3的力量掠夺卡坦岛，对抗2的防御\"]:1": {
+      "event": null,
+      "id": 111,
+      "key": "[51,\"野蛮人获胜，并以3的力量掠夺卡坦岛，对抗2的防御\"]:1",
+      "move": 51,
+      "observedId": 88,
+      "observedPage": "page-1",
+      "position": 4,
+      "signature": "[51,\"野蛮人获胜，并以3的力量掠夺卡坦岛，对抗2的防御\"]",
+      "source": "野蛮人获胜，并以3的力量掠夺卡坦岛，对抗2的防御",
+      "stable": true,
+      "text": "野蛮人获胜，并以3的力量掠夺卡坦岛，对抗2的防御"
+    },
+    "[51,\"野蛮人退回原点\"]:1": {
+      "event": null,
+      "id": 115,
+      "key": "[51,\"野蛮人退回原点\"]:1",
+      "move": 51,
+      "observedId": 92,
+      "observedPage": "page-1",
+      "position": 8,
+      "signature": "[51,\"野蛮人退回原点\"]",
+      "source": "野蛮人退回原点",
+      "stable": true,
+      "text": "野蛮人退回原点"
+    },
+    "[52,\"Alice 跳过\"]:1": {
+      "event": {
+        "player": "Alice",
+        "type": "turnEnd"
+      },
+      "id": 123,
+      "key": "[52,\"Alice 跳过\"]:1",
+      "move": 52,
+      "observedId": 100,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[52,\"Alice 跳过\"]",
+      "source": "Alice 跳过",
+      "stable": true,
+      "text": "Alice 跳过"
+    },
+    "[53,\"Bob投掷骰子...\"]:1": {
+      "event": null,
+      "id": 124,
+      "key": "[53,\"Bob投掷骰子...\"]:1",
+      "move": 53,
+      "observedId": 101,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[53,\"Bob投掷骰子...\"]",
+      "source": "Bob投掷骰子...",
+      "stable": true,
+      "text": "Bob投掷骰子..."
+    },
+    "[53,\"Bob掷出\"]:1": {
+      "event": null,
+      "id": 125,
+      "key": "[53,\"Bob掷出\"]:1",
+      "move": 53,
+      "observedId": 102,
+      "observedPage": "page-1",
+      "position": 2,
+      "signature": "[53,\"Bob掷出\"]",
+      "source": "Bob掷出",
+      "stable": true,
+      "text": "Bob掷出"
+    },
+    "[53,\"强盗袭击\"]:1": {
+      "event": null,
+      "id": 126,
+      "key": "[53,\"强盗袭击\"]:1",
+      "move": 53,
+      "observedId": 103,
+      "observedPage": "page-1",
+      "position": 3,
+      "signature": "[53,\"强盗袭击\"]",
+      "source": "强盗袭击",
+      "stable": true,
+      "text": "强盗袭击"
+    },
+    "[54,\"Bob 移动 强盗\"]:1": {
+      "event": null,
+      "id": 127,
+      "key": "[54,\"Bob 移动 强盗\"]:1",
+      "move": 54,
+      "observedId": 104,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[54,\"Bob 移动 强盗\"]",
+      "source": "Bob 移动 强盗",
+      "stable": true,
+      "text": "Bob 移动 强盗"
+    },
+    "[55,\"Bob 从 Alice 处偷取资源\"]:1": {
+      "event": {
+        "player": "Bob",
+        "resources": {
+          "ore": 1
+        },
+        "revealed": true,
+        "type": "steal",
+        "victim": "Alice"
+      },
+      "id": 128,
+      "key": "[55,\"Bob 从 Alice 处偷取资源\"]:1",
+      "move": 55,
+      "observedId": 106,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[55,\"Bob 从 Alice 处偷取资源\"]",
+      "source": "Bob 从 Alice 处偷取资源",
+      "stable": true,
+      "text": "Bob 从 Alice 处偷取资源"
+    },
+    "[55,\"你失去 {ore}\"]:1": {
+      "event": null,
+      "id": 129,
+      "key": "[55,\"你失去 {ore}\"]:1",
+      "move": 55,
+      "observedId": 129,
+      "observedPage": "page-2",
+      "position": 2,
+      "resolvedBy": 128,
+      "signature": "[55,\"你失去 {ore}\"]",
+      "source": "你失去 {ore}",
+      "stable": true,
+      "text": "你失去"
+    },
+    "[56,\"Bob 打出了 贸易船队\"]:1": {
+      "event": null,
+      "id": 130,
+      "key": "[56,\"Bob 打出了 贸易船队\"]:1",
+      "move": 56,
+      "observedId": 107,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[56,\"Bob 打出了 贸易船队\"]",
+      "source": "Bob 打出了 贸易船队",
+      "stable": true,
+      "text": "Bob 打出了 贸易船队"
+    },
+    "[57,\"贸易船队 : Bob 可以在本回合剩余时间内用wool 以2:1进行贸易\"]:1": {
+      "event": null,
+      "id": 131,
+      "key": "[57,\"贸易船队 : Bob 可以在本回合剩余时间内用wool 以2:1进行贸易\"]:1",
+      "move": 57,
+      "observedId": 108,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[57,\"贸易船队 : Bob 可以在本回合剩余时间内用wool 以2:1进行贸易\"]",
+      "source": "贸易船队 : Bob 可以在本回合剩余时间内用wool 以2:1进行贸易",
+      "stable": true,
+      "text": "贸易船队 : Bob 可以在本回合剩余时间内用wool 以2:1进行贸易"
+    },
+    "[58,\"Bob 用资源进行交易: 4 {wool} → 2 {grain}\"]:1": {
+      "event": {
+        "give": {
+          "wool": 4
+        },
+        "player": "Bob",
+        "receive": {
+          "grain": 2
+        },
+        "type": "bank"
+      },
+      "id": 132,
+      "key": "[58,\"Bob 用资源进行交易: 4 {wool} → 2 {grain}\"]:1",
+      "move": 58,
+      "observedId": 109,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[58,\"Bob 用资源进行交易: 4 {wool} → 2 {grain}\"]",
+      "source": "Bob 用资源进行交易: 4 {wool} → 2 {grain}",
+      "stable": true,
+      "text": "Bob 用资源进行交易: 4 → 2"
+    },
+    "[59,\"Bob 用 2 {grain} 3 {ore} 将乡镇升级为城市\"]:1": {
+      "event": {
+        "building": "city",
+        "free": false,
+        "player": "Bob",
+        "resources": {
+          "grain": 2,
+          "ore": 3
+        },
+        "type": "build"
+      },
+      "id": 133,
+      "key": "[59,\"Bob 用 2 {grain} 3 {ore} 将乡镇升级为城市\"]:1",
+      "move": 59,
+      "observedId": 110,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[59,\"Bob 用 2 {grain} 3 {ore} 将乡镇升级为城市\"]",
+      "source": "Bob 用 2 {grain} 3 {ore} 将乡镇升级为城市",
+      "stable": true,
+      "text": "Bob 用 23 将乡镇升级为城市"
+    },
+    "[6,\"Carol 放置了一个村庄\"]:1": {
+      "event": {
+        "building": "settlement",
+        "free": true,
+        "player": "Carol",
+        "type": "build"
+      },
+      "id": 7,
+      "key": "[6,\"Carol 放置了一个村庄\"]:1",
+      "move": 6,
+      "observedId": 7,
+      "observedPage": "page-4",
+      "position": 1,
+      "signature": "[6,\"Carol 放置了一个村庄\"]",
+      "source": "Carol 放置了一个村庄",
+      "stable": true,
+      "text": "Carol 放置了一个村庄"
+    },
+    "[60,\"Bob 跳过\"]:1": {
+      "event": {
+        "player": "Bob",
+        "type": "turnEnd"
+      },
+      "id": 134,
+      "key": "[60,\"Bob 跳过\"]:1",
+      "move": 60,
+      "observedId": 111,
+      "observedPage": "page-1",
+      "position": 1,
+      "signature": "[60,\"Bob 跳过\"]",
+      "source": "Bob 跳过",
+      "stable": true,
+      "text": "Bob 跳过"
+    },
+    "[61,\"Bob 获得 {brick}\"]:1": {
+      "event": {
+        "player": "Bob",
+        "resources": {
+          "brick": 1
+        },
+        "type": "gain"
+      },
+      "id": 139,
+      "key": "[61,\"Bob 获得 {brick}\"]:1",
+      "move": 61,
+      "observedId": 5,
+      "observedPage": "page-5",
+      "position": 5,
+      "signature": "[61,\"Bob 获得 {brick}\"]",
+      "source": "Bob 获得 {brick}",
+      "stable": true,
+      "text": "Bob 获得"
+    },
+    "[61,\"Alice 获得 {ore}\"]:1": {
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "ore": 1
+        },
+        "type": "gain"
+      },
+      "id": 138,
+      "key": "[61,\"Alice 获得 {ore}\"]:1",
+      "move": 61,
+      "observedId": 4,
+      "observedPage": "page-5",
+      "position": 4,
+      "signature": "[61,\"Alice 获得 {ore}\"]",
+      "source": "Alice 获得 {ore}",
+      "stable": true,
+      "text": "Alice 获得"
+    },
+    "[61,\"Carol 获得 {ore}\"]:1": {
+      "event": {
+        "player": "Carol",
+        "resources": {
+          "ore": 1
+        },
+        "type": "gain"
+      },
+      "id": 137,
+      "key": "[61,\"Carol 获得 {ore}\"]:1",
+      "move": 61,
+      "observedId": 3,
+      "observedPage": "page-5",
+      "position": 3,
+      "signature": "[61,\"Carol 获得 {ore}\"]",
+      "source": "Carol 获得 {ore}",
+      "stable": true,
+      "text": "Carol 获得"
+    },
+    "[61,\"Carol投掷骰子...\"]:1": {
+      "event": null,
+      "id": 135,
+      "key": "[61,\"Carol投掷骰子...\"]:1",
+      "move": 61,
+      "observedId": 1,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[61,\"Carol投掷骰子...\"]",
+      "source": "Carol投掷骰子...",
+      "stable": true,
+      "text": "Carol投掷骰子..."
+    },
+    "[61,\"Carol掷出\"]:1": {
+      "event": null,
+      "id": 136,
+      "key": "[61,\"Carol掷出\"]:1",
+      "move": 61,
+      "observedId": 2,
+      "observedPage": "page-5",
+      "position": 2,
+      "signature": "[61,\"Carol掷出\"]",
+      "source": "Carol掷出",
+      "stable": true,
+      "text": "Carol掷出"
+    },
+    "[62,\"Carol 为 {grain} 激活骑士\"]:1": {
+      "event": {
+        "player": "Carol",
+        "resources": {
+          "grain": 1
+        },
+        "type": "loss"
+      },
+      "id": 140,
+      "key": "[62,\"Carol 为 {grain} 激活骑士\"]:1",
+      "move": 62,
+      "observedId": 6,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[62,\"Carol 为 {grain} 激活骑士\"]",
+      "source": "Carol 为 {grain} 激活骑士",
+      "stable": true,
+      "text": "Carol 为激活骑士"
+    },
+    "[63,\"Carol 跳过\"]:1": {
+      "event": {
+        "player": "Carol",
+        "type": "turnEnd"
+      },
+      "id": 141,
+      "key": "[63,\"Carol 跳过\"]:1",
+      "move": 63,
+      "observedId": 7,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[63,\"Carol 跳过\"]",
+      "source": "Carol 跳过",
+      "stable": true,
+      "text": "Carol 跳过"
+    },
+    "[64,\"Bob 获得 {brick}\"]:1": {
+      "event": {
+        "player": "Bob",
+        "resources": {
+          "brick": 1
+        },
+        "type": "gain"
+      },
+      "id": 145,
+      "key": "[64,\"Bob 获得 {brick}\"]:1",
+      "move": 64,
+      "observedId": 11,
+      "observedPage": "page-5",
+      "position": 4,
+      "signature": "[64,\"Bob 获得 {brick}\"]",
+      "source": "Bob 获得 {brick}",
+      "stable": true,
+      "text": "Bob 获得"
+    },
+    "[64,\"Alice 获得 {ore}\"]:1": {
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "ore": 1
+        },
+        "type": "gain"
+      },
+      "id": 144,
+      "key": "[64,\"Alice 获得 {ore}\"]:1",
+      "move": 64,
+      "observedId": 10,
+      "observedPage": "page-5",
+      "position": 3,
+      "signature": "[64,\"Alice 获得 {ore}\"]",
+      "source": "Alice 获得 {ore}",
+      "stable": true,
+      "text": "Alice 获得"
+    },
+    "[64,\"Alice投掷骰子...\"]:1": {
+      "event": null,
+      "id": 142,
+      "key": "[64,\"Alice投掷骰子...\"]:1",
+      "move": 64,
+      "observedId": 8,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[64,\"Alice投掷骰子...\"]",
+      "source": "Alice投掷骰子...",
+      "stable": true,
+      "text": "Alice投掷骰子..."
+    },
+    "[64,\"Alice掷出\"]:1": {
+      "event": null,
+      "id": 143,
+      "key": "[64,\"Alice掷出\"]:1",
+      "move": 64,
+      "observedId": 9,
+      "observedPage": "page-5",
+      "position": 2,
+      "signature": "[64,\"Alice掷出\"]",
+      "source": "Alice掷出",
+      "stable": true,
+      "text": "Alice掷出"
+    },
+    "[64,\"Carol 获得 {ore}\"]:1": {
+      "event": {
+        "player": "Carol",
+        "resources": {
+          "ore": 1
+        },
+        "type": "gain"
+      },
+      "id": 146,
+      "key": "[64,\"Carol 获得 {ore}\"]:1",
+      "move": 64,
+      "observedId": 12,
+      "observedPage": "page-5",
+      "position": 5,
+      "signature": "[64,\"Carol 获得 {ore}\"]",
+      "source": "Carol 获得 {ore}",
+      "stable": true,
+      "text": "Carol 获得"
+    },
+    "[65,\"Alice 为 {grain} 激活骑士\"]:1": {
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "grain": 1
+        },
+        "type": "loss"
+      },
+      "id": 147,
+      "key": "[65,\"Alice 为 {grain} 激活骑士\"]:1",
+      "move": 65,
+      "observedId": 13,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[65,\"Alice 为 {grain} 激活骑士\"]",
+      "source": "Alice 为 {grain} 激活骑士",
+      "stable": true,
+      "text": "Alice 为激活骑士"
+    },
+    "[66,\"Alice 跳过\"]:1": {
+      "event": {
+        "player": "Alice",
+        "type": "turnEnd"
+      },
+      "id": 148,
+      "key": "[66,\"Alice 跳过\"]:1",
+      "move": 66,
+      "observedId": 14,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[66,\"Alice 跳过\"]",
+      "source": "Alice 跳过",
+      "stable": true,
+      "text": "Alice 跳过"
+    },
+    "[67,\"Bob 什么都没得到\"]:1": {
+      "event": null,
+      "id": 152,
+      "key": "[67,\"Bob 什么都没得到\"]:1",
+      "move": 67,
+      "observedId": 18,
+      "observedPage": "page-5",
+      "position": 4,
+      "signature": "[67,\"Bob 什么都没得到\"]",
+      "source": "Bob 什么都没得到",
+      "stable": true,
+      "text": "Bob 什么都没得到"
+    },
+    "[67,\"Bob投掷骰子...\"]:1": {
+      "event": null,
+      "id": 149,
+      "key": "[67,\"Bob投掷骰子...\"]:1",
+      "move": 67,
+      "observedId": 15,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[67,\"Bob投掷骰子...\"]",
+      "source": "Bob投掷骰子...",
+      "stable": true,
+      "text": "Bob投掷骰子..."
+    },
+    "[67,\"Bob掷出\"]:1": {
+      "event": null,
+      "id": 150,
+      "key": "[67,\"Bob掷出\"]:1",
+      "move": 67,
+      "observedId": 16,
+      "observedPage": "page-5",
+      "position": 2,
+      "signature": "[67,\"Bob掷出\"]",
+      "source": "Bob掷出",
+      "stable": true,
+      "text": "Bob掷出"
+    },
+    "[67,\"Alice 获得 {grain}\"]:1": {
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "grain": 1
+        },
+        "type": "gain"
+      },
+      "id": 154,
+      "key": "[67,\"Alice 获得 {grain}\"]:1",
+      "move": 67,
+      "observedId": 20,
+      "observedPage": "page-5",
+      "position": 6,
+      "signature": "[67,\"Alice 获得 {grain}\"]",
+      "source": "Alice 获得 {grain}",
+      "stable": true,
+      "text": "Alice 获得"
+    },
+    "[67,\"Carol 什么都没得到\"]:1": {
+      "event": null,
+      "id": 153,
+      "key": "[67,\"Carol 什么都没得到\"]:1",
+      "move": 67,
+      "observedId": 19,
+      "observedPage": "page-5",
+      "position": 5,
+      "signature": "[67,\"Carol 什么都没得到\"]",
+      "source": "Carol 什么都没得到",
+      "stable": true,
+      "text": "Carol 什么都没得到"
+    },
+    "[67,\"野蛮人前进一步\"]:1": {
+      "event": null,
+      "id": 151,
+      "key": "[67,\"野蛮人前进一步\"]:1",
+      "move": 67,
+      "observedId": 17,
+      "observedPage": "page-5",
+      "position": 3,
+      "signature": "[67,\"野蛮人前进一步\"]",
+      "source": "野蛮人前进一步",
+      "stable": true,
+      "text": "野蛮人前进一步"
+    },
+    "[68,\"Bob 跳过\"]:1": {
+      "event": {
+        "player": "Bob",
+        "type": "turnEnd"
+      },
+      "id": 155,
+      "key": "[68,\"Bob 跳过\"]:1",
+      "move": 68,
+      "observedId": 21,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[68,\"Bob 跳过\"]",
+      "source": "Bob 跳过",
+      "stable": true,
+      "text": "Bob 跳过"
+    },
+    "[69,\"Bob 获得 {brick}\"]:1": {
+      "event": {
+        "player": "Bob",
+        "resources": {
+          "brick": 1
+        },
+        "type": "gain"
+      },
+      "id": 161,
+      "key": "[69,\"Bob 获得 {brick}\"]:1",
+      "move": 69,
+      "observedId": 27,
+      "observedPage": "page-5",
+      "position": 6,
+      "signature": "[69,\"Bob 获得 {brick}\"]",
+      "source": "Bob 获得 {brick}",
+      "stable": true,
+      "text": "Bob 获得"
+    },
+    "[69,\"Alice 获得 {ore}\"]:1": {
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "ore": 1
+        },
+        "type": "gain"
+      },
+      "id": 160,
+      "key": "[69,\"Alice 获得 {ore}\"]:1",
+      "move": 69,
+      "observedId": 26,
+      "observedPage": "page-5",
+      "position": 5,
+      "signature": "[69,\"Alice 获得 {ore}\"]",
+      "source": "Alice 获得 {ore}",
+      "stable": true,
+      "text": "Alice 获得"
+    },
+    "[69,\"Carol 获得 {ore}\"]:1": {
+      "event": {
+        "player": "Carol",
+        "resources": {
+          "ore": 1
+        },
+        "type": "gain"
+      },
+      "id": 159,
+      "key": "[69,\"Carol 获得 {ore}\"]:1",
+      "move": 69,
+      "observedId": 25,
+      "observedPage": "page-5",
+      "position": 4,
+      "signature": "[69,\"Carol 获得 {ore}\"]",
+      "source": "Carol 获得 {ore}",
+      "stable": true,
+      "text": "Carol 获得"
+    },
+    "[69,\"Carol投掷骰子...\"]:1": {
+      "event": null,
+      "id": 156,
+      "key": "[69,\"Carol投掷骰子...\"]:1",
+      "move": 69,
+      "observedId": 22,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[69,\"Carol投掷骰子...\"]",
+      "source": "Carol投掷骰子...",
+      "stable": true,
+      "text": "Carol投掷骰子..."
+    },
+    "[69,\"Carol掷出\"]:1": {
+      "event": null,
+      "id": 157,
+      "key": "[69,\"Carol掷出\"]:1",
+      "move": 69,
+      "observedId": 23,
+      "observedPage": "page-5",
+      "position": 2,
+      "signature": "[69,\"Carol掷出\"]",
+      "source": "Carol掷出",
+      "stable": true,
+      "text": "Carol掷出"
+    },
+    "[69,\"野蛮人前进一步\"]:1": {
+      "event": null,
+      "id": 158,
+      "key": "[69,\"野蛮人前进一步\"]:1",
+      "move": 69,
+      "observedId": 24,
+      "observedPage": "page-5",
+      "position": 3,
+      "signature": "[69,\"野蛮人前进一步\"]",
+      "source": "野蛮人前进一步",
+      "stable": true,
+      "text": "野蛮人前进一步"
+    },
+    "[7,\"Carol 放置了一条路\"]:1": {
+      "event": {
+        "building": "road",
+        "free": true,
+        "player": "Carol",
+        "type": "build"
+      },
+      "id": 8,
+      "key": "[7,\"Carol 放置了一条路\"]:1",
+      "move": 7,
+      "observedId": 8,
+      "observedPage": "page-4",
+      "position": 1,
+      "signature": "[7,\"Carol 放置了一条路\"]",
+      "source": "Carol 放置了一条路",
+      "stable": true,
+      "text": "Carol 放置了一条路"
+    },
+    "[70,\"Carol 跳过\"]:1": {
+      "event": {
+        "player": "Carol",
+        "type": "turnEnd"
+      },
+      "id": 162,
+      "key": "[70,\"Carol 跳过\"]:1",
+      "move": 70,
+      "observedId": 28,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[70,\"Carol 跳过\"]",
+      "source": "Carol 跳过",
+      "stable": true,
+      "text": "Carol 跳过"
+    },
+    "[71,\"Bob 获得 {brick}\"]:1": {
+      "event": {
+        "player": "Bob",
+        "resources": {
+          "brick": 1
+        },
+        "type": "gain"
+      },
+      "id": 167,
+      "key": "[71,\"Bob 获得 {brick}\"]:1",
+      "move": 71,
+      "observedId": 33,
+      "observedPage": "page-5",
+      "position": 5,
+      "signature": "[71,\"Bob 获得 {brick}\"]",
+      "source": "Bob 获得 {brick}",
+      "stable": true,
+      "text": "Bob 获得"
+    },
+    "[71,\"Alice 获得 {ore}\"]:1": {
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "ore": 1
+        },
+        "type": "gain"
+      },
+      "id": 166,
+      "key": "[71,\"Alice 获得 {ore}\"]:1",
+      "move": 71,
+      "observedId": 32,
+      "observedPage": "page-5",
+      "position": 4,
+      "signature": "[71,\"Alice 获得 {ore}\"]",
+      "source": "Alice 获得 {ore}",
+      "stable": true,
+      "text": "Alice 获得"
+    },
+    "[71,\"Alice投掷骰子...\"]:1": {
+      "event": null,
+      "id": 163,
+      "key": "[71,\"Alice投掷骰子...\"]:1",
+      "move": 71,
+      "observedId": 29,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[71,\"Alice投掷骰子...\"]",
+      "source": "Alice投掷骰子...",
+      "stable": true,
+      "text": "Alice投掷骰子..."
+    },
+    "[71,\"Alice掷出\"]:1": {
+      "event": null,
+      "id": 164,
+      "key": "[71,\"Alice掷出\"]:1",
+      "move": 71,
+      "observedId": 30,
+      "observedPage": "page-5",
+      "position": 2,
+      "signature": "[71,\"Alice掷出\"]",
+      "source": "Alice掷出",
+      "stable": true,
+      "text": "Alice掷出"
+    },
+    "[71,\"Carol 获得 {ore}\"]:1": {
+      "event": {
+        "player": "Carol",
+        "resources": {
+          "ore": 1
+        },
+        "type": "gain"
+      },
+      "id": 168,
+      "key": "[71,\"Carol 获得 {ore}\"]:1",
+      "move": 71,
+      "observedId": 34,
+      "observedPage": "page-5",
+      "position": 6,
+      "signature": "[71,\"Carol 获得 {ore}\"]",
+      "source": "Carol 获得 {ore}",
+      "stable": true,
+      "text": "Carol 获得"
+    },
+    "[71,\"野蛮人前进一步\"]:1": {
+      "event": null,
+      "id": 165,
+      "key": "[71,\"野蛮人前进一步\"]:1",
+      "move": 71,
+      "observedId": 31,
+      "observedPage": "page-5",
+      "position": 3,
+      "signature": "[71,\"野蛮人前进一步\"]",
+      "source": "野蛮人前进一步",
+      "stable": true,
+      "text": "野蛮人前进一步"
+    },
+    "[72,\"Knight is now inactive\"]:1": {
+      "event": null,
+      "id": 170,
+      "key": "[72,\"Knight is now inactive\"]:1",
+      "move": 72,
+      "observedId": 36,
+      "observedPage": "page-5",
+      "position": 2,
+      "signature": "[72,\"Knight is now inactive\"]",
+      "source": "Knight is now inactive",
+      "stable": true,
+      "text": "Knight is now inactive"
+    },
+    "[72,\"Alice赶走了强盗\"]:1": {
+      "event": null,
+      "id": 169,
+      "key": "[72,\"Alice赶走了强盗\"]:1",
+      "move": 72,
+      "observedId": 35,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[72,\"Alice赶走了强盗\"]",
+      "source": "Alice赶走了强盗",
+      "stable": true,
+      "text": "Alice赶走了强盗"
+    },
+    "[73,\"Alice 从 Bob 处偷取资源\"]:1": {
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "brick": 1
+        },
+        "revealed": true,
+        "type": "steal",
+        "victim": "Bob"
+      },
+      "id": 172,
+      "key": "[73,\"Alice 从 Bob 处偷取资源\"]:1",
+      "move": 73,
+      "observedId": 39,
+      "observedPage": "page-5",
+      "position": 2,
+      "signature": "[73,\"Alice 从 Bob 处偷取资源\"]",
+      "source": "Alice 从 Bob 处偷取资源",
+      "stable": true,
+      "text": "Alice 从 Bob 处偷取资源"
+    },
+    "[73,\"Alice 移动 强盗\"]:1": {
+      "event": null,
+      "id": 171,
+      "key": "[73,\"Alice 移动 强盗\"]:1",
+      "move": 73,
+      "observedId": 38,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[73,\"Alice 移动 强盗\"]",
+      "source": "Alice 移动 强盗",
+      "stable": true,
+      "text": "Alice 移动 强盗"
+    },
+    "[73,\"你获得 {brick}\"]:1": {
+      "event": null,
+      "id": 173,
+      "key": "[73,\"你获得 {brick}\"]:1",
+      "move": 73,
+      "observedId": 173,
+      "observedPage": "page-3",
+      "position": 3,
+      "resolvedBy": 172,
+      "signature": "[73,\"你获得 {brick}\"]",
+      "source": "你获得 {brick}",
+      "stable": true,
+      "text": "你获得"
+    },
+    "[74,\"Alice 为 {grain} 激活骑士\"]:1": {
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "grain": 1
+        },
+        "type": "loss"
+      },
+      "id": 174,
+      "key": "[74,\"Alice 为 {grain} 激活骑士\"]:1",
+      "move": 74,
+      "observedId": 40,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[74,\"Alice 为 {grain} 激活骑士\"]",
+      "source": "Alice 为 {grain} 激活骑士",
+      "stable": true,
+      "text": "Alice 为激活骑士"
+    },
+    "[75,\"Alice 用资源进行交易: 4 {ore} → {paper}\"]:1": {
+      "event": {
+        "give": {
+          "ore": 4
+        },
+        "player": "Alice",
+        "receive": {
+          "paper": 1
+        },
+        "type": "bank"
+      },
+      "id": 175,
+      "key": "[75,\"Alice 用资源进行交易: 4 {ore} → {paper}\"]:1",
+      "move": 75,
+      "observedId": 41,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[75,\"Alice 用资源进行交易: 4 {ore} → {paper}\"]",
+      "source": "Alice 用资源进行交易: 4 {ore} → {paper}",
+      "stable": true,
+      "text": "Alice 用资源进行交易: 4 →"
+    },
+    "[76,\"Alice build a Library and improves its science level to 2\"]:1": {
+      "event": {
+        "level": 2,
+        "player": "Alice",
+        "resource": "paper",
+        "type": "improvement"
+      },
+      "id": 176,
+      "key": "[76,\"Alice build a Library and improves its science level to 2\"]:1",
+      "move": 76,
+      "observedId": 42,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[76,\"Alice build a Library and improves its science level to 2\"]",
+      "source": "Alice build a Library and improves its science level to 2",
+      "stable": true,
+      "text": "Alice build a Library and improves its science level to 2"
+    },
+    "[77,\"Alice 跳过\"]:1": {
+      "event": {
+        "player": "Alice",
+        "type": "turnEnd"
+      },
+      "id": 177,
+      "key": "[77,\"Alice 跳过\"]:1",
+      "move": 77,
+      "observedId": 43,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[77,\"Alice 跳过\"]",
+      "source": "Alice 跳过",
+      "stable": true,
+      "text": "Alice 跳过"
+    },
+    "[78,\"Bob 什么都没得到\"]:1": {
+      "event": null,
+      "id": 181,
+      "key": "[78,\"Bob 什么都没得到\"]:1",
+      "move": 78,
+      "observedId": 47,
+      "observedPage": "page-5",
+      "position": 4,
+      "signature": "[78,\"Bob 什么都没得到\"]",
+      "source": "Bob 什么都没得到",
+      "stable": true,
+      "text": "Bob 什么都没得到"
+    },
+    "[78,\"Bob 从Trade 牌盒中抽取一张发展卡\"]:1": {
+      "event": null,
+      "id": 180,
+      "key": "[78,\"Bob 从Trade 牌盒中抽取一张发展卡\"]:1",
+      "move": 78,
+      "observedId": 46,
+      "observedPage": "page-5",
+      "position": 3,
+      "signature": "[78,\"Bob 从Trade 牌盒中抽取一张发展卡\"]",
+      "source": "Bob 从Trade 牌盒中抽取一张发展卡",
+      "stable": true,
+      "text": "Bob 从Trade 牌盒中抽取一张发展卡"
+    },
+    "[78,\"Bob投掷骰子...\"]:1": {
+      "event": null,
+      "id": 178,
+      "key": "[78,\"Bob投掷骰子...\"]:1",
+      "move": 78,
+      "observedId": 44,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[78,\"Bob投掷骰子...\"]",
+      "source": "Bob投掷骰子...",
+      "stable": true,
+      "text": "Bob投掷骰子..."
+    },
+    "[78,\"Bob掷出\"]:1": {
+      "event": null,
+      "id": 179,
+      "key": "[78,\"Bob掷出\"]:1",
+      "move": 78,
+      "observedId": 45,
+      "observedPage": "page-5",
+      "position": 2,
+      "signature": "[78,\"Bob掷出\"]",
+      "source": "Bob掷出",
+      "stable": true,
+      "text": "Bob掷出"
+    },
+    "[78,\"Alice 获得 {lumber} {grain} {paper}\"]:1": {
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "grain": 1,
+          "lumber": 1,
+          "paper": 1
+        },
+        "type": "gain"
+      },
+      "id": 183,
+      "key": "[78,\"Alice 获得 {lumber} {grain} {paper}\"]:1",
+      "move": 78,
+      "observedId": 49,
+      "observedPage": "page-5",
+      "position": 6,
+      "signature": "[78,\"Alice 获得 {lumber} {grain} {paper}\"]",
+      "source": "Alice 获得 {lumber} {grain} {paper}",
+      "stable": true,
+      "text": "Alice 获得"
+    },
+    "[78,\"Carol 获得 {lumber} {paper}\"]:1": {
+      "event": {
+        "player": "Carol",
+        "resources": {
+          "lumber": 1,
+          "paper": 1
+        },
+        "type": "gain"
+      },
+      "id": 182,
+      "key": "[78,\"Carol 获得 {lumber} {paper}\"]:1",
+      "move": 78,
+      "observedId": 48,
+      "observedPage": "page-5",
+      "position": 5,
+      "signature": "[78,\"Carol 获得 {lumber} {paper}\"]",
+      "source": "Carol 获得 {lumber} {paper}",
+      "stable": true,
+      "text": "Carol 获得"
+    },
+    "[79,\"Bob 跳过\"]:1": {
+      "event": {
+        "player": "Bob",
+        "type": "turnEnd"
+      },
+      "id": 184,
+      "key": "[79,\"Bob 跳过\"]:1",
+      "move": 79,
+      "observedId": 50,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[79,\"Bob 跳过\"]",
+      "source": "Bob 跳过",
+      "stable": true,
+      "text": "Bob 跳过"
+    },
+    "[8,\"Carol 获得 2 {lumber} 1 {grain}\"]:1": {
+      "event": {
+        "player": "Carol",
+        "resources": {
+          "grain": 1,
+          "lumber": 2
+        },
+        "type": "gain"
+      },
+      "id": 10,
+      "key": "[8,\"Carol 获得 2 {lumber} 1 {grain}\"]:1",
+      "move": 8,
+      "observedId": 10,
+      "observedPage": "page-4",
+      "position": 2,
+      "signature": "[8,\"Carol 获得 2 {lumber} 1 {grain}\"]",
+      "source": "Carol 获得 2 {lumber} 1 {grain}",
+      "stable": true,
+      "text": "Carol 获得 21"
+    },
+    "[8,\"Carol放置一个城市\"]:1": {
+      "event": null,
+      "id": 9,
+      "key": "[8,\"Carol放置一个城市\"]:1",
+      "move": 8,
+      "observedId": 9,
+      "observedPage": "page-4",
+      "position": 1,
+      "signature": "[8,\"Carol放置一个城市\"]",
+      "source": "Carol放置一个城市",
+      "stable": true,
+      "text": "Carol放置一个城市"
+    },
+    "[80,\"Bob 什么都没得到\"]:1": {
+      "event": null,
+      "id": 190,
+      "key": "[80,\"Bob 什么都没得到\"]:1",
+      "move": 80,
+      "observedId": 56,
+      "observedPage": "page-5",
+      "position": 6,
+      "signature": "[80,\"Bob 什么都没得到\"]",
+      "source": "Bob 什么都没得到",
+      "stable": true,
+      "text": "Bob 什么都没得到"
+    },
+    "[80,\"Alice 获得 {lumber} {grain} {paper}\"]:1": {
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "grain": 1,
+          "lumber": 1,
+          "paper": 1
+        },
+        "type": "gain"
+      },
+      "id": 189,
+      "key": "[80,\"Alice 获得 {lumber} {grain} {paper}\"]:1",
+      "move": 80,
+      "observedId": 55,
+      "observedPage": "page-5",
+      "position": 5,
+      "signature": "[80,\"Alice 获得 {lumber} {grain} {paper}\"]",
+      "source": "Alice 获得 {lumber} {grain} {paper}",
+      "stable": true,
+      "text": "Alice 获得"
+    },
+    "[80,\"Carol 获得 {lumber} {paper}\"]:1": {
+      "event": {
+        "player": "Carol",
+        "resources": {
+          "lumber": 1,
+          "paper": 1
+        },
+        "type": "gain"
+      },
+      "id": 188,
+      "key": "[80,\"Carol 获得 {lumber} {paper}\"]:1",
+      "move": 80,
+      "observedId": 54,
+      "observedPage": "page-5",
+      "position": 4,
+      "signature": "[80,\"Carol 获得 {lumber} {paper}\"]",
+      "source": "Carol 获得 {lumber} {paper}",
+      "stable": true,
+      "text": "Carol 获得"
+    },
+    "[80,\"Carol投掷骰子...\"]:1": {
+      "event": null,
+      "id": 185,
+      "key": "[80,\"Carol投掷骰子...\"]:1",
+      "move": 80,
+      "observedId": 51,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[80,\"Carol投掷骰子...\"]",
+      "source": "Carol投掷骰子...",
+      "stable": true,
+      "text": "Carol投掷骰子..."
+    },
+    "[80,\"Carol掷出\"]:1": {
+      "event": null,
+      "id": 186,
+      "key": "[80,\"Carol掷出\"]:1",
+      "move": 80,
+      "observedId": 52,
+      "observedPage": "page-5",
+      "position": 2,
+      "signature": "[80,\"Carol掷出\"]",
+      "source": "Carol掷出",
+      "stable": true,
+      "text": "Carol掷出"
+    },
+    "[80,\"野蛮人前进一步\"]:1": {
+      "event": null,
+      "id": 187,
+      "key": "[80,\"野蛮人前进一步\"]:1",
+      "move": 80,
+      "observedId": 53,
+      "observedPage": "page-5",
+      "position": 3,
+      "signature": "[80,\"野蛮人前进一步\"]",
+      "source": "野蛮人前进一步",
+      "stable": true,
+      "text": "野蛮人前进一步"
+    },
+    "[81,\"Carol build a Library and improves its science level to 2\"]:1": {
+      "event": {
+        "level": 2,
+        "player": "Carol",
+        "resource": "paper",
+        "type": "improvement"
+      },
+      "id": 191,
+      "key": "[81,\"Carol build a Library and improves its science level to 2\"]:1",
+      "move": 81,
+      "observedId": 57,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[81,\"Carol build a Library and improves its science level to 2\"]",
+      "source": "Carol build a Library and improves its science level to 2",
+      "stable": true,
+      "text": "Carol build a Library and improves its science level to 2"
+    },
+    "[82,\"Carol 提出一个交易请求: {lumber} → {brick}\"]:1": {
+      "event": null,
+      "id": 192,
+      "key": "[82,\"Carol 提出一个交易请求: {lumber} → {brick}\"]:1",
+      "move": 82,
+      "observedId": 58,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[82,\"Carol 提出一个交易请求: {lumber} → {brick}\"]",
+      "source": "Carol 提出一个交易请求: {lumber} → {brick}",
+      "stable": true,
+      "text": "Carol 提出一个交易请求: →"
+    },
+    "[83,\"Bob 提出一个交易请求: {brick} → {lumber}\"]:1": {
+      "event": null,
+      "id": 193,
+      "key": "[83,\"Bob 提出一个交易请求: {brick} → {lumber}\"]:1",
+      "move": 83,
+      "observedId": 59,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[83,\"Bob 提出一个交易请求: {brick} → {lumber}\"]",
+      "source": "Bob 提出一个交易请求: {brick} → {lumber}",
+      "stable": true,
+      "text": "Bob 提出一个交易请求: →"
+    },
+    "[84,\"Carol 已与 Bob 达成协议\"]:1": {
+      "event": null,
+      "id": 194,
+      "key": "[84,\"Carol 已与 Bob 达成协议\"]:1",
+      "move": 84,
+      "observedId": 60,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[84,\"Carol 已与 Bob 达成协议\"]",
+      "source": "Carol 已与 Bob 达成协议",
+      "stable": true,
+      "text": "Carol 已与 Bob 达成协议"
+    },
+    "[84,\"⇌ Bob 交给 Carol {brick} 并收到 {lumber} 作为交换\"]:1": {
+      "event": {
+        "give": {
+          "brick": 1
+        },
+        "other": "Carol",
+        "player": "Bob",
+        "receive": {
+          "lumber": 1
+        },
+        "type": "trade"
+      },
+      "id": 195,
+      "key": "[84,\"⇌ Bob 交给 Carol {brick} 并收到 {lumber} 作为交换\"]:1",
+      "move": 84,
+      "observedId": 61,
+      "observedPage": "page-5",
+      "position": 2,
+      "signature": "[84,\"⇌ Bob 交给 Carol {brick} 并收到 {lumber} 作为交换\"]",
+      "source": "⇌ Bob 交给 Carol {brick} 并收到 {lumber} 作为交换",
+      "stable": true,
+      "text": "⇌ Bob 交给 Carol 并收到 作为交换"
+    },
+    "[85,\"Carol 使用 {lumber} {brick} 造了一条路\"]:1": {
+      "event": {
+        "building": "road",
+        "free": false,
+        "player": "Carol",
+        "resources": {
+          "brick": 1,
+          "lumber": 1
+        },
+        "type": "build"
+      },
+      "id": 196,
+      "key": "[85,\"Carol 使用 {lumber} {brick} 造了一条路\"]:1",
+      "move": 85,
+      "observedId": 62,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[85,\"Carol 使用 {lumber} {brick} 造了一条路\"]",
+      "source": "Carol 使用 {lumber} {brick} 造了一条路",
+      "stable": true,
+      "text": "Carol 使用 造了一条路"
+    },
+    "[86,\"Carol 跳过\"]:1": {
+      "event": {
+        "player": "Carol",
+        "type": "turnEnd"
+      },
+      "id": 197,
+      "key": "[86,\"Carol 跳过\"]:1",
+      "move": 86,
+      "observedId": 63,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[86,\"Carol 跳过\"]",
+      "source": "Carol 跳过",
+      "stable": true,
+      "text": "Carol 跳过"
+    },
+    "[87,\"Bob 获得 {ore}\"]:1": {
+      "event": {
+        "player": "Bob",
+        "resources": {
+          "ore": 1
+        },
+        "type": "gain"
+      },
+      "id": 204,
+      "key": "[87,\"Bob 获得 {ore}\"]:1",
+      "move": 87,
+      "observedId": 70,
+      "observedPage": "page-5",
+      "position": 7,
+      "signature": "[87,\"Bob 获得 {ore}\"]",
+      "source": "Bob 获得 {ore}",
+      "stable": true,
+      "text": "Bob 获得"
+    },
+    "[87,\"Alice 什么都没得到\"]:1": {
+      "event": null,
+      "id": 203,
+      "key": "[87,\"Alice 什么都没得到\"]:1",
+      "move": 87,
+      "observedId": 69,
+      "observedPage": "page-5",
+      "position": 6,
+      "signature": "[87,\"Alice 什么都没得到\"]",
+      "source": "Alice 什么都没得到",
+      "stable": true,
+      "text": "Alice 什么都没得到"
+    },
+    "[87,\"Alice 从Science 牌盒中抽取一张发展卡\"]:1": {
+      "event": null,
+      "id": 200,
+      "key": "[87,\"Alice 从Science 牌盒中抽取一张发展卡\"]:1",
+      "move": 87,
+      "observedId": 67,
+      "observedPage": "page-5",
+      "position": 3,
+      "signature": "[87,\"Alice 从Science 牌盒中抽取一张发展卡\"]",
+      "source": "Alice 从Science 牌盒中抽取一张发展卡",
+      "stable": true,
+      "text": "Alice 从Science 牌盒中抽取一张发展卡"
+    },
+    "[87,\"Alice投掷骰子...\"]:1": {
+      "event": null,
+      "id": 198,
+      "key": "[87,\"Alice投掷骰子...\"]:1",
+      "move": 87,
+      "observedId": 65,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[87,\"Alice投掷骰子...\"]",
+      "source": "Alice投掷骰子...",
+      "stable": true,
+      "text": "Alice投掷骰子..."
+    },
+    "[87,\"Alice掷出\"]:1": {
+      "event": null,
+      "id": 199,
+      "key": "[87,\"Alice掷出\"]:1",
+      "move": 87,
+      "observedId": 66,
+      "observedPage": "page-5",
+      "position": 2,
+      "signature": "[87,\"Alice掷出\"]",
+      "source": "Alice掷出",
+      "stable": true,
+      "text": "Alice掷出"
+    },
+    "[87,\"Carol 什么都没得到\"]:1": {
+      "event": null,
+      "id": 205,
+      "key": "[87,\"Carol 什么都没得到\"]:1",
+      "move": 87,
+      "observedId": 71,
+      "observedPage": "page-5",
+      "position": 8,
+      "signature": "[87,\"Carol 什么都没得到\"]",
+      "source": "Carol 什么都没得到",
+      "stable": true,
+      "text": "Carol 什么都没得到"
+    },
+    "[87,\"Carol 从Science 牌盒中抽取一张发展卡\"]:1": {
+      "event": null,
+      "id": 202,
+      "key": "[87,\"Carol 从Science 牌盒中抽取一张发展卡\"]:1",
+      "move": 87,
+      "observedId": 68,
+      "observedPage": "page-5",
+      "position": 5,
+      "signature": "[87,\"Carol 从Science 牌盒中抽取一张发展卡\"]",
+      "source": "Carol 从Science 牌盒中抽取一张发展卡",
+      "stable": true,
+      "text": "Carol 从Science 牌盒中抽取一张发展卡"
+    },
+    "[87,\"你获得了 炼金术士 卡片\"]:1": {
+      "event": null,
+      "id": 201,
+      "key": "[87,\"你获得了 炼金术士 卡片\"]:1",
+      "move": 87,
+      "observedId": 201,
+      "observedPage": "page-3",
+      "position": 4,
+      "signature": "[87,\"你获得了 炼金术士 卡片\"]",
+      "source": "你获得了 炼金术士 卡片",
+      "stable": true,
+      "text": "你获得了 炼金术士 卡片"
+    },
+    "[88,\"Alice 用资源进行交易: 2 {lumber} → {paper}\"]:1": {
+      "event": {
+        "give": {
+          "lumber": 2
+        },
+        "player": "Alice",
+        "receive": {
+          "paper": 1
+        },
+        "type": "bank"
+      },
+      "id": 206,
+      "key": "[88,\"Alice 用资源进行交易: 2 {lumber} → {paper}\"]:1",
+      "move": 88,
+      "observedId": 72,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[88,\"Alice 用资源进行交易: 2 {lumber} → {paper}\"]",
+      "source": "Alice 用资源进行交易: 2 {lumber} → {paper}",
+      "stable": true,
+      "text": "Alice 用资源进行交易: 2 →"
+    },
+    "[89,\"Alice build a Aqueduct and improves its science level to 3\"]:1": {
+      "event": {
+        "level": 3,
+        "player": "Alice",
+        "resource": "paper",
+        "type": "improvement"
+      },
+      "id": 207,
+      "key": "[89,\"Alice build a Aqueduct and improves its science level to 3\"]:1",
+      "move": 89,
+      "observedId": 73,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[89,\"Alice build a Aqueduct and improves its science level to 3\"]",
+      "source": "Alice build a Aqueduct and improves its science level to 3",
+      "stable": true,
+      "text": "Alice build a Aqueduct and improves its science level to 3"
+    },
+    "[9,\"Carol 放置了一条路\"]:1": {
+      "event": {
+        "building": "road",
+        "free": true,
+        "player": "Carol",
+        "type": "build"
+      },
+      "id": 11,
+      "key": "[9,\"Carol 放置了一条路\"]:1",
+      "move": 9,
+      "observedId": 11,
+      "observedPage": "page-4",
+      "position": 1,
+      "signature": "[9,\"Carol 放置了一条路\"]",
+      "source": "Carol 放置了一条路",
+      "stable": true,
+      "text": "Carol 放置了一条路"
+    },
+    "[90,\"Alice 使用 {lumber} {brick} 造了一条路\"]:1": {
+      "event": {
+        "building": "road",
+        "free": false,
+        "player": "Alice",
+        "resources": {
+          "brick": 1,
+          "lumber": 1
+        },
+        "type": "build"
+      },
+      "id": 208,
+      "key": "[90,\"Alice 使用 {lumber} {brick} 造了一条路\"]:1",
+      "move": 90,
+      "observedId": 74,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[90,\"Alice 使用 {lumber} {brick} 造了一条路\"]",
+      "source": "Alice 使用 {lumber} {brick} 造了一条路",
+      "stable": true,
+      "text": "Alice 使用 造了一条路"
+    },
+    "[91,\"Alice 跳过\"]:1": {
+      "event": {
+        "player": "Alice",
+        "type": "turnEnd"
+      },
+      "id": 209,
+      "key": "[91,\"Alice 跳过\"]:1",
+      "move": 91,
+      "observedId": 75,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[91,\"Alice 跳过\"]",
+      "source": "Alice 跳过",
+      "stable": true,
+      "text": "Alice 跳过"
+    },
+    "[92,\"Bob 获得 {lumber} {paper}\"]:1": {
+      "event": {
+        "player": "Bob",
+        "resources": {
+          "lumber": 1,
+          "paper": 1
+        },
+        "type": "gain"
+      },
+      "id": 213,
+      "key": "[92,\"Bob 获得 {lumber} {paper}\"]:1",
+      "move": 92,
+      "observedId": 79,
+      "observedPage": "page-5",
+      "position": 4,
+      "signature": "[92,\"Bob 获得 {lumber} {paper}\"]",
+      "source": "Bob 获得 {lumber} {paper}",
+      "stable": true,
+      "text": "Bob 获得"
+    },
+    "[92,\"Bob投掷骰子...\"]:1": {
+      "event": null,
+      "id": 210,
+      "key": "[92,\"Bob投掷骰子...\"]:1",
+      "move": 92,
+      "observedId": 76,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[92,\"Bob投掷骰子...\"]",
+      "source": "Bob投掷骰子...",
+      "stable": true,
+      "text": "Bob投掷骰子..."
+    },
+    "[92,\"Bob掷出\"]:1": {
+      "event": null,
+      "id": 211,
+      "key": "[92,\"Bob掷出\"]:1",
+      "move": 92,
+      "observedId": 77,
+      "observedPage": "page-5",
+      "position": 2,
+      "signature": "[92,\"Bob掷出\"]",
+      "source": "Bob掷出",
+      "stable": true,
+      "text": "Bob掷出"
+    },
+    "[92,\"Alice 什么都没得到\"]:1": {
+      "event": null,
+      "id": 215,
+      "key": "[92,\"Alice 什么都没得到\"]:1",
+      "move": 92,
+      "observedId": 81,
+      "observedPage": "page-5",
+      "position": 6,
+      "signature": "[92,\"Alice 什么都没得到\"]",
+      "source": "Alice 什么都没得到",
+      "stable": true,
+      "text": "Alice 什么都没得到"
+    },
+    "[92,\"Alice的引水渠被触发\"]:1": {
+      "event": null,
+      "id": 216,
+      "key": "[92,\"Alice的引水渠被触发\"]:1",
+      "move": 92,
+      "observedId": 82,
+      "observedPage": "page-5",
+      "position": 7,
+      "signature": "[92,\"Alice的引水渠被触发\"]",
+      "source": "Alice的引水渠被触发",
+      "stable": true,
+      "text": "Alice的引水渠被触发"
+    },
+    "[92,\"Carol 获得 {lumber} {paper}\"]:1": {
+      "event": {
+        "player": "Carol",
+        "resources": {
+          "lumber": 1,
+          "paper": 1
+        },
+        "type": "gain"
+      },
+      "id": 214,
+      "key": "[92,\"Carol 获得 {lumber} {paper}\"]:1",
+      "move": 92,
+      "observedId": 80,
+      "observedPage": "page-5",
+      "position": 5,
+      "signature": "[92,\"Carol 获得 {lumber} {paper}\"]",
+      "source": "Carol 获得 {lumber} {paper}",
+      "stable": true,
+      "text": "Carol 获得"
+    },
+    "[92,\"野蛮人前进一步\"]:1": {
+      "event": null,
+      "id": 212,
+      "key": "[92,\"野蛮人前进一步\"]:1",
+      "move": 92,
+      "observedId": 78,
+      "observedPage": "page-5",
+      "position": 3,
+      "signature": "[92,\"野蛮人前进一步\"]",
+      "source": "野蛮人前进一步",
+      "stable": true,
+      "text": "野蛮人前进一步"
+    },
+    "[93,\"Alice从引水渠获得 {brick} 。\"]:1": {
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "brick": 1
+        },
+        "type": "gain"
+      },
+      "id": 217,
+      "key": "[93,\"Alice从引水渠获得 {brick} 。\"]:1",
+      "move": 93,
+      "observedId": 83,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[93,\"Alice从引水渠获得 {brick} 。\"]",
+      "source": "Alice从引水渠获得 {brick} 。",
+      "stable": true,
+      "text": "Alice从引水渠获得 。"
+    },
+    "[94,\"Bob build a Abbey and improves its science level to 1\"]:1": {
+      "event": {
+        "level": 1,
+        "player": "Bob",
+        "resource": "paper",
+        "type": "improvement"
+      },
+      "id": 218,
+      "key": "[94,\"Bob build a Abbey and improves its science level to 1\"]:1",
+      "move": 94,
+      "observedId": 84,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[94,\"Bob build a Abbey and improves its science level to 1\"]",
+      "source": "Bob build a Abbey and improves its science level to 1",
+      "stable": true,
+      "text": "Bob build a Abbey and improves its science level to 1"
+    },
+    "[95,\"Bob 提出一个交易请求: {brick} → {grain}\"]:1": {
+      "event": null,
+      "id": 219,
+      "key": "[95,\"Bob 提出一个交易请求: {brick} → {grain}\"]:1",
+      "move": 95,
+      "observedId": 85,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[95,\"Bob 提出一个交易请求: {brick} → {grain}\"]",
+      "source": "Bob 提出一个交易请求: {brick} → {grain}",
+      "stable": true,
+      "text": "Bob 提出一个交易请求: →"
+    },
+    "[96,\"Alice 拒绝此提议\"]:1": {
+      "event": null,
+      "id": 220,
+      "key": "[96,\"Alice 拒绝此提议\"]:1",
+      "move": 96,
+      "observedId": 86,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[96,\"Alice 拒绝此提议\"]",
+      "source": "Alice 拒绝此提议",
+      "stable": true,
+      "text": "Alice 拒绝此提议"
+    },
+    "[97,\"Carol 拒绝此提议\"]:1": {
+      "event": null,
+      "id": 221,
+      "key": "[97,\"Carol 拒绝此提议\"]:1",
+      "move": 97,
+      "observedId": 87,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[97,\"Carol 拒绝此提议\"]",
+      "source": "Carol 拒绝此提议",
+      "stable": true,
+      "text": "Carol 拒绝此提议"
+    },
+    "[97,\"trade cancel\"]:1": {
+      "event": null,
+      "id": 222,
+      "key": "[97,\"trade cancel\"]:1",
+      "move": 97,
+      "observedId": 88,
+      "observedPage": "page-5",
+      "position": 2,
+      "signature": "[97,\"trade cancel\"]",
+      "source": "trade cancel",
+      "stable": true,
+      "text": "trade cancel"
+    },
+    "[98,\"Bob 打出了 商人\"]:1": {
+      "event": null,
+      "id": 223,
+      "key": "[98,\"Bob 打出了 商人\"]:1",
+      "move": 98,
+      "observedId": 89,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[98,\"Bob 打出了 商人\"]",
+      "source": "Bob 打出了 商人",
+      "stable": true,
+      "text": "Bob 打出了 商人"
+    },
+    "[99,\"Bob 将商人移至一个新地块\"]:1": {
+      "event": null,
+      "id": 223,
+      "key": "[99,\"Bob 将商人移至一个新地块\"]:1",
+      "move": 99,
+      "observedId": 90,
+      "observedPage": "page-5",
+      "position": 1,
+      "signature": "[99,\"Bob 将商人移至一个新地块\"]",
+      "source": "Bob 将商人移至一个新地块",
+      "stable": true,
+      "text": "Bob 将商人移至一个新地块"
+    }
+  }
+}

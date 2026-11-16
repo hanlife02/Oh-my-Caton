@@ -9,6 +9,7 @@
   const prefsKey = 'caton:preferences';
   const page = crypto.randomUUID();
   let historyWarning = '';
+  let ambiguousRollbacks = [];
   let journal = { logs: {}, corrections: [] };
   let prefs = { visible: true, transparency: 15 };
   let names = [], playerColors = {}, publicStats = {}, current = null, error = '', saveError = '', timer, saveTimer, observer, active = true;
@@ -68,6 +69,7 @@
     tracker = new Caton.Tracker(names);
     const entries = Object.values(journal.logs).map(log => ({ ...log, rank: 0 }));
     journal.corrections.forEach((correction, i) => entries.push({ ...correction.after, rank: i + 1, event: correction.event }));
+    entries.push(...ambiguousRollbacks);
     entries.sort(Caton.compareLogs);
     Caton.replayLogs(tracker, entries, current);
     draw();
@@ -113,6 +115,8 @@
     }
     incoming.sort((a, b) => a.id - b.id);
     const result = Caton.mergeLogs(journal.logs, Caton.prepareLogs(incoming), page);
+    if (JSON.stringify(ambiguousRollbacks) !== JSON.stringify(result.ambiguityAnchors)) changed = true;
+    ambiguousRollbacks = result.ambiguityAnchors;
     for (const correction of journal.corrections) {
       const anchor = result.anchors[correction.pendingId];
       if (correction.pendingId != null && anchor?.move != null) {

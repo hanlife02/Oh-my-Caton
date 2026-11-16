@@ -251,6 +251,17 @@ test('the actual live-game journal at move 321 matches the independently observe
   assert.doesNotMatch(p.panel.querySelector('[data-player=Alice]').textContent, /待校正/);
   p.dom.window.close();
 });
+test('startup repairs the actual damaged rollback archive and persists the corrected branch across refresh', async () => {
+  const saved = { 'caton:table:42:rules:3': structuredClone(require('./fixtures/bga-ck-rollback-171.json')) };
+  for (let refresh = 0; refresh < 2; refresh++) {
+    const p = await page(saved, '', ['Alice', 'Bob', 'Carol']);
+    assert.equal(p.panel.querySelector('[data-player=Carol] .total').textContent, '1');
+    assert.equal(p.panel.querySelector('[data-player=Alice] .total').textContent, '7');
+    assert.doesNotMatch(p.panel.textContent, /待校正|无法结算/);
+    assert.ok(Object.values(saved['caton:table:42:rules:3'].logs).find(log => log.move === 163 && log.event?.type === 'build').cancelled);
+    p.dom.window.close();
+  }
+});
 
 test('unsettled players are visibly marked until their hand is calibrated', async () => {
   const p = await page({}, '<div id="log_1" data-move-id="1"><div class="roundedbox">Alice 升级为城市</div></div>');
