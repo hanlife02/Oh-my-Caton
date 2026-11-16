@@ -2,10 +2,25 @@
   'use strict';
   function prepareLogs(incoming) {
     const entries = incoming.map(entry => ({ ...entry, event: entry.event && { ...entry.event } }));
+    // A rollback notification carries the restored move number. Notifications
+    // before it can belong to later moves that have now been undone. Resolve
+    // this in DOM notification order, before sorting by move for replay.
+    for (let i = 0; i < entries.length; i++) {
+      const undo = entries[i];
+      if (undo.move == null || undo.event?.type !== 'unresolved' || !/回滚操作|roll.?back/i.test(undo.source || undo.text || '')) continue;
+      const start = entries.findIndex((log, j) => j < i && !log.cancelled && log.move === undo.move
+        && log.event && !['unresolved', 'turnEnd'].includes(log.event.type));
+      if (start < 0 || entries.slice(start, i).some(log => !log.cancelled && (log.move == null || log.move < undo.move || log.event?.type === 'turnEnd'))) continue;
+      for (const log of entries.slice(start, i)) { log.cancelled = true; log.cancelledById = undo.id; }
+      undo.rollbackResolved = true;
+      const confirmation = entries[i + 1];
+      if (confirmation?.move === undo.move && confirmation.event?.type === 'unresolved'
+          && confirmation.event.player === undo.event.player && /取消了他的行动/i.test(confirmation.source || confirmation.text || '')) confirmation.rollbackResolved = true;
+    }
     const matched = new Map();
     for (let i = 0; i < entries.length; i++) {
       const detail = entries[i].event;
-      if (!detail?.private) continue;
+      if (!detail?.private || entries[i].cancelled) continue;
       // A notification may emit several private details before its public transfers.
       const candidates = [];
       let move = entries[i].move;
@@ -19,7 +34,7 @@
       if (entries[i].move != null && entries[i - 1]?.move === entries[i].move) candidates.push(i - 1);
       for (const j of candidates) {
         const publicEvent = entries[j]?.event;
-        if (!publicEvent || publicEvent.private) continue;
+        if (!publicEvent || publicEvent.private || entries[j].cancelled) continue;
         if (matched.get(j)?.has(detail.type)) continue;
         const theft = publicEvent.type === 'steal' && (detail.type === 'gain' ? publicEvent.player === detail.player : publicEvent.victim === detail.player);
         const gain = detail.type === 'gain' && publicEvent.type === 'gain' && publicEvent.player === detail.player;
@@ -42,18 +57,57 @@
   function mergeLogs(logs, incoming, page) {
     let changed = false, unverified = false;
     incoming = [...new Map(incoming.map(entry => [entry.id, entry])).values()];
+    const signatureOf = entry => JSON.stringify([entry.move, entry.source || entry.event || entry.text]);
+    const reserved = new Set(Object.keys(logs)), claimed = new Set();
+    function keyFor(entry) {
+      if (!Number.isSafeInteger(entry.move) || entry.move < 0) return `page:${page}:${entry.id}`;
+      const signature = signatureOf(entry);
+      const variants = Object.values(logs).filter(log => log.signature === signature && !claimed.has(log.key)
+        && !!log.cancelled === !!entry.cancelled && (!entry.cancelledBy || log.cancelledBy === entry.cancelledBy)).sort(compareLogs);
+      const previous = variants.find(log => log.observedPage === page && log.observedId === entry.id)
+        || variants.find(log => log.observedPage !== page);
+      let key = previous?.key;
+      if (!key) {
+        let n = 1;
+        while (reserved.has(`${signature}:${n}`)) n++;
+        key = `${signature}:${n}`;
+      }
+      reserved.add(key); claimed.add(key);
+      return key;
+    }
+    // Give each rollback its own persistent identity before assigning the
+    // cancelled actions. The same road text can occur in several branches.
+    const undoKeys = new Map(incoming.filter(entry => entry.rollbackResolved && !entry.cancelled).map(entry => [entry.id, keyFor(entry)]));
+    const cancelledKeys = new Map(), cancelledMatches = new Set();
+    for (const entry of incoming) {
+      if (!entry.cancelled) continue;
+      entry.cancelledBy = undoKeys.get(entry.cancelledById);
+      const variants = Object.values(logs).filter(log => log.signature === signatureOf(entry) && !cancelledMatches.has(log.key)).sort(compareLogs);
+      const previous = variants.find(log => log.observedPage === page && log.observedId === entry.id)
+        || variants.find(log => log.cancelled && log.cancelledBy === entry.cancelledBy)
+        || variants.find(log => !log.cancelled && log.observedPage !== page);
+      if (previous) {
+        cancelledMatches.add(previous.key); cancelledKeys.set(entry.id, previous.key);
+        if (!previous.cancelled || previous.cancelledBy !== entry.cancelledBy) {
+          previous.cancelled = true; previous.cancelledBy = entry.cancelledBy; changed = true;
+        }
+      }
+    }
     const occurrences = new Map();
     const incomingKeys = incoming.map(entry => {
       const stable = Number.isSafeInteger(entry.move) && entry.move >= 0;
       if (!stable && entry.event) unverified = true;
-      const signature = JSON.stringify([entry.move, entry.source || entry.event || entry.text]);
-      const occurrence = (occurrences.get(signature) || 0) + 1;
-      occurrences.set(signature, occurrence);
-      const key = stable ? `${signature}:${occurrence}` : `page:${page}:${entry.id}`;
+      const signature = signatureOf(entry);
+      const group = JSON.stringify([signature, !!entry.cancelled]);
+      const occurrence = (occurrences.get(group) || 0) + 1;
+      occurrences.set(group, occurrence);
+      const key = undoKeys.get(entry.id) || cancelledKeys.get(entry.id) || keyFor(entry);
+      claimed.add(key);
       return { ...entry, stable, key, signature };
     });
     for (const entry of incomingKeys) {
-      if (entry.stable && Object.values(logs).filter(log => log.signature === entry.signature).length > occurrences.get(entry.signature)) unverified = true;
+      const group = JSON.stringify([entry.signature, false]);
+      if (entry.stable && !entry.cancelled && Object.values(logs).filter(log => log.signature === entry.signature && !log.cancelled).length > occurrences.get(group)) unverified = true;
     }
     for (let i = 0; i < incomingKeys.length; i++) {
       const entry = incomingKeys[i];
@@ -63,6 +117,14 @@
         changed = true;
       }
       if (logs[entry.key]) {
+        const existing = logs[entry.key];
+        for (const flag of ['cancelled', 'rollbackResolved']) {
+          if (entry[flag] && !existing[flag]) { existing[flag] = true; changed = true; }
+        }
+        if (entry.cancelledBy && existing.cancelledBy !== entry.cancelledBy) { existing.cancelledBy = entry.cancelledBy; changed = true; }
+        if (existing.observedPage !== page || existing.observedId !== entry.id) {
+          existing.observedPage = page; existing.observedId = entry.id; changed = true;
+        }
         if (logs[entry.key].event?.revealed && !entry.event?.revealed) continue;
         if (JSON.stringify(logs[entry.key].event) !== JSON.stringify(entry.event)) {
           logs[entry.key].event = entry.event;
@@ -78,7 +140,7 @@
         : nextPosition !== undefined ? nextPosition - 1
         : previousPosition !== undefined ? previousPosition + 1
         : Math.max(0, ...Object.values(logs).filter(log => log.move === entry.move).map(log => log.position)) + 1;
-      logs[entry.key] = { ...entry, position };
+      logs[entry.key] = { ...entry, position, observedPage: page, observedId: entry.id };
       changed = true;
     }
     const anchors = Object.fromEntries(incomingKeys.map(entry => [entry.id, { move: entry.move, position: logs[entry.key].position }]));
@@ -91,12 +153,15 @@
   function replayLogs(tracker, entries, current) {
     const cranes = new Set();
     const partners = new Map(), rollbacks = new Set();
+    const cancelledAnchors = new Set(entries.filter(log => log.cancelled).map(log => JSON.stringify([log.move, log.position])));
     let setup = Object.keys(tracker.players).every(name => tracker.total(name) === 0);
     const freePlacements = new Set();
     for (let i = 0; i < entries.length; i++) {
       const entry = entries[i];
+      if (entry.cancelled || entry.rollbackResolved) continue;
       let event = entry.event;
       if (!event) continue;
+      if (event.type === 'set' && entry.rank > 0 && cancelledAnchors.has(JSON.stringify([entry.move, entry.position]))) continue;
       if (setup && event.type === 'build' && event.free && entry.move != null) freePlacements.add(JSON.stringify([entry.move, event.player]));
       else if (!['unresolved', 'turnEnd'].includes(event.type)) setup = false;
       // Older journals counted Spy's progress-card theft as a resource transfer.
@@ -145,6 +210,7 @@
       // An adjacent private gain in the same move reveals our public hidden theft.
       if (event.type === 'steal' && event.player === current && event.resources?.unknown
           && entry.move != null && next?.move === entry.move
+          && !next.cancelled && !next.rollbackResolved
           && next.event?.type === 'gain' && next.event.player === current
           && !next.event.resources.unknown
           && Object.values(next.event.resources).reduce((a, b) => a + b, 0) === event.resources.unknown) {

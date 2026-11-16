@@ -103,7 +103,7 @@
   const panel = new Caton.Panel({
     visibility(value) { prefs.visible = value; panel.visible(value); persist(); },
     correct(player, resources) {
-      const last = Object.values(journal.logs).filter(log => log.stable || log.event).sort(Caton.compareLogs).at(-1);
+      const last = Object.values(journal.logs).filter(log => !log.cancelled && !log.rollbackResolved && (log.stable || log.event)).sort(Caton.compareLogs).at(-1);
       journal.corrections.push({ after: last ? { move: last.move, position: last.position } : { move: 0, position: 0 }, event: { type: 'set', player, resources }, ...(last && last.move == null ? { pendingId: last.id } : {}) });
       replay(); persist();
     },
