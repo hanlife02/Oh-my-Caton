@@ -10,8 +10,8 @@
   const page = crypto.randomUUID();
   let historyWarning = '';
   let journal = { logs: {}, corrections: [] };
-  let prefs = { visible: true, hideSelf: false };
-  let names = [], current = null, error = '', saveError = '', timer, saveTimer, observer, active = true;
+  let prefs = { visible: true };
+  let names = [], playerColors = {}, current = null, error = '', saveError = '', timer, saveTimer, observer, active = true;
   let tracker = new Caton.Tracker([]);
   let historyReparsed = false;
   const storage = chrome.storage.local;
@@ -22,9 +22,9 @@
     const preferences = await storage.get(prefsKey);
     if (stored[key]?.logs && Array.isArray(stored[key]?.corrections)) journal = stored[key];
     else if (legacy[legacyKey] || prior[`${legacyKey}:rules:2`]) error = '解析规则已更新，旧存档已保留；当前重算可见日志，请校正手牌。';
-    if (preferences[prefsKey]) prefs = { ...prefs, ...preferences[prefsKey] };
+    if (typeof preferences[prefsKey]?.visible === 'boolean') prefs.visible = preferences[prefsKey].visible;
   } catch { error = '无法读取本地存档，当前仅在页面内追踪。'; }
-  function draw() { panel.render({ tracker, names, current, journal, hideSelf: prefs.hideSelf, table, error: [error, saveError, historyWarning].filter(Boolean).join(' ') }); }
+  function draw() { panel.render({ tracker, names, playerColors, current, error: [error, saveError, historyWarning].filter(Boolean).join(' ') }); }
   function savedJournal() { return { ...journal, corrections: journal.corrections.filter(c => c.after.move != null), logs: Object.fromEntries(Object.entries(journal.logs).filter(([, log]) => log.stable)) }; }
   async function flush() {
     if (!active) return;
@@ -56,8 +56,10 @@
     if (!active) return;
     const players = Array.from(document.querySelectorAll('#player_boards .player-board'));
     const roster = [...new Set(players.map(board => board.querySelector('.player-name a')?.textContent.trim()).filter(Boolean))];
-    let changed = JSON.stringify(roster) !== JSON.stringify(names);
+    const colors = Object.fromEntries(players.map(board => board.querySelector('.player-name a')).filter(link => link?.textContent.trim()).map(link => [link.textContent.trim(), getComputedStyle(link).color]));
+    let changed = JSON.stringify(roster) !== JSON.stringify(names) || JSON.stringify(colors) !== JSON.stringify(playerColors);
     names = roster;
+    playerColors = colors;
     current = players.find(board => board.matches('.current-player-board, .current'))?.querySelector('.player-name a')?.textContent.trim() || null;
     if (!names.length) { draw(); return; }
     if (!historyReparsed) {
@@ -100,9 +102,6 @@
   }
   const panel = new Caton.Panel({
     visibility(value) { prefs.visible = value; panel.visible(value); persist(); },
-    hideSelf(value) { prefs.hideSelf = value; draw(); persist(); },
-    scan,
-    reset() { journal.corrections = []; replay(); persist(); },
     correct(player, resources) {
       const last = Object.values(journal.logs).filter(log => log.stable || log.event).sort(Caton.compareLogs).at(-1);
       journal.corrections.push({ after: last ? { move: last.move, position: last.position } : { move: 0, position: 0 }, event: { type: 'set', player, resources }, ...(last && last.move == null ? { pendingId: last.id } : {}) });
@@ -119,7 +118,7 @@
   chrome.runtime.onMessage.addListener((message, _sender, respond) => {
     if (message.action === 'caton:toggle') {
       prefs.visible = !prefs.visible; panel.visible(prefs.visible); persist(); respond({ visible: prefs.visible });
-    } else if (message.action === 'caton:scan') { scan(); respond({ ok: true }); }
+    }
   });
   addEventListener('pagehide', () => { clearTimeout(saveTimer); void flush(); });
 })();

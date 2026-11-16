@@ -24,6 +24,12 @@ test('player names containing spaces remain intact in trades and theft', () => {
   assert.deepEqual(parse(`Alice 交给 Bob Smith ${group(icon('ore'))} 并收到 ${group(icon('grain'))}`), { type: 'trade', player: 'Alice', other: 'Bob Smith', give: { ore: 1 }, receive: { grain: 1 } });
   assert.deepEqual(parse('Alice 从 Bob Smith 处偷取了 1 张资源卡'), { type: 'steal', player: 'Alice', victim: 'Bob Smith', resources: { unknown: 1 } });
 });
+test('normal BGA player exchange markers and canonical text preserve both sides of the trade', () => {
+  assert.deepEqual(parse(`⇌ Alice 交给 Bob Smith ${icon('lumber')} 并收到 ${icon('wool')} 作为交换`),
+    { type: 'trade', player: 'Alice', other: 'Bob Smith', give: { lumber: 1 }, receive: { wool: 1 } });
+  assert.deepEqual(parse('Alice 用资源进行交易: 2 {lumber} → {ore}'),
+    { type: 'bank', player: 'Alice', give: { lumber: 2 }, receive: { ore: 1 } });
+});
 test('failed theft and dice messages are ignored', () => {
   assert.equal(parse('Alice 没有偷取到资源'), null);
   assert.equal(parse('Alice stole nothing from Bob Smith'), null);
@@ -35,6 +41,12 @@ test('starting placements and free roads cost nothing', () => {
 });
 test('unknown discards use the printed card count', () => {
   assert.deepEqual(parse('Bob Smith discarded 4 resource cards'), { type: 'loss', player: 'Bob Smith', resources: { unknown: 4 } });
+});
+test('card effect prefixes do not hide the player resource action', () => {
+  assert.deepEqual(parse(`破坏者 : Alice 丢弃 3 ${icon('brick')}`), { type: 'loss', player: 'Alice', resources: { brick: 3 } });
+  assert.deepEqual(parse(`Saboteur: Bob Smith discarded 2 ${icon('lumber')}`), { type: 'loss', player: 'Bob Smith', resources: { lumber: 2 } });
+  assert.deepEqual(parse(`Card effect: Alice 获得 ${icon('ore')}`), { type: 'gain', player: 'Alice', resources: { ore: 1 } });
+  assert.equal(parse(`Alice 提出一个交易请求: Bob Smith 获得 ${icon('ore')}`), null);
 });
 test('gain wording in a username does not shadow the action', () => {
   const node = new JSDOM('<div>获得Alice 买了一张发展卡</div>').window.document.querySelector('div');

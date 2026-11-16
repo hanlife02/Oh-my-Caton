@@ -65,3 +65,23 @@ test('correcting one party in a failed trade preserves the other party warning',
   t.apply({ type: 'set', player: 'Alice', resources: { grain: 1 } });
   assert.equal(t.warnings.length, 0);
 });
+test('an invalidated victim cannot reveal a stolen card or block a known receipt', () => {
+  const t = tracker();
+  t.apply(gain('Bob Smith', { ore: 1 }));
+  t.apply({ type: 'unresolved', player: 'Bob Smith', affected: ['Bob Smith'], message: 'undo' });
+  t.apply({ type: 'steal', player: 'Alice', victim: 'Bob Smith', resources: { unknown: 1 } });
+  assert.equal(t.players.Alice.ore, 0);
+  assert.equal(t.players.Alice.unknown, 1);
+  t.apply({ type: 'steal', player: 'Alice', victim: 'Bob Smith', resources: { unknown: 1 } });
+  assert.equal(t.total('Alice'), 2);
+  assert.ok(t.warnings.every(w => !w.unresolved.includes('Alice')));
+});
+test('a known trade still updates its reliable party when the other hand is invalidated', () => {
+  const t = tracker();
+  t.apply(gain('Alice', { lumber: 1 }));
+  t.apply({ type: 'unresolved', player: 'Bob Smith', affected: ['Bob Smith'], message: 'undo' });
+  assert.equal(t.apply({ type: 'trade', player: 'Alice', other: 'Bob Smith', give: { lumber: 1 }, receive: { ore: 1 } }), true);
+  assert.equal(t.players.Alice.lumber, 0);
+  assert.equal(t.players.Alice.ore, 1);
+  assert.ok(t.warnings.every(w => !w.unresolved.includes('Alice')));
+});

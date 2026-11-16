@@ -1,6 +1,6 @@
 {
   "name": "oh-my-caton",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "private": true,
   "description": "Board Game Arena Catan resource tracker",
   "scripts": {

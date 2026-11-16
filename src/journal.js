@@ -116,6 +116,19 @@
       if (event.type === 'unresolved' && /回滚操作|取消了他的行动|undo|roll.?back/i.test(entry.source || entry.text || '')) {
         const rollbackKey = entry.move == null ? null : JSON.stringify([entry.move, event.player]);
         if (setup && rollbackKey && freePlacements.has(rollbackKey)) continue;
+        // Cancelling Diplomat before any paid resource action only restores
+        // the card/road selection; it cannot change a resource hand.
+        if (entry.move != null) {
+          const sameMove = entries.filter(log => log.move === entry.move);
+          const diplomat = sameMove.some(log => {
+            const source = log.source || log.text || '';
+            return source.startsWith(event.player) && /^(?:打出了\s*外交官|played\s+(?:a\s+)?Diplomat)\s*[.!。]?$/i.test(source.slice(event.player.length).trim());
+          });
+          const noResourceAction = sameMove.every(log => log.event
+            ? log.event.type === 'unresolved' || log.event.type === 'turnEnd' || (log.event.type === 'build' && log.event.free)
+            : !/\{[a-z]+\}/i.test(log.source || ''));
+          if (diplomat && noResourceAction) continue;
+        }
         if (rollbackKey && rollbacks.has(rollbackKey)) continue;
         if (rollbackKey) rollbacks.add(rollbackKey);
         event = { ...event, affected: [event.player, ...(partners.get(event.player) || [])] };
