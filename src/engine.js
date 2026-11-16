@@ -1,7 +1,7 @@
 /* Counts are guaranteed minima; unknown holds the rest of a player's hand. */
 (() => {
   'use strict';
-  const resources = ['lumber', 'brick', 'wool', 'grain', 'ore', 'unknown'];
+  const resources = ['lumber', 'brick', 'wool', 'grain', 'ore', 'paper', 'cloth', 'coin', 'unknown'];
   const costs = {
     road: { lumber: 1, brick: 1 },
     settlement: { lumber: 1, brick: 1, wool: 1, grain: 1 },
@@ -55,7 +55,7 @@
           case 'loss': remove(event.player, event.resources); break;
           case 'build':
             if (!costs[event.building]) throw new Error('未知建造类型');
-            if (!event.free) remove(event.player, costs[event.building]);
+            if (!event.free) remove(event.player, event.resources || costs[event.building]);
             break;
           case 'bank':
           case 'trade':
@@ -66,6 +66,7 @@
             break;
           case 'steal': {
             let bundle = event.resources;
+            if (!bundle) throw new Error('垄断转移数量不可见，请校正相关手牌');
             validate(bundle);
             const victim = hand(event.victim);
             const known = resources.slice(0, -1).filter(r => victim[r] > 0);
@@ -78,6 +79,7 @@
             validate(event.resources);
             next[event.player] = { ...empty(), ...event.resources };
             break;
+          case 'unresolved': throw new Error(event.message);
           default: throw new Error('未知事件');
         }
         this.players = next;
@@ -86,7 +88,7 @@
         })).filter(w => w.unresolved.length);
         return true;
       } catch (error) {
-        this.warnings.push({ player: event.player, other: event.other || event.victim, unresolved: [...new Set([event.player, event.other || event.victim].filter(Boolean))], message: error.message });
+        this.warnings.push({ player: event.player, other: event.other || event.victim, unresolved: [...new Set(event.affected || [event.player, event.other || event.victim].filter(Boolean))], message: error.message });
         return false;
       }
     }

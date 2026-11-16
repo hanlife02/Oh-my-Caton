@@ -8,13 +8,13 @@ test('tracks gains and exact settlement/city/development costs', () => {
   const t = tracker();
   t.apply(gain('Alice', { lumber: 2, brick: 2, wool: 2, grain: 5, ore: 5 }));
   for (const building of ['settlement', 'city', 'development']) t.apply({ type: 'build', player: 'Alice', building });
-  assert.deepEqual(t.players.Alice, { lumber: 1, brick: 1, wool: 0, grain: 1, ore: 1, unknown: 0 });
+  assert.deepEqual(t.players.Alice, { lumber: 1, brick: 1, wool: 0, grain: 1, ore: 1, paper: 0, cloth: 0, coin: 0, unknown: 0 });
 });
 test('hidden theft preserves totals without pretending victim cards are certain', () => {
   const t = tracker();
   t.apply(gain('Alice', { lumber: 2, ore: 1 }));
   t.apply({ type: 'steal', player: 'Bob Smith', victim: 'Alice', resources: { unknown: 1 } });
-  assert.deepEqual(t.players.Alice, { lumber: 1, brick: 0, wool: 0, grain: 0, ore: 0, unknown: 1 });
+  assert.deepEqual(t.players.Alice, { lumber: 1, brick: 0, wool: 0, grain: 0, ore: 0, paper: 0, cloth: 0, coin: 0, unknown: 1 });
   assert.equal(t.players['Bob Smith'].unknown, 1);
 });
 test('single known resource theft is inferred exactly', () => {

@@ -3,7 +3,9 @@
   if (!/\/catan\/?$/.test(location.pathname) || document.getElementById('oh-my-caton')) return;
   const table = new URL(location.href).searchParams.get('table');
   if (!table || !/^\d+$/.test(table)) return;
-  const key = `caton:table:${table}`;
+  // Keep pre-upgrade journals intact: their parsed events use obsolete rules.
+  const legacyKey = `caton:table:${table}`;
+  const key = `${legacyKey}:rules:3`;
   const prefsKey = 'caton:preferences';
   const page = crypto.randomUUID();
   let historyWarning = '';
@@ -14,11 +16,14 @@
   const storage = chrome.storage.local;
   try {
     const stored = await storage.get(key);
+    const legacy = await storage.get(legacyKey);
+    const prior = await storage.get(`${legacyKey}:rules:2`);
     const preferences = await storage.get(prefsKey);
     if (stored[key]?.logs && Array.isArray(stored[key]?.corrections)) journal = stored[key];
+    else if (legacy[legacyKey] || prior[`${legacyKey}:rules:2`]) error = '解析规则已更新，旧存档已保留；当前重算可见日志，请校正手牌。';
     if (preferences[prefsKey]) prefs = { ...prefs, ...preferences[prefsKey] };
   } catch { error = '无法读取本地存档，当前仅在页面内追踪。'; }
-  function draw() { panel.render({ tracker, names, current, journal, hideSelf: prefs.hideSelf, table, error: error || historyWarning }); }
+  function draw() { panel.render({ tracker, names, current, journal, hideSelf: prefs.hideSelf, table, error: [error, historyWarning].filter(Boolean).join(' ') }); }
   function savedJournal() { return { ...journal, corrections: journal.corrections.filter(c => c.after.move != null), logs: Object.fromEntries(Object.entries(journal.logs).filter(([, log]) => log.stable)) }; }
   function persist() {
     clearTimeout(saveTimer);
@@ -40,21 +45,22 @@
     const roster = [...new Set(players.map(board => board.querySelector('.player-name a')?.textContent.trim()).filter(Boolean))];
     let changed = JSON.stringify(roster) !== JSON.stringify(names);
     names = roster;
-    current = players.find(board => board.classList.contains('current'))?.querySelector('.player-name a')?.textContent.trim() || null;
+    current = players.find(board => board.matches('.current-player-board, .current'))?.querySelector('.player-name a')?.textContent.trim() || null;
     if (!names.length) { draw(); return; }
     const incoming = [];
     for (const node of document.querySelectorAll('#logs [id^="log_"]')) {
       const match = node.id.match(/^log_(\d+)$/);
       if (!match || !node.querySelector('.roundedbox')) continue;
       const id = Number(match[1]);
-      const event = Caton.parseLog(node, names);
+      const event = Caton.parseLog(node, names, current);
+      const source = Caton.logText(node.querySelector('.roundedbox')).replace(/\s+/g, ' ').trim();
       const text = node.querySelector('.roundedbox').textContent.replace(/\s+/g, ' ').trim();
       const rawMove = node.getAttribute('data-move-id');
       const move = rawMove !== null && /^\d+$/.test(rawMove) ? Number(rawMove) : null;
-      incoming.push({ id, move, event, text });
+      incoming.push({ id, move, event, text, source });
     }
     incoming.sort((a, b) => a.id - b.id);
-    const result = Caton.mergeLogs(journal.logs, incoming, page);
+    const result = Caton.mergeLogs(journal.logs, Caton.prepareLogs(incoming), page);
     const nextWarning = result.unverified ? '⚠ 历史标识缺失或同回合日志不完整，无法可靠匹配，请校正手牌。' : '';
     changed = changed || result.changed || historyWarning !== nextWarning;
     historyWarning = nextWarning;

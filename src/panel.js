@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const labels = { lumber: '🌲 木材', brick: '🧱 砖块', wool: '🐑 羊毛', grain: '🌾 麦子', ore: '⛰️ 矿石', unknown: '❓ 未知' };
+  const labels = { lumber: '🌲 木材', brick: '🧱 砖块', wool: '🐑 羊毛', grain: '🌾 麦子', ore: '⛰️ 矿石', paper: '📄 纸', cloth: '🧵 布', coin: '🪙 金币', unknown: '❓ 未知' };
   function el(tag, text, attrs = {}) {
     const node = document.createElement(tag);
     if (text !== undefined) node.textContent = text;
@@ -69,6 +69,7 @@
         if (hideSelf && name === current) continue;
         const row = el('tr', undefined, { 'data-player': name });
         const nameCell = el('td', name);
+        if (tracker.warnings.some(w => w.unresolved.includes(name))) nameCell.append(el('small', ' ⚠ 待校正'));
         const edit = el('button', '✎', { 'aria-label': `校正 ${name} 的手牌` });
         edit.addEventListener('click', () => this.edit(name, tracker.players[name]));
         nameCell.append(edit); row.append(nameCell);
@@ -78,7 +79,7 @@
       grid.append(tbody); this.body.append(grid);
       const warnings = tracker.warnings;
       this.body.append(el('p', error || (warnings.length ? `⚠ ${warnings.length} 条日志无法结算，请校正相关手牌。` : names.length ? '● 正在监听页面可见日志' : '等待游戏玩家与日志加载…'), { class: 'status', role: 'status' }));
-      this.body.append(el('p', '数字为确定持有的最低数量；❓ 为牌型不确定的剩余手牌。中途加入时请先校正，插件无法恢复未见过的历史日志。', { class: 'help' }));
+      this.body.append(el('p', '无待校正提示时，数字为确定持有的最低数量；❓ 为牌型不确定的剩余手牌。标为待校正的玩家数字暂不可信。中途加入时请先校正，插件无法恢复未见过的历史日志。', { class: 'help' }));
       const tools = el('div', undefined, { class: 'tools' });
       const label = el('label'); const check = el('input', undefined, { type: 'checkbox' }); check.checked = hideSelf;
       check.addEventListener('change', () => this.callbacks.hideSelf(check.checked));
