@@ -314,9 +314,9 @@
       else if (!['unresolved', 'turnEnd'].includes(event.type)) setup = false;
       // Older journals counted Spy's progress-card theft as a resource transfer.
       if (event.type === 'steal' && /发展卡|进步卡|(?:progress|development) cards?/i.test(entry.source || entry.text || '')) continue;
-      // Wedding transfers two cards (or the victim's remaining hand), even
+      // Wedding and Master Merchant transfer two cards (or the remaining hand), even
       // when their types are private. Apply this to saved journals as well.
-      if (event.type === 'steal' && !event.resources && /^(?:联姻|Wedding)\s*[:：]/i.test(entry.source || entry.text || '')) {
+      if (event.type === 'steal' && !event.resources && /^(?:联姻|Wedding|大商家|Master Merchant)\s*[:：]/i.test(entry.source || entry.text || '')) {
         if (!tracker.unresolved(event.victim)) event = { ...event, resources: { unknown: Math.min(2, tracker.total(event.victim)) } };
       }
       if (event.type === 'trade' || event.type === 'steal') {

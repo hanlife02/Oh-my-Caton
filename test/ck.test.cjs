@@ -196,6 +196,19 @@ test('a private receipt from a later move never rewrites an earlier theft', () =
   Caton.replayLogs(tracker, Caton.prepareLogs(entries), 'Alice');
   assert.equal(tracker.total('Alice'), 2);
 });
+test('Master Merchant replays two hidden cards from the saved public transfer', () => {
+  for (const card of ['大商家', 'Master Merchant']) {
+    const tracker = new Caton.Tracker(['Alice', 'Bob']);
+    tracker.apply({ type: 'set', player: 'Bob', resources: { lumber: 3, ore: 1 } });
+    Caton.replayLogs(tracker, [{ move: 1, source: `${card}: Alice 从 Bob 那里偷取资源`, event: { type: 'steal', player: 'Alice', victim: 'Bob', resources: null } }], 'Alice');
+    assert.deepEqual(tracker.warnings, []);
+    assert.equal(tracker.total('Alice'), 2);
+    assert.equal(tracker.total('Bob'), 2);
+    assert.equal(tracker.players.Alice.unknown, 2);
+    assert.equal(tracker.players.Bob.lumber, 1);
+    assert.equal(tracker.players.Bob.unknown, 1);
+  }
+});
 test('Wedding cannot infer its count from an invalidated victim total', () => {
   const tracker = new Caton.Tracker(names);
   tracker.apply({ type: 'unresolved', player: 'Bob', affected: ['Bob'], message: 'undo' });
