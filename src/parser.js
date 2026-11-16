@@ -23,6 +23,7 @@
     const player = privateLog ? current : ordered.find(name => text.startsWith(name));
     if (!player) return null;
     const action = (privateLog ? text.replace(/^(?:你|You\b)/i, '') : text.slice(player.length)).trim();
+    const progressCard = /发展卡|进步卡|(?:progress|development) cards?/i.test(action);
     if (/没有.*偷|未能.*偷|偷.*(?:失败|不到)|stole nothing|could not steal|did not steal/i.test(action)) return null;
     const groups = Array.from(node.querySelectorAll('span[style*="nowrap"]'))
       .filter(el => !el.parentElement.closest('span[style*="nowrap"]'))
@@ -46,6 +47,7 @@
       return { type: 'trade', player, other, give: groups[0], receive: groups[1] };
     }
     if (/偷取|偷走|stole|steals/i.test(action)) {
+      if (progressCard) return null;
       if (!other) return null;
       const count = Number(action.match(/(?:偷取了?|stole|steals)\s*(\d+)/i)?.[1] || 1);
       return { type: 'steal', player, victim: other, resources: Object.keys(found).length ? found : variableTheft ? null : { unknown: count } };
@@ -61,6 +63,7 @@
       : /获得|得到了|received|receives|gained|gets/i.test(action) ? 'gain' : null;
     if (!type) return null;
     if (!Object.keys(found).length) {
+      if (progressCard) return null;
       const count = action.match(/(\d+)\s*(?:张|resource cards?|cards?)/i);
       if (!count) return null;
       found.unknown = Number(count[1]);

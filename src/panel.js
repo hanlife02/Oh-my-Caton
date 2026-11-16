@@ -78,7 +78,7 @@
       }
       grid.append(tbody); this.body.append(grid);
       const warnings = tracker.warnings;
-      this.body.append(el('p', error || (warnings.length ? `⚠ ${warnings.length} 条日志无法结算，请校正相关手牌。` : names.length ? '● 正在监听页面可见日志' : '等待游戏玩家与日志加载…'), { class: 'status', role: 'status' }));
+      this.body.append(el('p', error || (warnings.length ? `⚠ ${warnings.length} 条日志无法结算，请校正相关手牌。` : names.length ? '● 实时追踪中 · 新日志到达后自动更新' : '等待游戏玩家与日志加载…'), { class: 'status', role: 'status' }));
       this.body.append(el('p', '无待校正提示时，数字为确定持有的最低数量；❓ 为牌型不确定的剩余手牌。标为待校正的玩家数字暂不可信。中途加入时请先校正，插件无法恢复未见过的历史日志。', { class: 'help' }));
       const tools = el('div', undefined, { class: 'tools' });
       const label = el('label'); const check = el('input', undefined, { type: 'checkbox' }); check.checked = hideSelf;

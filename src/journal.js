@@ -56,6 +56,11 @@
     }
     for (let i = 0; i < incomingKeys.length; i++) {
       const entry = incomingKeys[i];
+      const ephemeralKey = `page:${page}:${entry.id}`;
+      if (entry.stable && logs[ephemeralKey]) {
+        delete logs[ephemeralKey];
+        changed = true;
+      }
       if (logs[entry.key]) {
         if (logs[entry.key].event?.revealed && !entry.event?.revealed) continue;
         if (JSON.stringify(logs[entry.key].event) !== JSON.stringify(entry.event)) {
@@ -83,6 +88,8 @@
     for (let i = 0; i < entries.length; i++) {
       const entry = entries[i], event = entry.event;
       if (!event) continue;
+      // Older journals counted Spy's progress-card theft as a resource transfer.
+      if (event.type === 'steal' && /发展卡|进步卡|(?:progress|development) cards?/i.test(entry.source || entry.text || '')) continue;
       if (event.type === 'crane') { cranes.add(event.player); continue; }
       if (event.type === 'turnEnd') { cranes.delete(event.player); continue; }
       if (event.type === 'improvement') {

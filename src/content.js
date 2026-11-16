@@ -83,7 +83,7 @@
     if (!mutations.some(mutation => mutation.target !== panel.host && !panel.host.contains(mutation.target))) return;
     clearTimeout(timer); timer = setTimeout(scan, 60);
   });
-  observer.observe(document.body, { childList: true, subtree: true, characterData: true });
+  observer.observe(document.body, { childList: true, subtree: true, characterData: true, attributes: true, attributeFilter: ['data-move-id'] });
   chrome.runtime.onMessage.addListener((message, _sender, respond) => {
     if (message.action === 'caton:toggle') {
       prefs.visible = !prefs.visible; panel.visible(prefs.visible); persist(); respond({ visible: prefs.visible });
