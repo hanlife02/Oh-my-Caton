@@ -24,6 +24,56 @@ async function page(saved = {}, logs = '', names = ['Alice', 'Bob Smith'], showS
   return { dom, saved, panel: dom.window.document.querySelector('#oh-my-caton').shadowRoot };
 }
 const gainLog = (id, n = 1) => `<div class="log" id="log_${id}" data-move-id="${id}"><div class="roundedbox">Alice 获得 <span style="white-space: nowrap">${n} <span class="cat_log_token icon_lumber"></span></span></div></div>`;
+// Minimal fixture using the public counter IDs observed in a live C&K game.
+const publicCounters = `<span class="player_score_value" id="player_score_7">5</span>
+  <span class="player_score_hidden_value" id="player_score_hidden_7">99</span>
+  <span id="cat_panel_score_settlements_7">3</span><span id="cat_panel_score_cities_7">2</span>
+  <span id="cat_panel_score_nb_dev_cards_trade_7">9</span>
+  <span id="cat_panel_ck_citylevel_lvl_trade_7">1</span>
+  <span id="cat_panel_ck_citylevel_lvl_politics_7">2</span>
+  <span id="cat_panel_ck_citylevel_lvl_science_7">3</span>`;
+test('public building counts, three improvement levels and score follow the player board without resource logs', async () => {
+  const p = await page({}, '', ['Alice', 'Bob Smith'], false);
+  const board = p.dom.window.document.querySelectorAll('.player-board')[1];
+  board.insertAdjacentHTML('beforeend', publicCounters);
+  await pause();
+  const value = stat => p.panel.querySelector(`[data-player="Bob Smith"] [data-stat="${stat}"]`)?.textContent;
+  assert.deepEqual(['settlements', 'cities', 'trade', 'politics', 'science', 'score'].map(value), ['2', '2', '1', '2', '3', '5']);
+  board.querySelector('#cat_panel_score_settlements_7').textContent = '4';
+  board.querySelector('#cat_panel_score_cities_7').textContent = '1';
+  board.querySelector('#cat_panel_ck_citylevel_lvl_science_7').textContent = '4';
+  board.querySelector('#player_score_7').textContent = '6';
+  await pause();
+  assert.deepEqual(['settlements', 'cities', 'science', 'score'].map(value), ['1', '3', '4', '6']);
+  board.querySelector('#cat_panel_score_settlements_7').textContent = '3';
+  board.querySelector('#cat_panel_score_cities_7').textContent = '2';
+  board.querySelector('#player_score_7').textContent = '5';
+  await pause();
+  assert.deepEqual(['settlements', 'cities', 'score'].map(value), ['2', '2', '5']);
+  assert.equal(p.panel.querySelector('[data-player="Alice"]'), null);
+  p.dom.window.close();
+});
+test('unavailable or invalid public counters show a dash instead of inventing zero', async () => {
+  const p = await page();
+  const board = p.dom.window.document.querySelectorAll('.player-board')[1];
+  board.insertAdjacentHTML('beforeend', publicCounters);
+  board.querySelector('#cat_panel_score_settlements_7').textContent = '6';
+  board.querySelector('#cat_panel_score_cities_7').textContent = '-1';
+  board.querySelector('#cat_panel_ck_citylevel_lvl_science_7').remove();
+  await pause();
+  for (const stat of ['settlements', 'cities', 'science']) assert.equal(p.panel.querySelector(`[data-player="Bob Smith"] [data-stat="${stat}"]`)?.textContent, '—');
+  p.dom.window.close();
+});
+test('unresolved resource tracking does not mask public player statistics', async () => {
+  const p = await page();
+  p.dom.window.document.querySelectorAll('.player-board')[1].insertAdjacentHTML('beforeend', publicCounters);
+  p.dom.window.document.querySelector('#logs').innerHTML = '<div id="log_1" data-move-id="1"><div class="roundedbox">Bob Smith 升级为城市</div></div>';
+  await pause();
+  assert.equal(p.panel.querySelector('[data-player="Bob Smith"] .total').textContent, '—');
+  assert.equal(p.panel.querySelector('[data-player="Bob Smith"] [data-stat="cities"]')?.textContent, '2');
+  assert.equal(p.panel.querySelector('[data-player="Bob Smith"] [data-stat="score"]')?.textContent, '5');
+  p.dom.window.close();
+});
 test('upgrade recovers saved prefixed discards missing from the current DOM without duplicating private details', async () => {
   const saved = { 'caton:table:42:rules:3': { corrections: [], logs: {
     gain: { id: 1, move: 1, position: 1, stable: true, source: 'Alice 获得 2 {lumber} 6 {brick}', event: { type: 'gain', player: 'Alice', resources: { lumber: 2, brick: 6 } } },

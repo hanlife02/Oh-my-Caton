@@ -1,8 +1,8 @@
 {
   "manifest_version": 3,
   "name": "Oh my Caton · 卡坦岛资源追踪",
-  "version": "0.2.5",
-  "description": "根据 Board Game Arena 卡坦岛可见日志追踪资源，支持未知手牌、手动校正和本地保存。",
+  "version": "0.3.0",
+  "description": "实时追踪 BGA 卡坦岛资源，显示村庄、城市、城市改良等级和公开得分，支持本地保存与手动校正。",
   "permissions": [
     "storage",
     "activeTab"

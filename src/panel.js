@@ -1,6 +1,7 @@
 (() => {
   'use strict';
   const labels = { lumber: '🌲 木材', brick: '🧱 砖块', wool: '🐑 羊毛', grain: '🌾 麦子', ore: '⛰️ 矿石', paper: '📄 纸', cloth: '🧵 布', coin: '🪙 金币', unknown: '❓ 未知' };
+  const statLabels = { settlements: '🏠 村庄', cities: '🏙️ 城市', trade: '📒 贸易等级', politics: '📘 政治等级', science: '📗 科学等级', score: '⭐ 公开得分' };
   function el(tag, text, attrs = {}) {
     const node = document.createElement(tag);
     if (text !== undefined) node.textContent = text;
@@ -15,11 +16,11 @@
       const shadow = this.host.attachShadow({ mode: 'open' });
       const style = el('style', `
         :host{all:initial;color-scheme:dark;font:13px/1.5 system-ui,sans-serif;color:#e7ede9}
-        :host([hidden]){display:none} *{box-sizing:border-box} .panel{width:420px;max-width:calc(100vw - 16px);background:#17251f;border:1px solid #455d4e;border-radius:10px;box-shadow:0 12px 50px #0006;overflow:hidden}
-        header{display:flex;align-items:center;gap:6px;padding:7px 10px;background:#21382b;cursor:move;touch-action:none}
+        :host([hidden]){display:none} *{box-sizing:border-box} .panel{width:590px;max-width:calc(100vw - 16px);background:#17251fd9;border:1px solid #455d4e;border-radius:10px;box-shadow:0 12px 50px #0006;overflow:hidden}
+        header{display:flex;align-items:center;gap:6px;padding:7px 10px;background:#21382b99;cursor:move;touch-action:none}
         header strong{flex:1;font-size:14px;letter-spacing:.3px}button{font:inherit;border:1px solid #52695b;border-radius:5px;background:#2a4133;color:#eef5ed;padding:2px 7px;cursor:pointer}button:hover{background:#3c5945}button:focus-visible,input:focus-visible{outline:2px solid #eac975;outline-offset:2px}
         .body{padding:4px 8px 6px;max-height:65vh;overflow:auto}
-        table{border-collapse:collapse;width:100%;text-align:center;table-layout:fixed}th,td{padding:4px 1px;border-bottom:1px solid #354b3d}th{font-size:11px;font-weight:500;color:#c4d5c6}th:not(:first-child):not(:last-child){font-size:18px;line-height:1.2}th:first-child,td:first-child{width:116px;text-align:left;overflow-wrap:anywhere}td{font-variant-numeric:tabular-nums;font-size:14px}td:first-child{font-size:11px}.player-name{display:inline-block;max-width:calc(100% - 24px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:middle}td button{font-size:11px;padding:0 4px;margin-left:3px;vertical-align:middle}tbody tr:last-child td{border-bottom:0}.total{color:#eac975}
+        table{border-collapse:collapse;width:100%;min-width:570px;text-align:center;table-layout:fixed}th,td{padding:4px 1px;border-bottom:1px solid #354b3d}th{font-size:11px;font-weight:500;color:#c4d5c6}th.icon{font-size:18px;line-height:1.2}th:first-child,td:first-child{width:116px;text-align:left;overflow-wrap:anywhere}td{font-variant-numeric:tabular-nums;font-size:14px}td:first-child{font-size:11px}.player-name{display:inline-block;max-width:calc(100% - 24px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:middle}td button{font-size:11px;padding:0 4px;margin-left:3px;vertical-align:middle}tbody tr:last-child td{border-bottom:0}.total,.score{color:#eac975}.stats-start{border-left:1px solid #52695b}
         .status{font-size:12px;color:#eac975;margin:8px 0;overflow-wrap:anywhere}form{padding:10px;background:#21382b;border-radius:8px;margin-top:10px}form label{display:inline-flex;flex-direction:column;margin:3px;width:58px;font-size:11px}input[type=number]{width:58px;background:#17251f;border:1px solid #52695b;color:#fff;border-radius:4px;padding:5px}form p{margin:0 0 6px}form button{margin:8px 6px 0 0}
       `);
       this.root = el('section', undefined, { class: 'panel' });
@@ -55,12 +56,14 @@
       header.addEventListener('pointercancel', () => { drag = null; });
     }
     visible(value) { this.host.hidden = !value; }
-    render({ tracker, names, playerColors = {}, current, hideSelf = true, error }) {
+    render({ tracker, names, playerColors = {}, publicStats = {}, current, hideSelf = true, error }) {
       this.body.replaceChildren();
-      const grid = el('table', undefined, { 'aria-label': '各玩家资源数量' });
+      const grid = el('table', undefined, { 'aria-label': '各玩家资源、建筑、发展等级与得分' });
       const head = el('tr'); head.append(el('th', '玩家'));
-      for (const r of Caton.resources) head.append(el('th', labels[r].split(' ')[0], { title: labels[r], scope: 'col' }));
-      head.append(el('th', '合计')); const thead = el('thead'); thead.append(head); grid.append(thead);
+      for (const r of Caton.resources) head.append(el('th', labels[r].split(' ')[0], { title: labels[r], scope: 'col', class: 'icon' }));
+      head.append(el('th', '合计'));
+      for (const [stat, label] of Object.entries(statLabels)) head.append(el('th', label.split(' ')[0], { title: label, 'aria-label': label, scope: 'col', class: `icon${stat === 'settlements' ? ' stats-start' : ''}` }));
+      const thead = el('thead'); thead.append(head); grid.append(thead);
       const tbody = el('tbody');
       for (const name of names) {
         if (hideSelf && name === current) continue;
@@ -75,7 +78,9 @@
         edit.addEventListener('click', () => this.edit(name, tracker.players[name]));
         nameCell.append(edit); row.append(nameCell);
         for (const r of Caton.resources) row.append(el('td', unresolved ? '—' : String(tracker.players[name][r]), { 'data-resource': r, title: labels[r] }));
-        row.append(el('td', unresolved ? '—' : String(tracker.total(name)), { class: 'total' })); tbody.append(row);
+        row.append(el('td', unresolved ? '—' : String(tracker.total(name)), { class: 'total' }));
+        for (const [stat, label] of Object.entries(statLabels)) row.append(el('td', publicStats[name]?.[stat] == null ? '—' : String(publicStats[name][stat]), { 'data-stat': stat, title: label, class: stat === 'settlements' ? 'stats-start' : stat === 'score' ? 'score' : '' }));
+        tbody.append(row);
       }
       grid.append(tbody); this.body.append(grid);
       const warnings = tracker.warnings;

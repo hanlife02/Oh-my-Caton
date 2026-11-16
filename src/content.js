@@ -11,7 +11,7 @@
   let historyWarning = '';
   let journal = { logs: {}, corrections: [] };
   let prefs = { visible: true };
-  let names = [], playerColors = {}, current = null, error = '', saveError = '', timer, saveTimer, observer, active = true;
+  let names = [], playerColors = {}, publicStats = {}, current = null, error = '', saveError = '', timer, saveTimer, observer, active = true;
   let tracker = new Caton.Tracker([]);
   let historyReparsed = false;
   const storage = chrome.storage.local;
@@ -24,7 +24,25 @@
     else if (legacy[legacyKey] || prior[`${legacyKey}:rules:2`]) error = '解析规则已更新，旧存档已保留；当前重算可见日志，请校正手牌。';
     if (typeof preferences[prefsKey]?.visible === 'boolean') prefs.visible = preferences[prefsKey].visible;
   } catch { error = '无法读取本地存档，当前仅在页面内追踪。'; }
-  function draw() { panel.render({ tracker, names, playerColors, current, error: [error, saveError, historyWarning].filter(Boolean).join(' ') }); }
+  function draw() { panel.render({ tracker, names, playerColors, publicStats, current, error: [error, saveError, historyWarning].filter(Boolean).join(' ') }); }
+  function readPublicStats(board) {
+    const counter = (selector, max) => {
+      const text = board.querySelector(selector)?.textContent.trim();
+      if (!/^\d+$/.test(text || '')) return null;
+      const value = Number(text);
+      return Number.isSafeInteger(value) && value <= max ? value : null;
+    };
+    const settlementsLeft = counter('[id^="cat_panel_score_settlements_"]', 5);
+    const citiesLeft = counter('[id^="cat_panel_score_cities_"]', 4);
+    return {
+      settlements: settlementsLeft === null ? null : 5 - settlementsLeft,
+      cities: citiesLeft === null ? null : 4 - citiesLeft,
+      trade: counter('[id^="cat_panel_ck_citylevel_lvl_trade_"]', 5),
+      politics: counter('[id^="cat_panel_ck_citylevel_lvl_politics_"]', 5),
+      science: counter('[id^="cat_panel_ck_citylevel_lvl_science_"]', 5),
+      score: counter('.player_score_value', 999),
+    };
+  }
   function savedJournal() { return { ...journal, corrections: journal.corrections.filter(c => c.after.move != null), logs: Object.fromEntries(Object.entries(journal.logs).filter(([, log]) => log.stable)) }; }
   async function flush() {
     if (!active) return;
@@ -57,10 +75,14 @@
     const players = Array.from(document.querySelectorAll('#player_boards .player-board'));
     const roster = [...new Set(players.map(board => board.querySelector('.player-name a')?.textContent.trim()).filter(Boolean))];
     const colors = Object.fromEntries(players.map(board => board.querySelector('.player-name a')).filter(link => link?.textContent.trim()).map(link => [link.textContent.trim(), getComputedStyle(link).color]));
-    let changed = JSON.stringify(roster) !== JSON.stringify(names) || JSON.stringify(colors) !== JSON.stringify(playerColors);
+    const stats = Object.fromEntries(players.map(board => [board.querySelector('.player-name a')?.textContent.trim(), readPublicStats(board)]).filter(([name]) => name));
+    const self = players.find(board => board.matches('.current-player-board, .current'))?.querySelector('.player-name a')?.textContent.trim() || null;
+    let changed = JSON.stringify(roster) !== JSON.stringify(names);
+    const viewChanged = self !== current || JSON.stringify(colors) !== JSON.stringify(playerColors) || JSON.stringify(stats) !== JSON.stringify(publicStats);
     names = roster;
     playerColors = colors;
-    current = players.find(board => board.matches('.current-player-board, .current'))?.querySelector('.player-name a')?.textContent.trim() || null;
+    publicStats = stats;
+    current = self;
     if (!names.length) { draw(); return; }
     if (!historyReparsed) {
       // Older parsers silently ignored resource actions with unfamiliar card
@@ -99,6 +121,7 @@
     changed = changed || result.changed || historyWarning !== nextWarning;
     historyWarning = nextWarning;
     if (changed) { replay(); persist(); }
+    else if (viewChanged) draw();
   }
   const panel = new Caton.Panel({
     visibility(value) { prefs.visible = value; panel.visible(value); persist(); },
