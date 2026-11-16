@@ -24,6 +24,49 @@ async function page(saved = {}, logs = '', names = ['Alice', 'Bob Smith'], showS
   return { dom, saved, panel: dom.window.document.querySelector('#oh-my-caton').shadowRoot };
 }
 const gainLog = (id, n = 1) => `<div class="log" id="log_${id}" data-move-id="${id}"><div class="roundedbox">Alice 获得 <span style="white-space: nowrap">${n} <span class="cat_log_token icon_lumber"></span></span></div></div>`;
+test('header transparency updates immediately, survives resource redraws and restores after refresh', async () => {
+  const saved = {};
+  const p = await page(saved);
+  const input = p.panel.querySelector('header input[aria-label="背景透明度百分比"]');
+  assert.ok(input, 'transparency input belongs in the title row');
+  assert.equal(input.value, '15');
+  const background = () => p.panel.querySelector('.panel').style.getPropertyValue('--caton-bg-opacity');
+  for (const [value, opacity] of [['40', '0.6'], ['0', '1'], ['100', '0']]) {
+    input.value = value;
+    input.dispatchEvent(new p.dom.window.Event('input', { bubbles: true }));
+    assert.equal(background(), opacity);
+  }
+  input.value = '40';
+  input.dispatchEvent(new p.dom.window.Event('input', { bubbles: true }));
+  for (const invalid of ['', '-1', '101', '2.5']) {
+    input.value = invalid;
+    input.dispatchEvent(new p.dom.window.Event('input', { bubbles: true }));
+    assert.equal(background(), '0.6');
+    input.dispatchEvent(new p.dom.window.Event('blur'));
+    assert.equal(input.value, '40');
+  }
+  let captured = 0;
+  p.panel.querySelector('header').setPointerCapture = () => captured++;
+  input.dispatchEvent(new p.dom.window.MouseEvent('pointerdown', { bubbles: true }));
+  assert.equal(captured, 0, 'editing the percentage must not start a panel drag');
+  p.dom.window.document.querySelector('#logs').insertAdjacentHTML('beforeend', gainLog(1));
+  await pause();
+  assert.equal(p.panel.querySelector('header input'), input);
+  assert.equal(input.value, '40');
+  assert.equal(saved['caton:preferences'].transparency, 40);
+  p.dom.window.close();
+  const q = await page(saved);
+  assert.equal(q.panel.querySelector('header input').value, '40');
+  assert.equal(q.panel.querySelector('.panel').style.getPropertyValue('--caton-bg-opacity'), '0.6');
+  q.dom.window.close();
+});
+test('invalid stored transparency falls back to the existing 15 percent appearance', async () => {
+  for (const transparency of [null, '40', -1, 101, 2.5]) {
+    const p = await page({ 'caton:preferences': { transparency } });
+    assert.equal(p.panel.querySelector('header input')?.value, '15');
+    p.dom.window.close();
+  }
+});
 // Minimal fixture using the public counter IDs observed in a live C&K game.
 const publicCounters = `<span class="player_score_value" id="player_score_7">5</span>
   <span class="player_score_hidden_value" id="player_score_hidden_7">99</span>

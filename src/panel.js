@@ -16,9 +16,10 @@
       const shadow = this.host.attachShadow({ mode: 'open' });
       const style = el('style', `
         :host{all:initial;color-scheme:dark;font:13px/1.5 system-ui,sans-serif;color:#e7ede9}
-        :host([hidden]){display:none} *{box-sizing:border-box} .panel{width:590px;max-width:calc(100vw - 16px);background:#17251fd9;border:1px solid #455d4e;border-radius:10px;box-shadow:0 12px 50px #0006;overflow:hidden}
-        header{display:flex;align-items:center;gap:6px;padding:7px 10px;background:#21382b99;cursor:move;touch-action:none}
+        :host([hidden]){display:none} *{box-sizing:border-box} .panel{width:590px;max-width:calc(100vw - 16px);background:rgb(23 37 31 / var(--caton-bg-opacity,.85));border:1px solid #455d4e;border-radius:10px;box-shadow:0 12px 50px #0006;overflow:hidden}
+        header{display:flex;align-items:center;gap:6px;padding:5px 8px;background:rgb(33 56 43 / calc(var(--caton-bg-opacity,.85) * .6));cursor:move;touch-action:none}
         header strong{flex:1;font-size:14px;letter-spacing:.3px}button{font:inherit;border:1px solid #52695b;border-radius:5px;background:#2a4133;color:#eef5ed;padding:2px 7px;cursor:pointer}button:hover{background:#3c5945}button:focus-visible,input:focus-visible{outline:2px solid #eac975;outline-offset:2px}
+        header label{display:flex;align-items:center;gap:3px;white-space:nowrap;font-size:11px;cursor:default}header input[type=number]{width:36px;padding:1px 2px;text-align:center;font:inherit;appearance:textfield}header input::-webkit-inner-spin-button,header input::-webkit-outer-spin-button{appearance:none;margin:0}
         .body{padding:4px 8px 6px;max-height:65vh;overflow:auto}
         table{border-collapse:collapse;width:100%;min-width:570px;text-align:center;table-layout:fixed}th,td{padding:4px 1px;border-bottom:1px solid #354b3d}th{font-size:11px;font-weight:500;color:#c4d5c6}th.icon{font-size:18px;line-height:1.2}th:first-child,td:first-child{width:116px;text-align:left;overflow-wrap:anywhere}td{font-variant-numeric:tabular-nums;font-size:14px}td:first-child{font-size:11px}.player-name{display:inline-block;max-width:calc(100% - 24px);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:middle}td button{font-size:11px;padding:0 4px;margin-left:3px;vertical-align:middle}tbody tr:last-child td{border-bottom:0}.total,.score{color:#eac975}.stats-start{border-left:1px solid #52695b}
         .status{font-size:12px;color:#eac975;margin:8px 0;overflow-wrap:anywhere}form{padding:10px;background:#21382b;border-radius:8px;margin-top:10px}form label{display:inline-flex;flex-direction:column;margin:3px;width:58px;font-size:11px}input[type=number]{width:58px;background:#17251f;border:1px solid #52695b;color:#fff;border-radius:4px;padding:5px}form p{margin:0 0 6px}form button{margin:8px 6px 0 0}
@@ -26,6 +27,18 @@
       this.root = el('section', undefined, { class: 'panel' });
       const header = el('header');
       header.append(el('span', '⬡'), el('strong', 'Oh my Caton'));
+      const transparency = el('label', '透明度', { title: '背景透明度：0% 不透明，100% 完全透明' });
+      this.transparencyInput = el('input', undefined, { type: 'number', min: '0', max: '100', step: '1', 'aria-label': '背景透明度百分比' });
+      this.transparencyInput.addEventListener('input', () => {
+        if (!this.transparencyInput.value || !this.transparencyInput.validity.valid) return;
+        const value = Number(this.transparencyInput.value);
+        this.transparency(value);
+        callbacks.transparency(value);
+      });
+      this.transparencyInput.addEventListener('blur', () => this.transparency(this.transparencyValue));
+      transparency.append(this.transparencyInput, el('span', '%'));
+      header.append(transparency);
+      this.transparency(15);
       const minimize = el('button', '−', { 'aria-label': '折叠面板', 'aria-expanded': 'true' });
       minimize.addEventListener('click', () => {
         this.body.hidden = !this.body.hidden;
@@ -41,7 +54,7 @@
       document.body.append(this.host);
       let drag;
       header.addEventListener('pointerdown', event => {
-        if (event.target.closest('button')) return;
+        if (event.target.closest('button, input, label')) return;
         const rect = this.host.getBoundingClientRect();
         drag = { x: event.clientX - rect.left, y: event.clientY - rect.top };
         header.setPointerCapture(event.pointerId);
@@ -54,6 +67,11 @@
       });
       header.addEventListener('pointerup', () => { drag = null; });
       header.addEventListener('pointercancel', () => { drag = null; });
+    }
+    transparency(value) {
+      this.transparencyValue = value;
+      this.transparencyInput.value = value;
+      this.root.style.setProperty('--caton-bg-opacity', String((100 - value) / 100));
     }
     visible(value) { this.host.hidden = !value; }
     render({ tracker, names, playerColors = {}, publicStats = {}, current, hideSelf = true, error }) {

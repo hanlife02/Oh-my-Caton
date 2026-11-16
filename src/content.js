@@ -10,7 +10,7 @@
   const page = crypto.randomUUID();
   let historyWarning = '';
   let journal = { logs: {}, corrections: [] };
-  let prefs = { visible: true };
+  let prefs = { visible: true, transparency: 15 };
   let names = [], playerColors = {}, publicStats = {}, current = null, error = '', saveError = '', timer, saveTimer, observer, active = true;
   let tracker = new Caton.Tracker([]);
   let historyReparsed = false;
@@ -23,6 +23,8 @@
     if (stored[key]?.logs && Array.isArray(stored[key]?.corrections)) journal = stored[key];
     else if (legacy[legacyKey] || prior[`${legacyKey}:rules:2`]) error = '解析规则已更新，旧存档已保留；当前重算可见日志，请校正手牌。';
     if (typeof preferences[prefsKey]?.visible === 'boolean') prefs.visible = preferences[prefsKey].visible;
+    const transparency = preferences[prefsKey]?.transparency;
+    if (Number.isInteger(transparency) && transparency >= 0 && transparency <= 100) prefs.transparency = transparency;
   } catch { error = '无法读取本地存档，当前仅在页面内追踪。'; }
   function draw() { panel.render({ tracker, names, playerColors, publicStats, current, error: [error, saveError, historyWarning].filter(Boolean).join(' ') }); }
   function readPublicStats(board) {
@@ -125,12 +127,14 @@
   }
   const panel = new Caton.Panel({
     visibility(value) { prefs.visible = value; panel.visible(value); persist(); },
+    transparency(value) { prefs.transparency = value; persist(); },
     correct(player, resources) {
       const last = Object.values(journal.logs).filter(log => !log.cancelled && !log.rollbackResolved && (log.stable || log.event)).sort(Caton.compareLogs).at(-1);
       journal.corrections.push({ after: last ? { move: last.move, position: last.position } : { move: 0, position: 0 }, event: { type: 'set', player, resources }, ...(last && last.move == null ? { pendingId: last.id } : {}) });
       replay(); persist();
     },
   });
+  panel.transparency(prefs.transparency);
   panel.visible(prefs.visible);
   draw(); scan();
   observer = new MutationObserver(mutations => {
