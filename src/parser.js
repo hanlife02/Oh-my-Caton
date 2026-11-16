@@ -17,13 +17,17 @@
   function parseLog(node, names, current = null) {
     const raw = logText(node.querySelector('.roundedbox') || node).replace(/\s+/g, ' ').trim();
     const variableTheft = /^(?:资源垄断|商品垄断|联姻|大商家|Resource Monopoly|Trade Monopoly|Wedding|Master Merchant)\s*[:：]/i.test(raw);
-    const text = raw.replace(/^(?:灌溉|采矿|矿业|资源垄断|商品垄断|联姻|大商家|Irrigation|Mining|Resource Monopoly|Trade Monopoly|Wedding|Master Merchant)\s*[:：]\s*/i, '').replace(/^⇌\s*强制交易[！!]\s*/, '');
     const ordered = [...names].sort((a, b) => b.length - a.length);
+    let text = raw.replace(/^⇌\s*(?:强制交易[！!]\s*)?/, '');
+    const startsWithActor = value => ordered.some(name => value.startsWith(name)) || /^(?:你|You\b)/i.test(value);
+    const prefixed = text.match(/^[^:：]+[:：]\s*(.*)$/);
+    if (!startsWithActor(text) && prefixed && startsWithActor(prefixed[1])) text = prefixed[1];
     const privateLog = /^(?:你|You\b)/i.test(text) && current && names.includes(current);
     const player = privateLog ? current : ordered.find(name => text.startsWith(name));
     if (!player) return null;
     const action = (privateLog ? text.replace(/^(?:你|You\b)/i, '') : text.slice(player.length)).trim();
     const progressCard = /发展卡|进步卡|(?:progress|development) cards?/i.test(action);
+    if (/提出.*交易请求|proposes?.*trade/i.test(action)) return null;
     if (/没有.*偷|未能.*偷|偷.*(?:失败|不到)|stole nothing|could not steal|did not steal/i.test(action)) return null;
     const groups = Array.from(node.querySelectorAll('span[style*="nowrap"]'))
       .filter(el => !el.parentElement.closest('span[style*="nowrap"]'))
@@ -39,10 +43,14 @@
     if (improvement) return { type: 'improvement', player, resource: { science: 'paper', trade: 'cloth', politics: 'coin' }[improvement[1].toLowerCase()], level: Number(improvement[2]) };
     // Specific compound actions must precede generic gain/loss words.
     if (/用资源进行交易|和银行交易|与银行交易|traded? with (?:the )?bank/i.test(action)) {
+      const arrow = action.match(/[:：]\s*(.*?)\s*→\s*(.*)$/);
+      if (arrow && Object.keys(bundle(arrow[1])).length && Object.keys(bundle(arrow[2])).length) return { type: 'bank', player, give: bundle(arrow[1]), receive: bundle(arrow[2]) };
       if (groups.length !== 2) return null;
       return { type: 'bank', player, give: groups[0], receive: groups[1] };
     }
     if (/交给|traded? with/i.test(action) && other) {
+      const exchanged = action.slice(action.indexOf(other) + other.length).match(/^(.*?)\s*并收到\s*(.*?)\s*作为交换/);
+      if (exchanged && Object.keys(bundle(exchanged[1])).length && Object.keys(bundle(exchanged[2])).length) return { type: 'trade', player, other, give: bundle(exchanged[1]), receive: bundle(exchanged[2]) };
       if (groups.length !== 2) return null;
       return { type: 'trade', player, other, give: groups[0], receive: groups[1] };
     }

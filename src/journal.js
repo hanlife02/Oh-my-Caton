@@ -32,6 +32,7 @@
         if (!matched.has(j)) matched.set(j, new Set());
         matched.get(j).add(detail.type);
         entries[i].event = null;
+        entries[i].resolvedBy = entries[j].id;
         break;
       }
     }
@@ -80,18 +81,47 @@
       logs[entry.key] = { ...entry, position };
       changed = true;
     }
-    return { changed, unverified };
+    const anchors = Object.fromEntries(incomingKeys.map(entry => [entry.id, { move: entry.move, position: logs[entry.key].position }]));
+    for (const entry of incomingKeys) {
+      if (entry.resolvedBy != null && anchors[entry.resolvedBy]) anchors[entry.id] = anchors[entry.resolvedBy];
+    }
+    return { changed, unverified, anchors };
   }
   const compareLogs = (a, b) => (a.move ?? Number.MAX_SAFE_INTEGER) - (b.move ?? Number.MAX_SAFE_INTEGER) || a.position - b.position || (a.rank || 0) - (b.rank || 0);
   function replayLogs(tracker, entries, current) {
     const cranes = new Set();
+    const partners = new Map(), rollbacks = new Set();
+    let setup = Object.keys(tracker.players).every(name => tracker.total(name) === 0);
+    const freePlacements = new Set();
     for (let i = 0; i < entries.length; i++) {
-      const entry = entries[i], event = entry.event;
+      const entry = entries[i];
+      let event = entry.event;
       if (!event) continue;
+      if (setup && event.type === 'build' && event.free && entry.move != null) freePlacements.add(JSON.stringify([entry.move, event.player]));
+      else if (!['unresolved', 'turnEnd'].includes(event.type)) setup = false;
       // Older journals counted Spy's progress-card theft as a resource transfer.
       if (event.type === 'steal' && /发展卡|进步卡|(?:progress|development) cards?/i.test(entry.source || entry.text || '')) continue;
+      // Wedding transfers two cards (or the victim's remaining hand), even
+      // when their types are private. Apply this to saved journals as well.
+      if (event.type === 'steal' && !event.resources && /^(?:联姻|Wedding)\s*[:：]/i.test(entry.source || entry.text || '')) {
+        if (!tracker.unresolved(event.victim)) event = { ...event, resources: { unknown: Math.min(2, tracker.total(event.victim)) } };
+      }
+      if (event.type === 'trade' || event.type === 'steal') {
+        const other = event.other || event.victim;
+        for (const [a, b] of [[event.player, other], [other, event.player]]) {
+          if (!partners.has(a)) partners.set(a, new Set());
+          partners.get(a).add(b);
+        }
+      }
+      if (event.type === 'unresolved' && /回滚操作|取消了他的行动|undo|roll.?back/i.test(entry.source || entry.text || '')) {
+        const rollbackKey = entry.move == null ? null : JSON.stringify([entry.move, event.player]);
+        if (setup && rollbackKey && freePlacements.has(rollbackKey)) continue;
+        if (rollbackKey && rollbacks.has(rollbackKey)) continue;
+        if (rollbackKey) rollbacks.add(rollbackKey);
+        event = { ...event, affected: [event.player, ...(partners.get(event.player) || [])] };
+      }
       if (event.type === 'crane') { cranes.add(event.player); continue; }
-      if (event.type === 'turnEnd') { cranes.delete(event.player); continue; }
+      if (event.type === 'turnEnd') { cranes.delete(event.player); partners.clear(); continue; }
       if (event.type === 'improvement') {
         const cost = Math.max(0, event.level - (cranes.has(event.player) ? 1 : 0));
         cranes.delete(event.player);

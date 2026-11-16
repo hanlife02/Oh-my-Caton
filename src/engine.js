@@ -16,6 +16,7 @@
       this.warnings = [];
     }
     total(name) { return sum(this.players[name]); }
+    unresolved(name) { return this.warnings.some(w => w.unresolved.includes(name)); }
     apply(event) {
       const next = structuredClone(this.players);
       const validate = bundle => {
@@ -32,6 +33,9 @@
       const remove = (name, bundle) => {
         validate(bundle);
         const h = hand(name);
+        // Invalid hands are hidden until calibrated. Their stale balance must
+        // not prevent a publicly known transfer from updating the other party.
+        if (this.unresolved(name)) return;
         // Spend known resources first, filling deficits from uncertain cards.
         for (const [r, n] of Object.entries(bundle)) {
           if (r === 'unknown') continue;
@@ -70,7 +74,7 @@
             validate(bundle);
             const victim = hand(event.victim);
             const known = resources.slice(0, -1).filter(r => victim[r] > 0);
-            if (bundle.unknown && !victim.unknown && known.length === 1) bundle = { [known[0]]: bundle.unknown };
+            if (bundle.unknown && !this.unresolved(event.victim) && !victim.unknown && known.length === 1) bundle = { [known[0]]: bundle.unknown };
             remove(event.victim, bundle);
             add(event.player, bundle);
             break;

@@ -69,12 +69,13 @@
         if (hideSelf && name === current) continue;
         const row = el('tr', undefined, { 'data-player': name });
         const nameCell = el('td', name);
-        if (tracker.warnings.some(w => w.unresolved.includes(name))) nameCell.append(el('small', ' ⚠ 待校正'));
+        const unresolved = tracker.warnings.some(w => w.unresolved.includes(name));
+        if (unresolved) nameCell.append(el('small', ' ⚠ 待校正'));
         const edit = el('button', '✎', { 'aria-label': `校正 ${name} 的手牌` });
         edit.addEventListener('click', () => this.edit(name, tracker.players[name]));
         nameCell.append(edit); row.append(nameCell);
-        for (const r of Caton.resources) row.append(el('td', String(tracker.players[name][r]), { 'data-resource': r, title: labels[r] }));
-        row.append(el('td', String(tracker.total(name)), { class: 'total' })); tbody.append(row);
+        for (const r of Caton.resources) row.append(el('td', unresolved ? '—' : String(tracker.players[name][r]), { 'data-resource': r, title: labels[r] }));
+        row.append(el('td', unresolved ? '—' : String(tracker.total(name)), { class: 'total' })); tbody.append(row);
       }
       grid.append(tbody); this.body.append(grid);
       const warnings = tracker.warnings;
