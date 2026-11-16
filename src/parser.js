@@ -34,6 +34,13 @@
       .map(el => bundle(logText(el))).filter(g => Object.keys(g).length);
     const found = bundle(action);
     const other = ordered.find(name => name !== player && action.includes(name));
+    const monopoly = raw.match(/^(资源垄断|商品垄断|Resource Monopoly|Trade Monopoly)\s*[:：]/i);
+    const requested = action.match(/^索要\s*(lumber|brick|wool|grain|ore|paper|cloth|coin)\b/i);
+    if (monopoly && requested) {
+      const resource = requested[1].toLowerCase();
+      const commodity = /商品|Trade/i.test(monopoly[1]);
+      if ((commodity ? ['paper', 'cloth', 'coin'] : ['lumber', 'brick', 'wool', 'grain', 'ore']).includes(resource)) return { type: 'monopolyChoice', player, resource, max: commodity ? 1 : 2 };
+    }
     const forced = action.match(/^将\s*(.*?)\s*给\s*.*?[，,]后者提供\s*(.*?)\s*作为交换/);
     if (forced && other) return { type: 'trade', player, other, give: bundle(forced[1]), receive: bundle(forced[2]) };
     if (/回滚操作|取消了他的行动|undo|roll.?back/i.test(action)) return { type: 'unresolved', player, affected: names, message: '发生回滚，请校正受影响玩家的手牌。' };

@@ -219,6 +219,44 @@ test('a cancelled private notification cannot reveal an active theft', () => {
   assert.deepEqual(tracker.warnings, []);
   assert.equal(tracker.players.Alice.unknown, 1);
 });
+test('private details following consecutive thefts reveal their preceding theft even during incremental scans', () => {
+  const logs = {};
+  const notifications = [
+    { id: 1, move: 378, source: 'Alice steals from Bob', event: { type: 'steal', player: 'Alice', victim: 'Bob', resources: { unknown: 1 } } },
+    { id: 2, move: null, source: 'You gain wool', event: { type: 'gain', player: 'Alice', resources: { wool: 1 }, private: true } },
+    { id: 3, move: 378, source: 'Alice steals from Carol', event: { type: 'steal', player: 'Alice', victim: 'Carol', resources: { unknown: 1 } } },
+    { id: 4, move: 378, source: 'You gain brick', event: { type: 'gain', player: 'Alice', resources: { brick: 1 }, private: true } },
+  ];
+  for (let count = 2; count <= 4; count++) Caton.mergeLogs(logs, Caton.prepareLogs(notifications.slice(0, count)), 'one');
+  notifications[1].move = 378;
+  Caton.mergeLogs(logs, Caton.prepareLogs(notifications), 'one');
+  const tracker = new Caton.Tracker(['Alice', 'Bob', 'Carol']);
+  tracker.apply({ type: 'set', player: 'Bob', resources: { wool: 1 } });
+  tracker.apply({ type: 'set', player: 'Carol', resources: { brick: 1 } });
+  Caton.replayLogs(tracker, Object.values(logs).sort(Caton.compareLogs), 'Alice');
+  assert.deepEqual(tracker.warnings, []);
+  assert.equal(tracker.total('Alice'), 2);
+  assert.equal(tracker.players.Alice.wool, 1);
+  assert.equal(tracker.players.Alice.brick, 1);
+  assert.equal(tracker.total('Bob'), 0);
+  assert.equal(tracker.total('Carol'), 0);
+});
+test('a missing private move cannot permanently reveal the preceding theft from a different move', () => {
+  const logs = {};
+  const rows = [
+    { id: 1, move: 10, source: 'Alice steals from Bob', event: { type: 'steal', player: 'Alice', victim: 'Bob', resources: { unknown: 1 } } },
+    { id: 2, move: null, source: 'You gain wool', event: { type: 'gain', player: 'Alice', resources: { wool: 1 }, private: true } },
+    { id: 3, move: 11, source: 'Alice steals from Carol', event: { type: 'steal', player: 'Alice', victim: 'Carol', resources: { unknown: 1 } } },
+  ];
+  for (const count of [2, 3]) Caton.mergeLogs(logs, Caton.prepareLogs(rows.slice(0, count)), 'one');
+  rows[1].move = 11;
+  Caton.mergeLogs(logs, Caton.prepareLogs(rows), 'one');
+  const first = Object.values(logs).find(log => log.move === 10);
+  const second = Object.values(logs).find(log => log.event?.victim === 'Carol');
+  assert.equal(first.event.revealed, undefined);
+  assert.deepEqual(first.event.resources, { unknown: 1 });
+  assert.deepEqual(second.event.resources, { wool: 1 });
+});
 test('a hand correction attached to a cancelled action cannot overwrite the restored hand', () => {
   const logs = {}, turn = rollbackTurn();
   Caton.mergeLogs(logs, Caton.prepareLogs(turn), 'one');

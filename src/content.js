@@ -15,6 +15,7 @@
   let names = [], playerColors = {}, publicStats = {}, current = null, error = '', saveError = '', timer, saveTimer, observer, active = true;
   let tracker = new Caton.Tracker([]);
   let historyReparsed = false;
+  let privateHistoryRepaired = false;
   const storage = chrome.storage.local;
   try {
     const stored = await storage.get(key);
@@ -44,6 +45,7 @@
       politics: counter('[id^="cat_panel_ck_citylevel_lvl_politics_"]', 5),
       science: counter('[id^="cat_panel_ck_citylevel_lvl_science_"]', 5),
       score: counter('.player_score_value', 999),
+      cards: counter('[id^="cat_panel_score_resources_"]', 999),
     };
   }
   function savedJournal() { return { ...journal, corrections: journal.corrections.filter(c => c.after.move != null), logs: Object.fromEntries(Object.entries(journal.logs).filter(([, log]) => log.stable)) }; }
@@ -66,12 +68,11 @@
     saveTimer = setTimeout(flush, 100);
   }
   function replay() {
-    tracker = new Caton.Tracker(names);
     const entries = Object.values(journal.logs).map(log => ({ ...log, rank: 0 }));
     journal.corrections.forEach((correction, i) => entries.push({ ...correction.after, rank: i + 1, event: correction.event }));
     entries.push(...ambiguousRollbacks);
     entries.sort(Caton.compareLogs);
-    Caton.replayLogs(tracker, entries, current);
+    tracker = Caton.trackLogs(names, entries, current, Object.fromEntries(names.filter(name => publicStats[name]?.cards != null).map(name => [name, publicStats[name].cards])));
     draw();
   }
   function scan() {
@@ -95,7 +96,7 @@
         if (log.event || !log.source) continue;
         const node = document.createElement('div'); node.textContent = log.source;
         const recovered = Caton.parseLog(node, names, current);
-        if (recovered && !recovered.private && ['gain', 'loss', 'bank', 'trade'].includes(recovered.type)) {
+        if (recovered && !recovered.private && ['gain', 'loss', 'bank', 'trade', 'monopolyChoice'].includes(recovered.type)) {
           log.event = recovered; changed = true;
         }
       }
@@ -115,6 +116,14 @@
     }
     incoming.sort((a, b) => a.id - b.id);
     const result = Caton.mergeLogs(journal.logs, Caton.prepareLogs(incoming), page);
+    if (current && (!privateHistoryRepaired || result.changed)) {
+      const moves = privateHistoryRepaired ? new Set(incoming.filter(log => log.move != null && log.event?.private).map(log => log.move)) : null;
+      if ((!moves || moves.size) && Caton.repairPrivateLogs(journal.logs, source => {
+        const node = document.createElement('div'); node.textContent = source;
+        return Caton.parseLog(node, names, current);
+      }, moves)) changed = true;
+      privateHistoryRepaired = true;
+    }
     if (JSON.stringify(ambiguousRollbacks) !== JSON.stringify(result.ambiguityAnchors)) changed = true;
     ambiguousRollbacks = result.ambiguityAnchors;
     for (const correction of journal.corrections) {
@@ -127,7 +136,7 @@
     changed = changed || result.changed || historyWarning !== nextWarning;
     historyWarning = nextWarning;
     if (changed) { replay(); persist(); }
-    else if (viewChanged) draw();
+    else if (viewChanged) replay();
   }
   const panel = new Caton.Panel({
     visibility(value) { prefs.visible = value; panel.visible(value); persist(); },

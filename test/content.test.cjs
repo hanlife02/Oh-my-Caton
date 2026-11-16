@@ -324,6 +324,69 @@ test('live private loss arriving before the public theft is reconciled without a
   assert.equal(p.panel.querySelector('[data-player="Bob Smith"] [data-resource=lumber]').textContent, '1');
   p.dom.window.close();
 });
+test('saved mispaired consecutive thefts recover from canonical private sources after the DOM is gone', async () => {
+  const rows = [
+    { move: 1, position: 1, source: 'Bob 获得 {wool}', event: { type: 'gain', player: 'Bob', resources: { wool: 1 } } },
+    { move: 1, position: 2, source: 'Carol 获得 {brick}', event: { type: 'gain', player: 'Carol', resources: { brick: 1 } } },
+    { move: 2, position: 1, source: 'Alice 从 Bob 处偷取资源', event: { type: 'steal', player: 'Alice', victim: 'Bob', resources: { wool: 1 }, revealed: true } },
+    { move: 2, position: 2, source: '你获得 {wool}', event: null },
+    { move: 2, position: 3, source: 'Alice 从 Carol 处偷取资源', event: { type: 'steal', player: 'Alice', victim: 'Carol', resources: { wool: 1 }, revealed: true } },
+    { move: 2, position: 4, source: '你获得 {brick}', event: { type: 'gain', player: 'Alice', resources: { brick: 1 }, private: true } },
+  ];
+  const logs = Object.fromEntries(rows.map((log, sequence) => [String(sequence), { ...log, id: sequence, sequence, stable: true }]));
+  const saved = { 'caton:table:42:rules:3': { logs, corrections: [] } };
+  for (let refresh = 0; refresh < 2; refresh++) {
+    const p = await page(saved, '', ['Alice', 'Bob', 'Carol']);
+    assert.equal(p.panel.querySelector('[data-player=Alice] .total').textContent, '2');
+    assert.equal(p.panel.querySelector('[data-player=Alice] [data-resource=wool]').textContent, '1');
+    assert.equal(p.panel.querySelector('[data-player=Alice] [data-resource=brick]').textContent, '1');
+    assert.equal(p.panel.querySelector('[data-player=Carol] .total').textContent, '0');
+    assert.doesNotMatch(p.panel.textContent, /待校正|无法结算/);
+    p.dom.window.close();
+  }
+});
+test('public resource counters resolve saved monopoly uncertainty and recompute when counters change without new logs', async () => {
+  const saved = { 'caton:table:42:rules:3': { corrections: [], logs: {
+    gain: { id: 1, move: 1, position: 1, stable: true, event: { type: 'gain', player: 'Bob', resources: { lumber: 1, unknown: 2 } } },
+    choice: { id: 2, move: 2, position: 1, stable: true, source: '资源垄断: Alice 索要lumber 但 Carol 没有该种类资源.', event: null },
+    transfer: { id: 3, move: 2, position: 2, stable: true, source: '资源垄断: Alice 从 Bob 那里偷取资源', event: { type: 'steal', player: 'Alice', victim: 'Bob', resources: null } },
+  } } };
+  const p = await page(saved, '', ['Alice', 'Bob', 'Carol']);
+  assert.equal(p.panel.querySelector('[data-player=Alice] .total').textContent, '—');
+  const boards = p.dom.window.document.querySelectorAll('.player-board');
+  boards[0].insertAdjacentHTML('beforeend', '<span id="cat_panel_score_resources_1">1</span>');
+  boards[1].insertAdjacentHTML('beforeend', '<span id="cat_panel_score_resources_2">2</span>');
+  await pause();
+  assert.equal(p.panel.querySelector('[data-player=Alice] [data-resource=lumber]').textContent, '1');
+  assert.equal(p.panel.querySelector('[data-player=Bob] .total').textContent, '2');
+  boards[0].querySelector('span').textContent = '2'; boards[1].querySelector('span').textContent = '1';
+  await pause();
+  assert.equal(p.panel.querySelector('[data-player=Alice] [data-resource=lumber]').textContent, '2');
+  boards[0].querySelector('span').textContent = '9';
+  await pause();
+  assert.equal(p.panel.querySelector('[data-player=Alice] .total').textContent, '—');
+  assert.equal(saved['caton:table:42:rules:3'].logs.transfer.event.resources, null);
+  p.dom.window.close();
+});
+test('actual Bishop and monopoly suffix restores the independently observed public totals after refresh', async () => {
+  const fixture = require('./fixtures/bga-ck-private-monopoly-393.json');
+  const rows = [
+    ...Object.entries(fixture.baseline).map(([player, resources], i) => ({ move: 377, position: i - 3, event: { type: 'set', player, resources } })),
+    ...fixture.logs,
+  ];
+  const saved = { 'caton:table:42:rules:3': { corrections: [], logs: Object.fromEntries(rows.map((row, sequence) => [String(sequence), { ...row, id: sequence, sequence, stable: true }])) } };
+  for (let refresh = 0; refresh < 2; refresh++) {
+    const p = await page(saved, '', ['Alice', 'Bob', 'Carol']);
+    for (const [i, name] of ['Alice', 'Bob', 'Carol'].entries()) p.dom.window.document.querySelectorAll('.player-board')[i].insertAdjacentHTML('beforeend', `<span id="cat_panel_score_resources_${i}">${fixture.publicTotals[name]}</span>`);
+    await pause();
+    for (const [name, count] of Object.entries(fixture.publicTotals)) assert.equal(p.panel.querySelector(`[data-player=${name}] .total`).textContent, String(count));
+    assert.equal(p.panel.querySelector('[data-player=Alice] [data-resource=wool]').textContent, '1');
+    assert.equal(p.panel.querySelector('[data-player=Alice] [data-resource=ore]').textContent, '1');
+    assert.equal(p.panel.querySelector('[data-player=Alice] [data-resource=coin]').textContent, '2');
+    assert.doesNotMatch(p.panel.textContent, /待校正|无法结算/);
+    p.dom.window.close();
+  }
+});
 test('extension invalidation during pagehide is caught and requests a page refresh', async () => {
   const p = await page({}, gainLog(1));
   const errors = [];

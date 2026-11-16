@@ -1,0 +1,319 @@
+{
+  "baseline": {
+    "Alice": {
+      "lumber": 1,
+      "brick": 1,
+      "wool": 1,
+      "grain": 0,
+      "ore": 1,
+      "paper": 0,
+      "cloth": 0,
+      "coin": 2,
+      "unknown": 0
+    },
+    "Bob": {
+      "lumber": 1,
+      "brick": 2,
+      "wool": 2,
+      "grain": 0,
+      "ore": 0,
+      "paper": 0,
+      "cloth": 2,
+      "coin": 0,
+      "unknown": 1
+    },
+    "Carol": {
+      "lumber": 0,
+      "brick": 2,
+      "wool": 0,
+      "grain": 0,
+      "ore": 0,
+      "paper": 0,
+      "cloth": 0,
+      "coin": 0,
+      "unknown": 4
+    }
+  },
+  "logs": [
+    {
+      "move": 378,
+      "position": 1,
+      "source": "Alice 移动 强盗",
+      "event": null
+    },
+    {
+      "move": 378,
+      "position": 2,
+      "source": "Alice 从 Bob 处偷取资源",
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "wool": 1
+        },
+        "revealed": true,
+        "type": "steal",
+        "victim": "Bob"
+      }
+    },
+    {
+      "move": 378,
+      "position": 3,
+      "source": "你获得 {wool}",
+      "event": null
+    },
+    {
+      "move": 378,
+      "position": 4,
+      "source": "Alice 从 Carol 处偷取资源",
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "wool": 1
+        },
+        "revealed": true,
+        "type": "steal",
+        "victim": "Carol"
+      }
+    },
+    {
+      "move": 378,
+      "position": 5,
+      "source": "你获得 {brick}",
+      "event": {
+        "player": "Alice",
+        "private": true,
+        "resources": {
+          "brick": 1
+        },
+        "type": "gain"
+      }
+    },
+    {
+      "move": 379,
+      "position": 1,
+      "source": "Alice 使用 {lumber} {brick} 造了一条路",
+      "event": {
+        "building": "road",
+        "free": false,
+        "player": "Alice",
+        "resources": {
+          "brick": 1,
+          "lumber": 1
+        },
+        "type": "build"
+      }
+    },
+    {
+      "move": 380,
+      "position": 1,
+      "source": "Alice 跳过",
+      "event": {
+        "player": "Alice",
+        "type": "turnEnd"
+      }
+    },
+    {
+      "move": 381,
+      "position": 1,
+      "source": "Bob投掷骰子...",
+      "event": null
+    },
+    {
+      "move": 381,
+      "position": 2,
+      "source": "Bob掷出",
+      "event": null
+    },
+    {
+      "move": 381,
+      "position": 3,
+      "source": "野蛮人前进一步",
+      "event": null
+    },
+    {
+      "move": 381,
+      "position": 4,
+      "source": "Bob 获得 2 {lumber} 1 {paper}",
+      "event": {
+        "player": "Bob",
+        "resources": {
+          "lumber": 2,
+          "paper": 1
+        },
+        "type": "gain"
+      }
+    },
+    {
+      "move": 381,
+      "position": 5,
+      "source": "Carol 获得 {ore} {coin}",
+      "event": {
+        "player": "Carol",
+        "resources": {
+          "coin": 1,
+          "ore": 1
+        },
+        "type": "gain"
+      }
+    },
+    {
+      "move": 381,
+      "position": 6,
+      "source": "Alice 获得 {ore} {coin}",
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "coin": 1,
+          "ore": 1
+        },
+        "type": "gain"
+      }
+    },
+    {
+      "move": 382,
+      "position": 1,
+      "source": "Bob 使用 {lumber} {brick} 造了一条路",
+      "event": {
+        "building": "road",
+        "free": false,
+        "player": "Bob",
+        "resources": {
+          "brick": 1,
+          "lumber": 1
+        },
+        "type": "build"
+      }
+    },
+    {
+      "move": 383,
+      "position": 1,
+      "source": "Bob 使用 {lumber} {brick} 造了一条路",
+      "event": {
+        "building": "road",
+        "free": false,
+        "player": "Bob",
+        "resources": {
+          "brick": 1,
+          "lumber": 1
+        },
+        "type": "build"
+      }
+    },
+    {
+      "move": 384,
+      "position": 1,
+      "source": "Bob 打出了 资源垄断",
+      "event": null
+    },
+    {
+      "move": 385,
+      "position": 1,
+      "source": "资源垄断: Bob 索要lumber 但 Alice 没有该种类资源.",
+      "event": null
+    },
+    {
+      "move": 385,
+      "position": 2,
+      "source": "资源垄断: Bob 从 Carol 那里偷取资源",
+      "event": {
+        "player": "Bob",
+        "resources": null,
+        "type": "steal",
+        "victim": "Carol"
+      }
+    },
+    {
+      "move": 386,
+      "position": 1,
+      "source": "Bob 跳过",
+      "event": {
+        "player": "Bob",
+        "type": "turnEnd"
+      }
+    },
+    {
+      "move": 387,
+      "position": 1,
+      "source": "Carol投掷骰子...",
+      "event": null
+    },
+    {
+      "move": 387,
+      "position": 2,
+      "source": "Carol掷出",
+      "event": null
+    },
+    {
+      "move": 387,
+      "position": 3,
+      "source": "野蛮人前进一步",
+      "event": null
+    },
+    {
+      "move": 387,
+      "position": 4,
+      "source": "强盗袭击",
+      "event": null
+    },
+    {
+      "move": 388,
+      "position": 1,
+      "source": "Alice 弃置了 1 {brick} 1 {wool} 2 {ore}",
+      "event": {
+        "player": "Alice",
+        "resources": {
+          "brick": 1,
+          "ore": 2,
+          "wool": 1
+        },
+        "type": "loss"
+      }
+    },
+    {
+      "move": 389,
+      "position": 1,
+      "source": "Carol 移动 强盗",
+      "event": null
+    },
+    {
+      "move": 389,
+      "position": 2,
+      "source": "Carol 从 Bob 处偷取资源",
+      "event": {
+        "player": "Carol",
+        "resources": {
+          "unknown": 1
+        },
+        "type": "steal",
+        "victim": "Bob"
+      }
+    },
+    {
+      "move": 390,
+      "position": 1,
+      "source": "Carol 打出了 商业港口",
+      "event": null
+    },
+    {
+      "move": 393,
+      "position": 1,
+      "source": "⇌ 强制交易！Carol 将 {ore} 给 Alice，后者提供 {coin} 作为交换",
+      "event": {
+        "give": {
+          "ore": 1
+        },
+        "other": "Alice",
+        "player": "Carol",
+        "receive": {
+          "coin": 1
+        },
+        "type": "trade"
+      }
+    }
+  ],
+  "publicTotals": {
+    "Alice": 4,
+    "Bob": 6,
+    "Carol": 7
+  }
+}

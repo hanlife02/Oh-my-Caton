@@ -209,6 +209,70 @@ test('Master Merchant replays two hidden cards from the saved public transfer', 
     assert.equal(tracker.players.Bob.unknown, 1);
   }
 });
+test('monopoly request announces the selected resource and the resource or commodity limit', () => {
+  for (const [text, resource, max] of [
+    ['资源垄断: Alice 索要lumber 但 Bob 没有该种类资源.', 'lumber', 2],
+    ['商品垄断: Alice 索要paper 但 Bob 没有该种类资源.', 'paper', 1],
+  ]) {
+    const event = Caton.parseLog(new JSDOM(`<div>${text}</div>`).window.document.querySelector('div'), names, 'Alice');
+    assert.deepEqual(event, { type: 'monopolyChoice', player: 'Alice', resource, max });
+  }
+});
+test('public hand totals uniquely constrain a hidden resource monopoly without changing the raw journal', () => {
+  const entries = [
+    { move: 1, event: { type: 'gain', player: 'Bob', resources: { lumber: 1, unknown: 2 } } },
+    { move: 2, event: { type: 'monopolyChoice', player: 'Alice', resource: 'lumber', max: 2 } },
+    { move: 2, source: '资源垄断: Alice 从 Bob 那里偷取资源', event: { type: 'steal', player: 'Alice', victim: 'Bob', resources: null } },
+  ];
+  for (const [alice, bob, expected] of [[1, 2, 1], [2, 1, 2]]) {
+    const tracker = Caton.trackLogs(['Alice', 'Bob'], entries, 'Alice', { Alice: alice, Bob: bob });
+    assert.deepEqual(tracker.warnings, []);
+    assert.equal(tracker.players.Alice.lumber, expected);
+    assert.equal(tracker.total('Bob'), bob);
+    assert.equal(entries[2].event.resources, null, 'public constraints do not rewrite historical facts');
+  }
+  for (const totals of [{}, { Alice: 1 }, { Alice: 9, Bob: 9 }]) {
+    assert.ok(Caton.trackLogs(['Alice', 'Bob'], entries, 'Alice', totals).unresolved('Alice'));
+  }
+});
+test('monopoly bounds prove capped known resources and positive commodity transfers without counter guesses', () => {
+  for (const [resource, max, hand, expected] of [
+    ['lumber', 2, { lumber: 3, unknown: 2 }, 2], ['lumber', 2, { lumber: 1 }, 1],
+    ['paper', 1, { unknown: 2 }, 1],
+  ]) {
+    const tracker = new Caton.Tracker(['Alice', 'Bob']);
+    tracker.apply({ type: 'set', player: 'Bob', resources: hand });
+    Caton.replayLogs(tracker, [
+      { move: 1, event: { type: 'monopolyChoice', player: 'Alice', resource, max } },
+      { move: 1, source: `${max === 1 ? '商品' : '资源'}垄断: Alice 从 Bob 那里偷取资源`, event: { type: 'steal', player: 'Alice', victim: 'Bob', resources: null } },
+    ], 'Alice');
+    assert.deepEqual(tracker.warnings, []);
+    assert.equal(tracker.players.Alice[resource], expected);
+  }
+});
+test('multiple monopoly quantities with the same public totals remain uncertain', () => {
+  const entries = [
+    { move: 1, event: { type: 'gain', player: 'Alice', resources: { unknown: 2 } } },
+    { move: 1, event: { type: 'gain', player: 'Bob', resources: { unknown: 2 } } },
+    ...[['Alice', 'Bob'], ['Bob', 'Alice']].flatMap(([player, victim], i) => [
+      { move: i + 2, event: { type: 'monopolyChoice', player, resource: 'lumber', max: 2 } },
+      { move: i + 2, source: `资源垄断: ${player} 从 ${victim} 那里偷取资源`, event: { type: 'steal', player, victim, resources: null } },
+    ]),
+  ];
+  assert.ok(Caton.trackLogs(['Alice', 'Bob'], entries, 'Alice', { Alice: 2, Bob: 2 }).unresolved('Alice'));
+});
+test('monopoly with an undisclosed selected type keeps the transferred cards unknown', () => {
+  for (const [card, count, totals] of [['商品垄断', 1, {}], ['资源垄断', 2, { Alice: 2, Bob: 1 }]]) {
+    const entries = [
+      { move: 1, event: { type: 'gain', player: 'Bob', resources: { lumber: 1, paper: 1, coin: 1 } } },
+      { move: 2, source: `${card}: Alice 从 Bob 那里偷取资源`, event: { type: 'steal', player: 'Alice', victim: 'Bob', resources: null } },
+    ];
+    const tracker = Caton.trackLogs(['Alice', 'Bob'], entries, 'Alice', totals);
+    assert.deepEqual(tracker.warnings, []);
+    assert.equal(tracker.players.Alice.unknown, count);
+    assert.equal(tracker.total('Bob'), 3 - count);
+  }
+});
 test('Wedding cannot infer its count from an invalidated victim total', () => {
   const tracker = new Caton.Tracker(names);
   tracker.apply({ type: 'unresolved', player: 'Bob', affected: ['Bob'], message: 'undo' });

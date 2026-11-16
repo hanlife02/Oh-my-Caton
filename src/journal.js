@@ -51,8 +51,16 @@
     for (let i = 0; i < entries.length; i++) {
       const detail = entries[i].event;
       if (!detail?.private || entries[i].cancelled) continue;
+      const previous = entries[i - 1]?.event;
+      // A missing move can belong to the previous OR the upcoming theft.
+      // Do not create an irreversible reveal until its move annotation arrives.
+      if (entries[i].move == null && previous?.type === 'steal'
+        && (detail.type === 'gain' ? previous.player === detail.player : previous.victim === detail.player)) {
+        entries[i].event = null; entries[i].pendingPrivate = true; continue;
+      }
       // A notification may emit several private details before its public transfers.
       const candidates = [];
+      if (entries[i].move != null && entries[i - 1]?.move === entries[i].move) candidates.push(i - 1);
       let move = entries[i].move;
       for (let j = i + 1; j < entries.length; j++) {
         if (entries[j].move != null) {
@@ -61,7 +69,6 @@
         }
         candidates.push(j);
       }
-      if (entries[i].move != null && entries[i - 1]?.move === entries[i].move) candidates.push(i - 1);
       for (const j of candidates) {
         const publicEvent = entries[j]?.event;
         if (!publicEvent || publicEvent.private || entries[j].cancelled) continue;
@@ -82,6 +89,20 @@
       }
     }
     return entries;
+  }
+  function repairPrivateLogs(logs, parse, onlyMoves) {
+    const ordered = Object.values(logs).sort((a, b) => a.sequence - b.sequence);
+    const parsed = ordered.map(log => log.source && (!onlyMoves || onlyMoves.has(log.move)) ? parse(log.source) : null);
+    const moves = new Set(ordered.filter((log, i) => !log.cancelled && log.move != null && parsed[i]?.private).map(log => log.move));
+    const recovered = prepareLogs(ordered.map((log, i) => ({ ...log, id: i,
+      event: !log.cancelled && moves.has(log.move) && (parsed[i]?.private || parsed[i]?.type === 'steal') ? parsed[i] : log.event })));
+    let changed = false;
+    recovered.forEach((log, i) => {
+      if (ordered[i].cancelled || !moves.has(log.move)
+        || !(parsed[i]?.private && log.event === null || parsed[i]?.type === 'steal' && log.event?.revealed)) return;
+      if (JSON.stringify(ordered[i].event) !== JSON.stringify(log.event)) { ordered[i].event = log.event; changed = true; }
+    });
+    return changed;
   }
   // BGA log_N is page-local. Only data-move-id survives a page reload.
   function mergeLogs(logs, incoming, page) {
@@ -180,7 +201,7 @@
     const occurrences = new Map();
     const incomingKeys = incoming.map(entry => {
       const stable = Number.isSafeInteger(entry.move) && entry.move >= 0;
-      if (!stable && entry.event) unverified = true;
+      if (!stable && (entry.event || entry.pendingPrivate)) unverified = true;
       const signature = signatureOf(entry);
       const group = JSON.stringify([signature, !!entry.cancelled]);
       const occurrence = (occurrences.get(group) || 0) + 1;
@@ -298,8 +319,10 @@
     return values.length > 0;
   }
   const compareLogs = (a, b) => (a.move ?? Number.MAX_SAFE_INTEGER) - (b.move ?? Number.MAX_SAFE_INTEGER) || a.position - b.position || (a.rank || 0) - (b.rank || 0);
-  function replayLogs(tracker, entries, current) {
+  function replayLogs(tracker, entries, current, chooseTransfer) {
     const cranes = new Set();
+    const monopolies = new Map(entries.filter(log => !log.cancelled && !log.rollbackResolved && log.event?.type === 'monopolyChoice')
+      .map(log => [JSON.stringify([log.move, log.event.player]), log.event]));
     const partners = new Map(), rollbacks = new Set();
     const cancelledAnchors = new Set(entries.filter(log => log.cancelled).map(log => JSON.stringify([log.move, log.position])));
     let setup = Object.keys(tracker.players).every(name => tracker.total(name) === 0);
@@ -309,6 +332,7 @@
       if (entry.cancelled || entry.rollbackResolved) continue;
       let event = entry.event;
       if (!event) continue;
+      if (event.type === 'monopolyChoice') continue;
       if (event.type === 'set' && entry.rank > 0 && cancelledAnchors.has(JSON.stringify([entry.move, entry.position]))) continue;
       if (setup && event.type === 'build' && event.free && entry.move != null) freePlacements.add(JSON.stringify([entry.move, event.player]));
       else if (!['unresolved', 'turnEnd'].includes(event.type)) setup = false;
@@ -318,6 +342,20 @@
       // when their types are private. Apply this to saved journals as well.
       if (event.type === 'steal' && !event.resources && /^(?:联姻|Wedding|大商家|Master Merchant)\s*[:：]/i.test(entry.source || entry.text || '')) {
         if (!tracker.unresolved(event.victim)) event = { ...event, resources: { unknown: Math.min(2, tracker.total(event.victim)) } };
+      }
+      if (event.type === 'steal' && !event.resources && /^(?:资源垄断|商品垄断|Resource Monopoly|Trade Monopoly)\s*[:：]/i.test(entry.source || entry.text || '')) {
+        const choice = monopolies.get(JSON.stringify([entry.move, event.player]))
+          || { resource: 'unknown', max: /^(?:商品垄断|Trade Monopoly)/i.test(entry.source || entry.text || '') ? 1 : 2 };
+        if (tracker.players[event.victim] && !tracker.unresolved(event.victim)) {
+          const hand = tracker.players[event.victim];
+          const known = choice.resource === 'unknown' ? 0 : hand[choice.resource];
+          const available = choice.resource === 'unknown' ? tracker.total(event.victim) : known + hand.unknown;
+          const low = Math.max(1, Math.min(choice.max, known));
+          const high = Math.min(choice.max, available);
+          const counts = Array.from({ length: Math.max(0, high - low + 1) }, (_, i) => low + i);
+          const count = counts.length === 1 ? counts[0] : counts.length ? chooseTransfer?.(entry, counts) : null;
+          if (counts.includes(count)) event = { ...event, resources: { [choice.resource]: count } };
+        }
       }
       if (event.type === 'trade' || event.type === 'steal') {
         const other = event.other || event.victim;
@@ -367,5 +405,27 @@
       } else tracker.apply(event);
     }
   }
-  Object.assign(globalThis.Caton, { prepareLogs, mergeLogs, compareLogs, replayLogs });
+  function trackLogs(names, entries, current, totals = {}) {
+    const pending = [new Map()], valid = [];
+    let fallback;
+    // Only hidden monopoly quantities branch (at most two options each). Keep
+    // the raw events intact and recompute against the current public counters.
+    for (let attempts = 0; pending.length && attempts < 64; attempts++) {
+      const choices = pending.pop(), affected = new Set();
+      const tracker = new Caton.Tracker(names);
+      let next;
+      replayLogs(tracker, entries, current, (entry, counts) => {
+        for (const player of [entry.event.player, entry.event.victim]) affected.add(player);
+        if (choices.has(entry)) return choices.get(entry);
+        if (!next && [entry.event.player, entry.event.victim].every(player => Number.isSafeInteger(totals[player]) && totals[player] >= 0)) next = { entry, counts };
+        return null;
+      });
+      if (!fallback) fallback = tracker;
+      if (next) {
+        for (const count of next.counts) pending.push(new Map([...choices, [next.entry, count]]));
+      } else if (!tracker.warnings.length && [...affected].every(player => tracker.total(player) === totals[player])) valid.push(tracker);
+    }
+    return !pending.length && valid.length === 1 ? valid[0] : fallback;
+  }
+  Object.assign(globalThis.Caton, { prepareLogs, repairPrivateLogs, mergeLogs, compareLogs, replayLogs, trackLogs });
 })();
