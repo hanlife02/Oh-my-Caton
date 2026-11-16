@@ -8,14 +8,20 @@
     for (let i = 0; i < entries.length; i++) {
       const undo = entries[i];
       if (undo.move == null || undo.event?.type !== 'unresolved' || !/回滚操作|roll.?back/i.test(undo.source || undo.text || '')) continue;
+      const confirmation = entries[i + 1];
+      const confirmed = confirmation?.move === undo.move && confirmation.event?.type === 'unresolved'
+        && confirmation.event.player === undo.event.player && /取消了他的行动/i.test(confirmation.source || confirmation.text || '');
       const start = entries.findIndex((log, j) => j < i && !log.cancelled && log.move === undo.move
         && log.event && !['unresolved', 'turnEnd'].includes(log.event.type));
-      if (start < 0 || entries.slice(start, i).some(log => !log.cancelled && (log.move == null || log.move < undo.move || log.event?.type === 'turnEnd'))) continue;
-      for (const log of entries.slice(start, i)) { log.cancelled = true; log.cancelledById = undo.id; }
+      const previous = entries[i - 1];
+      // Cancelling an uncommitted selection emits no resource action. Require
+      // the adjacent notification from the preceding move and confirmation;
+      // a truncated history must not look like an empty rollback.
+      const empty = start < 0 && confirmed && previous?.move === undo.move - 1 && previous.id === undo.id - 1;
+      if (!empty && (start < 0 || entries.slice(start, i).some(log => !log.cancelled && (log.move == null || log.move < undo.move || log.event?.type === 'turnEnd')))) continue;
+      if (start >= 0) for (const log of entries.slice(start, i)) { log.cancelled = true; log.cancelledById = undo.id; }
       undo.rollbackResolved = true;
-      const confirmation = entries[i + 1];
-      if (confirmation?.move === undo.move && confirmation.event?.type === 'unresolved'
-          && confirmation.event.player === undo.event.player && /取消了他的行动/i.test(confirmation.source || confirmation.text || '')) confirmation.rollbackResolved = true;
+      if (confirmed) confirmation.rollbackResolved = true;
     }
     const matched = new Map();
     for (let i = 0; i < entries.length; i++) {

@@ -106,3 +106,23 @@ test('a hand correction attached to a cancelled action cannot overwrite the rest
   assert.equal(tracker.players.Alice.grain, 6);
   assert.equal(tracker.players.Alice.ore, 3);
 });
+test('an empty rollback after a complete preceding notification leaves all hands valid', () => {
+  const logs = {};
+  const incoming = [
+    { id: 96, move: 51, source: 'Bob 弃置了 2 {lumber} 2 {grain}', event: { type: 'loss', player: 'Bob', resources: { lumber: 2, grain: 2 } } },
+    { id: 97, move: 51, source: '强盗不会移动，因为野蛮人还没有到达卡坦岛', event: null },
+    { id: 98, move: 52, source: 'Alice 回滚操作', event: { type: 'unresolved', player: 'Alice', message: '发生回滚' } },
+    { id: 99, move: 52, source: 'Alice取消了他的行动', event: { type: 'unresolved', player: 'Alice', message: '发生回滚' } },
+  ];
+  Caton.mergeLogs(logs, Caton.prepareLogs(incoming), 'one');
+  const tracker = new Caton.Tracker(['Alice', 'Bob']);
+  tracker.apply({ type: 'set', player: 'Alice', resources: { lumber: 3 } });
+  tracker.apply({ type: 'set', player: 'Bob', resources: { lumber: 2, grain: 2, ore: 1 } });
+  Caton.replayLogs(tracker, Object.values(logs).sort(Caton.compareLogs), 'Alice');
+  assert.deepEqual(tracker.warnings, []);
+  assert.equal(tracker.total('Alice'), 3);
+  assert.equal(tracker.total('Bob'), 1);
+  const missing = {};
+  Caton.mergeLogs(missing, Caton.prepareLogs(incoming.filter(e => e.id !== 97)), 'two');
+  assert.ok(replayRollback(missing).unresolved('Alice'));
+});

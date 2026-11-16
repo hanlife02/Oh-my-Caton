@@ -170,7 +170,7 @@ test('the full real-match own-view replay ends with the independently observed s
   // Ground truth: original finished-game hand screenshot, not a calculated expectation.
   assert.deepEqual(tracker.players.Alice, { lumber: 2, brick: 3, wool: 0, grain: 0, ore: 0, paper: 2, cloth: 0, coin: 0, unknown: 0 });
   assert.equal(tracker.total('Alice'), 7);
-  assert.ok(tracker.warnings.some(w => w.message.includes('回滚')));
+  assert.equal(tracker.warnings.some(w => w.message.includes('回滚')), false);
 });
 
 test('refresh without private DOM details preserves a previously revealed theft', () => {
