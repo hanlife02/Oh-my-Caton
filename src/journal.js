@@ -323,6 +323,19 @@
     const cranes = new Set();
     const monopolies = new Map(entries.filter(log => !log.cancelled && !log.rollbackResolved && log.event?.type === 'monopolyChoice')
       .map(log => [JSON.stringify([log.move, log.event.player]), log.event]));
+    // A private receipt/loss reveals the shared type for every victim of this
+    // monopoly, even when nobody emitted a public "has none" request.
+    for (const log of entries) {
+      const event = log.event;
+      const source = log.source || log.text || '';
+      if (log.cancelled || log.rollbackResolved || log.move == null || event?.type !== 'steal'
+          || !/^(?:资源垄断|商品垄断|Resource Monopoly|Trade Monopoly)\s*[:：]/i.test(source)) continue;
+      const commodity = /^(?:商品垄断|Trade Monopoly)/i.test(source);
+      const types = Object.keys(event.resources || {}).filter(r => event.resources[r] > 0);
+      if (types.length !== 1 || !(commodity ? ['paper', 'cloth', 'coin'] : ['lumber', 'brick', 'wool', 'grain', 'ore']).includes(types[0])) continue;
+      const key = JSON.stringify([log.move, event.player]);
+      if (!monopolies.has(key)) monopolies.set(key, { resource: types[0], max: commodity ? 1 : 2 });
+    }
     const partners = new Map(), rollbacks = new Set();
     const cancelledAnchors = new Set(entries.filter(log => log.cancelled).map(log => JSON.stringify([log.move, log.position])));
     let setup = Object.keys(tracker.players).every(name => tracker.total(name) === 0);
@@ -343,10 +356,13 @@
       if (event.type === 'steal' && !event.resources && /^(?:联姻|Wedding|大商家|Master Merchant)\s*[:：]/i.test(entry.source || entry.text || '')) {
         if (!tracker.unresolved(event.victim)) event = { ...event, resources: { unknown: Math.min(2, tracker.total(event.victim)) } };
       }
-      if (event.type === 'steal' && !event.resources && /^(?:资源垄断|商品垄断|Resource Monopoly|Trade Monopoly)\s*[:：]/i.test(entry.source || entry.text || '')) {
+      if (event.type === 'steal' && (!event.resources || event.resources.unknown && Object.keys(event.resources).length === 1)
+          && /^(?:资源垄断|商品垄断|Resource Monopoly|Trade Monopoly)\s*[:：]/i.test(entry.source || entry.text || '')) {
         const choice = monopolies.get(JSON.stringify([entry.move, event.player]))
           || { resource: 'unknown', max: /^(?:商品垄断|Trade Monopoly)/i.test(entry.source || entry.text || '') ? 1 : 2 };
-        if (tracker.players[event.victim] && !tracker.unresolved(event.victim)) {
+        if (event.resources?.unknown) {
+          event = { ...event, resources: { [choice.resource]: event.resources.unknown } };
+        } else if (tracker.players[event.victim] && !tracker.unresolved(event.victim)) {
           const hand = tracker.players[event.victim];
           const known = choice.resource === 'unknown' ? 0 : hand[choice.resource];
           const available = choice.resource === 'unknown' ? tracker.total(event.victim) : known + hand.unknown;

@@ -213,9 +213,90 @@ test('monopoly request announces the selected resource and the resource or commo
   for (const [text, resource, max] of [
     ['资源垄断: Alice 索要lumber 但 Bob 没有该种类资源.', 'lumber', 2],
     ['商品垄断: Alice 索要paper 但 Bob 没有该种类资源.', 'paper', 1],
+    ['资源垄断: Alice 索要<span class="cat_log_token icon_brick"></span> 但 Bob 没有该种类资源.', 'brick', 2],
+    ['商品垄断: Alice 索要 {coin} 但 Bob 没有该种类资源.', 'coin', 1],
+    ['Resource Monopoly: Alice requests {ore} but Bob has none.', 'ore', 2],
   ]) {
     const event = Caton.parseLog(new JSDOM(`<div>${text}</div>`).window.document.querySelector('div'), names, 'Alice');
     assert.deepEqual(event, { type: 'monopolyChoice', player: 'Alice', resource, max });
+  }
+});
+test('a private monopoly detail reveals the shared type for other victims before or after it', () => {
+  for (const [card, resource, count] of [['资源垄断', 'brick', 2], ['商品垄断', 'paper', 1]]) {
+    for (const reverse of [false, true]) {
+      const doc = new JSDOM('<body></body>').window.document;
+      const rows = [
+        { id: 1, move: 1, html: `Alice 获得 ${count}<span class="icon_${resource}"></span>` },
+        { id: 2, move: 1, html: `Carol 获得 ${count}<span class="icon_${resource}"></span> 1<span class="icon_ore"></span>` },
+        ... (reverse ? [
+          { id: 3, move: 2, html: `${card}: Bob 从 Carol 那里偷取资源` },
+          { id: 4, move: 2, html: `你失去 ${count}<span class="icon_${resource}"></span>` },
+          { id: 5, move: 2, html: `${card}: Bob 从 Alice 那里偷取资源` },
+        ] : [
+          { id: 3, move: 2, html: `你失去 ${count}<span class="icon_${resource}"></span>` },
+          { id: 4, move: 2, html: `${card}: Bob 从 Alice 那里偷取资源` },
+          { id: 5, move: 2, html: `${card}: Bob 从 Carol 那里偷取资源` },
+        ]),
+      ];
+      const incoming = rows.map(row => {
+        const node = doc.createElement('div'); node.innerHTML = row.html;
+        return { ...row, source: Caton.logText(node), event: Caton.parseLog(node, names, 'Alice') };
+      });
+      const logs = {}; Caton.mergeLogs(logs, Caton.prepareLogs(incoming), 'one');
+      const tracker = Caton.trackLogs(names, Object.values(logs).sort(Caton.compareLogs), 'Alice');
+      assert.deepEqual(tracker.warnings, []);
+      assert.equal(tracker.players.Bob[resource], count * 2);
+      assert.equal(tracker.players.Bob.unknown, 0);
+      assert.equal(tracker.players.Carol.ore, 1);
+      assert.equal(tracker.total('Carol'), 1);
+    }
+  }
+});
+test('monopoly type evidence excludes cancelled details and other moves or actors', () => {
+  for (const detail of [
+    { move: 3 }, { move: null }, { move: 2, cancelled: true },
+    { move: 2, rollbackResolved: true }, { move: 2, player: 'Carol' },
+  ]) {
+    const tracker = new Caton.Tracker(names);
+    tracker.apply({ type: 'set', player: 'Bob', resources: { brick: 2, ore: 1 } });
+    const revealed = { move: detail.move, cancelled: detail.cancelled, rollbackResolved: detail.rollbackResolved,
+      source: `资源垄断: ${detail.player || 'Alice'} 从 Bob 那里偷取资源`,
+      event: { type: 'steal', player: detail.player || 'Alice', victim: 'Bob', resources: { brick: 2 } } };
+    Caton.replayLogs(tracker, [
+      { move: 2, source: '资源垄断: Alice 从 Bob 那里偷取资源', event: { type: 'steal', player: 'Alice', victim: 'Bob', resources: { unknown: 1 } } },
+      revealed,
+    ], 'Alice');
+    assert.equal(tracker.players.Alice.unknown, 1);
+  }
+});
+test('actual known grain and wool monopolies debit every victim and credit the correct resource', () => {
+  const fixture = require('./fixtures/bga-ck-known-monopoly.json');
+  const doc = new JSDOM('<body></body>').window.document;
+  for (const { move, baseline, logs } of fixture.cases) {
+    const incoming = logs.map((log, id) => ({ ...log, id }));
+    const saved = {};
+    Caton.mergeLogs(saved, incoming, 'one');
+    Caton.repairPrivateLogs(saved, source => {
+      const node = doc.createElement('div'); node.textContent = source;
+      return Caton.parseLog(node, names, 'Alice');
+    });
+    const baselineEntries = Object.entries(baseline).map(([player, resources]) => ({ move: move - 2, event: { type: 'set', player, resources } }));
+    const tracker = Caton.trackLogs(names, [...baselineEntries, ...Object.values(saved).sort(Caton.compareLogs)], 'Alice');
+    assert.deepEqual(tracker.warnings, []);
+    if (move === 114) {
+      assert.equal(tracker.players.Alice.grain, 1);
+      assert.equal(tracker.players.Carol.grain, 1);
+      assert.equal(tracker.players.Bob.grain, 4, 'two grain from each victim, then two spent at the bank');
+      assert.equal(tracker.players.Bob.wool, 1);
+    } else {
+      assert.equal(tracker.players.Alice.wool, 0);
+      assert.equal(tracker.players.Bob.wool, 0);
+      assert.equal(tracker.players.Carol.wool, 3, 'one wool from Alice and two from Bob');
+      assert.equal(tracker.players.Carol.lumber, 2);
+      assert.equal(tracker.players.Carol.grain, 1);
+    }
+    for (const player of names) assert.equal(tracker.players[player].unknown, 0);
+    assert.equal(Object.values(saved).find(log => log.event?.type === 'steal' && !log.event.revealed).event.resources, null);
   }
 });
 test('public hand totals uniquely constrain a hidden resource monopoly without changing the raw journal', () => {

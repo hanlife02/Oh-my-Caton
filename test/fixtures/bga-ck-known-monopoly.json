@@ -1,0 +1,149 @@
+{
+  "cases": [
+    {
+      "move": 114,
+      "baseline": {
+        "Alice": {
+          "brick": 1,
+          "wool": 1,
+          "grain": 3
+        },
+        "Bob": {
+          "grain": 2,
+          "ore": 1,
+          "cloth": 1
+        },
+        "Carol": {
+          "grain": 3,
+          "ore": 1,
+          "paper": 1
+        }
+      },
+      "logs": [
+        {
+          "move": 113,
+          "position": 1,
+          "source": "Bob 打出了 资源垄断",
+          "event": null
+        },
+        {
+          "move": 114,
+          "position": 1,
+          "source": "你失去2 {grain}",
+          "event": null
+        },
+        {
+          "move": 114,
+          "position": 2,
+          "source": "资源垄断: Bob 从 Alice 那里偷取资源",
+          "event": {
+            "player": "Bob",
+            "resources": {
+              "grain": 2
+            },
+            "revealed": true,
+            "type": "steal",
+            "victim": "Alice"
+          }
+        },
+        {
+          "move": 114,
+          "position": 3,
+          "source": "资源垄断: Bob 从 Carol 那里偷取资源",
+          "event": {
+            "player": "Bob",
+            "resources": null,
+            "type": "steal",
+            "victim": "Carol"
+          }
+        },
+        {
+          "move": 115,
+          "position": 1,
+          "source": "Bob 用资源进行交易: 2 {grain} → {wool}",
+          "event": {
+            "give": {
+              "grain": 2
+            },
+            "player": "Bob",
+            "receive": {
+              "wool": 1
+            },
+            "type": "bank"
+          }
+        }
+      ]
+    },
+    {
+      "move": 148,
+      "baseline": {
+        "Alice": {
+          "wool": 1,
+          "grain": 2
+        },
+        "Bob": {
+          "wool": 2,
+          "grain": 4,
+          "cloth": 2
+        },
+        "Carol": {
+          "lumber": 4
+        }
+      },
+      "logs": [
+        {
+          "move": 147,
+          "position": 1,
+          "source": "Carol 打出了 资源垄断",
+          "event": null
+        },
+        {
+          "move": 148,
+          "position": 1,
+          "source": "资源垄断: Carol 从 Bob 那里偷取资源",
+          "event": {
+            "player": "Carol",
+            "resources": null,
+            "type": "steal",
+            "victim": "Bob"
+          }
+        },
+        {
+          "move": 148,
+          "position": 2,
+          "source": "你失去 {wool}",
+          "event": null
+        },
+        {
+          "move": 148,
+          "position": 3,
+          "source": "资源垄断: Carol 从 Alice 那里偷取资源",
+          "event": {
+            "player": "Carol",
+            "resources": {
+              "wool": 1
+            },
+            "revealed": true,
+            "type": "steal",
+            "victim": "Alice"
+          }
+        },
+        {
+          "move": 149,
+          "position": 1,
+          "source": "Carol 用资源进行交易: 2 {lumber} → {grain}",
+          "event": {
+            "give": {
+              "lumber": 2
+            },
+            "player": "Carol",
+            "receive": {
+              "grain": 1
+            },
+            "type": "bank"
+          }
+        }
+      ]
+    }
+  ]
+}

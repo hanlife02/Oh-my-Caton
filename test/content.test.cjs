@@ -348,7 +348,7 @@ test('saved mispaired consecutive thefts recover from canonical private sources 
 test('public resource counters resolve saved monopoly uncertainty and recompute when counters change without new logs', async () => {
   const saved = { 'caton:table:42:rules:3': { corrections: [], logs: {
     gain: { id: 1, move: 1, position: 1, stable: true, event: { type: 'gain', player: 'Bob', resources: { lumber: 1, unknown: 2 } } },
-    choice: { id: 2, move: 2, position: 1, stable: true, source: '资源垄断: Alice 索要lumber 但 Carol 没有该种类资源.', event: null },
+    choice: { id: 2, move: 2, position: 1, stable: true, source: '资源垄断: Alice 索要 {lumber} 但 Carol 没有该种类资源.', event: null },
     transfer: { id: 3, move: 2, position: 2, stable: true, source: '资源垄断: Alice 从 Bob 那里偷取资源', event: { type: 'steal', player: 'Alice', victim: 'Bob', resources: null } },
   } } };
   const p = await page(saved, '', ['Alice', 'Bob', 'Carol']);
@@ -367,6 +367,22 @@ test('public resource counters resolve saved monopoly uncertainty and recompute 
   assert.equal(p.panel.querySelector('[data-player=Alice] .total').textContent, '—');
   assert.equal(saved['caton:table:42:rules:3'].logs.transfer.event.resources, null);
   p.dom.window.close();
+});
+test('saved monopoly private evidence recovers other victims resource types across refreshes', async () => {
+  const saved = { 'caton:table:42:rules:3': { corrections: [], logs: {
+    gain: { stable: true, move: 1, position: 1, event: { type: 'gain', player: 'Carol', resources: { lumber: 2, ore: 1 } } },
+    alice: { stable: true, move: 1, position: 2, event: { type: 'gain', player: 'Alice', resources: { lumber: 2 } } },
+    revealed: { stable: true, move: 2, position: 1, source: '资源垄断: Bob 从 Alice 那里偷取资源', event: { type: 'steal', player: 'Bob', victim: 'Alice', resources: { lumber: 2 }, revealed: true } },
+    hidden: { stable: true, move: 2, position: 2, source: '资源垄断: Bob 从 Carol 那里偷取资源', event: { type: 'steal', player: 'Bob', victim: 'Carol', resources: { unknown: 2 } } },
+  } } };
+  for (let refresh = 0; refresh < 2; refresh++) {
+    const p = await page(saved, '', ['Alice', 'Bob', 'Carol']);
+    assert.equal(p.panel.querySelector('[data-player=Bob] [data-resource=lumber]').textContent, '4');
+    assert.equal(p.panel.querySelector('[data-player=Bob] [data-resource=unknown]').textContent, '0');
+    assert.equal(p.panel.querySelector('[data-player=Carol] [data-resource=ore]').textContent, '1');
+    assert.deepEqual(saved['caton:table:42:rules:3'].logs.hidden.event.resources, { unknown: 2 });
+    p.dom.window.close();
+  }
 });
 test('actual Bishop and monopoly suffix restores the independently observed public totals after refresh', async () => {
   const fixture = require('./fixtures/bga-ck-private-monopoly-393.json');

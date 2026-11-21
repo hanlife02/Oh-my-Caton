@@ -35,7 +35,7 @@
     const found = bundle(action);
     const other = ordered.find(name => name !== player && action.includes(name));
     const monopoly = raw.match(/^(资源垄断|商品垄断|Resource Monopoly|Trade Monopoly)\s*[:：]/i);
-    const requested = action.match(/^索要\s*(lumber|brick|wool|grain|ore|paper|cloth|coin)\b/i);
+    const requested = action.match(/^(?:索要|requests?\b)\s*\{?(lumber|brick|wool|grain|ore|paper|cloth|coin)\b\}?/i);
     if (monopoly && requested) {
       const resource = requested[1].toLowerCase();
       const commodity = /商品|Trade/i.test(monopoly[1]);
